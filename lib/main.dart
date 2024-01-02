@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouting = AppRouting();
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+     
         home: const MyApp(),
         onGenerateRoute: appRouting.onGenerateRoute,
         );
