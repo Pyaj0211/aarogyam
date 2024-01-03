@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="" />
+    <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/yashdip.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
