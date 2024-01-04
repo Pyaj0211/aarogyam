@@ -49,8 +49,6 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     });
     }
 
-
-
   void _registerdocter () async {
     if(_formkey.currentState!.validate() && _selectImage != null ){
       setState(() {
