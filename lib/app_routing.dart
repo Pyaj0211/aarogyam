@@ -5,7 +5,7 @@ class AppRouting{
   Route? onGenerateRoute(RouteSettings routeSettings){
     switch (routeSettings.name){
       case '/':
-        return MaterialPageRoute(builder: (_)=> const LoginScreen());
+        return MaterialPageRoute(builder: (_)=> LoginScreen());
       default:
         return null;
     }
