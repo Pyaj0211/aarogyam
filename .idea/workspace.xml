@@ -12,26 +12,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="pateint login without UI">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+    <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="pateint login without UI(2)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app_routing.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app_routing.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/home_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/login_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/ragistration_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/ragistration_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/views/common_widget/demo.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/logic/cubit/auth_cubit/auth_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/logic/cubit/auth_cubit/auth_cubit.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +43,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2aNkAWVRNjNuudZYNyBATskSavX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -72,8 +62,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
-    "io.flutter.reload.alreadyRun": "true"
+    "io.flutter.reload.alreadyRun": "true",
+    "show.migrate.to.gradle.popup": "false"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1704466054309</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="pateint login without UI(2)">
+      <created>1704516994419</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704516994419</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -125,6 +125,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pateint login without UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="pateint login without UI" />
+    <MESSAGE value="pateint login without UI(2)" />
+    <option name="LAST_COMMIT_MESSAGE" value="pateint login without UI(2)" />
   </component>
 </project>

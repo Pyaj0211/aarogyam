@@ -1,4 +1,5 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,6 +50,10 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       UserCredential userCredential =
           await _auth.signInWithCredential(phoneAuthCredential);
+      String userId = userCredential.user!.uid;
+      FirebaseFirestore.instance.collection('userRole').doc(userId).set({
+        'role': 'patient',
+      });
       if (userCredential.user != null) {
         emit(AuthLoggedInState(userCredential.user!));
       }

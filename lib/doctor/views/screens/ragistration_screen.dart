@@ -7,14 +7,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-class RagistrationScreen extends StatefulWidget {
-  const RagistrationScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
-  State<RagistrationScreen> createState() => _RagistrationScreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _RagistrationScreenState extends State<RagistrationScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
 
   File? _selectImage;
   File? _certificate;
@@ -38,11 +38,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
       lastDate: DateTime(3000),
     );
     if (dt != null) {
-      _ddob.text = dt.day.toString() +
-          "/" +
-          dt.month.toString() +
-          "/" +
-          dt.year.toString();
+      _ddob.text = "${dt.day}/${dt.month}/${dt.year}";
     }
     setState((){
 
@@ -84,7 +80,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
         // Get the user ID (UID) from the userCredential
         String userId = userCredential.user!.uid;
 
-        FirebaseFirestore.instance.collection('Request').doc(userId).set({
+        FirebaseFirestore.instance.collection('DoctorRequest').doc(userId).set({
           'name': _dname.text,
           'age': _ddob.text,
           'address': _daddress.text,
@@ -92,16 +88,18 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
           'general_fee': _dgernalfeeamount.text,
           'email': _demail.text,
           'password': _dpassword.text,
-          'status' :'Pending',
+          'status' :'pending',
           'image':_imageurl,
           'certificate': _certificateUrl,
         });
-
+        FirebaseFirestore.instance.collection('userRole').doc(userId).set({
+          'role': 'doctor'
+        });
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).clearSnackBars();
         // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Ragistration succesfully...! ')));
+            .showSnackBar(const SnackBar(content: Text('Registration succesfully...! ')));
 
         // Add a delay of 3 seconds before navigating to the login screen
         await Future.delayed(Duration(seconds: 2));
@@ -392,7 +390,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                 GestureDetector(
                                     onTap: (){
                                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                        return DoctorLoginScreen();
+                                        return const DoctorLoginScreen();
                                       },));
 
                                     },

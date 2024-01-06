@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class DoctorLoginScreen extends StatefulWidget {
-  DoctorLoginScreen({Key? key}) : super(key: key);
+  const DoctorLoginScreen({super.key});
 
   @override
   State<DoctorLoginScreen> createState() => _DoctorLoginScreenState();
@@ -34,10 +34,10 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
             const SnackBar(content: Text('Login successfully ...! ')));
 
         // Add a delay of 3 seconds before navigating to the login screen
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
         Navigator.pushReplacement(context, MaterialPageRoute(
           builder: (context) {
-            return HomeScreen();
+            return DoctorHomeScreen();
           },
         ));
       } catch (ex) {
@@ -161,7 +161,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
                             },
                             decoration: InputDecoration(
                               labelText: "Enter Password",
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.lock_outline,
                                 color: Color(0xff117790),
                               ),
@@ -170,7 +170,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
                                   _obscurePassword
                                       ? Icons.visibility_off
                                       : Icons.visibility,
-                                  color: Color(0xff117790),
+                                  color: const Color(0xff117790),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -178,7 +178,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
                                   });
                                 },
                               ),
-                              labelStyle: TextStyle(
+                              labelStyle: const TextStyle(
                                   color: Color(0xff117790),
                                   fontSize: 17,
                                   fontWeight: FontWeight.w500),
@@ -197,10 +197,10 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
                                   borderRadius: BorderRadius.circular(20)),
                               child: Center(
                                   child: isLoading
-                                      ? CircularProgressIndicator(
+                                      ? const CircularProgressIndicator(
                                           color: Colors.black,
                                         )
-                                      : Text(
+                                      : const Text(
                                           "Log in",
                                           style: TextStyle(
                                               color: Colors.white,
@@ -230,7 +230,7 @@ class _DoctorLoginScreenState extends State<DoctorLoginScreen> {
                                   onTap: () {
                                     Navigator.push(context, MaterialPageRoute(
                                       builder: (context) {
-                                        return RagistrationScreen();
+                                        return RegistrationScreen();
                                       },
                                     ));
                                   },
