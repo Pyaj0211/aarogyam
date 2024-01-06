@@ -107,7 +107,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
         await Future.delayed(Duration(seconds: 2));
 
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-          return LoginScreen();
+          return DoctorLoginScreen();
         }));
         _dname.clear();
          _ddob.clear();
@@ -392,7 +392,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                 GestureDetector(
                                     onTap: (){
                                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                        return LoginScreen();
+                                        return DoctorLoginScreen();
                                       },));
 
                                     },
