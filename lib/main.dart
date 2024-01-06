@@ -1,5 +1,5 @@
 import 'package:aarogyam/app_routing.dart';
-import 'package:aarogyam/doctor/views/screens/login_screen.dart';
+import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -19,13 +19,12 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     final appRouting = AppRouting();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginScreen(),
+        home: const DocterLoginScreen(),
         onGenerateRoute: appRouting.onGenerateRoute);
   }
 }
