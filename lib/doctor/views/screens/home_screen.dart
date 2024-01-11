@@ -1,19 +1,32 @@
+import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class DoctorHomeScreen extends StatefulWidget {
+  const DoctorHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<DoctorHomeScreen> createState() => _DoctorHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HomeScreen'),
+        title: const Text('HomeScreen'),
         centerTitle: true,
+      ),
+      body: TextButton(
+        onPressed: () async {
+          await FirebaseAuth.instance.signOut();
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DocterLoginScreen(),
+            ),);
+        },
+        child: const Text('log out'),
       ),
     );
   }

@@ -112,6 +112,19 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               setState(() {
                                 _person = File(pickedImage!.path);
                               });
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
                             },
                             child: CircleAvatar(
                               radius: 40,
@@ -164,6 +177,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _dname,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             decoration:  InputDecoration(
                               labelText: "Enter your name",
                               labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
@@ -183,6 +211,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _ddob,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             onTap: () async {
                               _selecetDate();
                             },
@@ -204,6 +247,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                             error = state.error;
                           }
                           return  TextFormField(
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             controller: _daddress,
                             decoration:  InputDecoration(
                                 labelText: "Enter your Address",
@@ -223,6 +281,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _dSpecialist,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             decoration:  InputDecoration(
                                 labelText: "Enter your Spicailist",
                                 labelStyle: const TextStyle(color:  Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
@@ -241,6 +314,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _dgernalfeeamount,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             decoration:  InputDecoration(
                                 labelText: "Enter your Genralfee",
                                 labelStyle: const  TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
@@ -259,6 +347,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _demail,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             decoration:  InputDecoration(
                                 labelText: "Enter your email",
                                 labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
@@ -281,6 +384,21 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             controller: _dpassword,
+                            onChanged: (value){
+                              BlocProvider.of<SignUpBloc>(context).add(
+                                  SignUpFieldChangeEvent(
+                                      name: _dname.text,
+                                      dob: _ddob.text,
+                                      address: _daddress.text,
+                                      spicalist: _dSpecialist.text,
+                                      generalfee: _dgernalfeeamount.text,
+                                      email: _demail.text,
+                                      password: _dpassword.text,
+                                      person: _person,
+                                      certificate: _certificate
+                                  )
+                              );
+                            },
                             obscureText: visibility,
                             decoration: InputDecoration(
                                 labelText: "Enter Password",
@@ -319,6 +437,19 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                              setState(() {
                                _certificate = File(pickedImage!.path);
                              });
+                                BlocProvider.of<SignUpBloc>(context).add(
+                                    SignUpFieldChangeEvent(
+                                        name: _dname.text,
+                                        dob: _ddob.text,
+                                        address: _daddress.text,
+                                        spicalist: _dSpecialist.text,
+                                        generalfee: _dgernalfeeamount.text,
+                                        email: _demail.text,
+                                        password: _dpassword.text,
+                                        person: _person,
+                                        certificate: _certificate
+                                    )
+                                );
                             },
                             child: Container(
                               height: 300,
@@ -372,7 +503,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                         child: BlocConsumer<SignUpBloc, SignUpState>(
                           listener: (context, state) {
                             if(state is SignUpSubmitState){
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DocterLoginScreen(),));
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Ragistration Successfully...!")));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
                             }else if (state is ErrorState) {
                               showDialog(
                                   context: context,
@@ -447,7 +579,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           GestureDetector(
                               onTap: (){
                                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                  return LoginScreen();
+                                  return const LoginScreen();
                                 },));
 
                               },

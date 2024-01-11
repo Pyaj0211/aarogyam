@@ -1,5 +1,6 @@
 import 'package:aarogyam/app_routing.dart';
-import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
+import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,11 @@ void main() async {
         messagingSenderId: '461917017068',
         projectId: 'aarogyam-80aa2')
   );
-  runApp(MyApp());
+  // Initialize Firebase App Check
+  await FirebaseAppCheck.instance.activate();
+
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,8 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final appRouting = AppRouting();
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: const DocterLoginScreen(),
-        onGenerateRoute: appRouting.onGenerateRoute);
+      debugShowCheckedModeBanner: false,
+      home: const PatientLoginScreen(),
+      onGenerateRoute: appRouting.onGenerateRoute,
+    );
   }
 }
+

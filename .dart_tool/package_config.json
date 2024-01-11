@@ -39,19 +39,19 @@
     },
     {
       "name": "cloud_firestore",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.13.6",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore-4.14.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_platform_interface",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.0.10",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_platform_interface-6.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
     {
       "name": "cloud_firestore_web",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.8.10",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/cloud_firestore_web-3.9.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -105,9 +105,9 @@
     },
     {
       "name": "file_selector_platform_interface",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.6.1",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/file_selector_platform_interface-2.6.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "file_selector_windows",
@@ -116,8 +116,26 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "firebase_app_check",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_app_check-0.2.1+8",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_app_check_platform_interface",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_app_check_platform_interface-0.1.0+10",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
+      "name": "firebase_app_check_web",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_app_check_web-0.1.0+10",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
+    },
+    {
       "name": "firebase_auth",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-4.15.3",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth-4.16.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -129,7 +147,7 @@
     },
     {
       "name": "firebase_auth_web",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_web-5.8.12",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_auth_web-5.8.13",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -153,7 +171,7 @@
     },
     {
       "name": "firebase_database",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_database-10.3.8",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_database-10.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -171,7 +189,7 @@
     },
     {
       "name": "firebase_storage",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage-11.5.6",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/firebase_storage-11.6.0",
       "packageUri": "lib/",
       "languageVersion": "2.18"
     },
@@ -237,21 +255,21 @@
     },
     {
       "name": "image_picker",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.6",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker-1.0.7",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "image_picker_android",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.9+2",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_android-0.8.9+3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "image_picker_for_web",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.0.1",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_for_web-3.0.2",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.0"
     },
     {
       "name": "image_picker_ios",
@@ -273,7 +291,7 @@
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.9.2",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/image_picker_platform_interface-2.9.3",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -416,7 +434,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-01-06T08:26:34.356845Z",
+  "generated": "2024-01-11T13:19:12.386203Z",
   "generator": "pub",
   "generatorVersion": "3.2.3"
 }
