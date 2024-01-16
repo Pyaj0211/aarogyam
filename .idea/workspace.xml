@@ -12,15 +12,53 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="" />
+=======
+    <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/images/vector/Group1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/vector/Group2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/vector/Group3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/vector/ic_launcher.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/images/vector/patientlogin.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/patient/logic/cubit/auth_cubit/auth_cubit.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/patient/logic/cubit/auth_cubit/auth_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/patient/views/screens/home_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/patient/views/screens/verify_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app_routing.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app_routing.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/logic/bloc/signup_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/logic/bloc/signup_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+    </list>
+>>>>>>> 1c9a6e81e096e953b4af28640ab9b97cbd1e1d68
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="module-info" />
         <option value="Dart File" />
       </list>
     </option>
@@ -35,6 +73,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2aNkAWVRNjNuudZYNyBATskSavX" />
   <component name="ProjectView">
@@ -52,23 +93,49 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/android/app/src/main/res" />
-    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/images/vector" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Flutter\finalyearproject\aarogyam\android\app\src\main\res" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets\images\vector" />
-      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor\views\screens" />
-      <recent name="E:\Flutter\finalyearproject\aarogyam\android\app" />
+      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\patient" />
+      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor\logic\bloc" />
+      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor" />
+      <recent name="E:\Flutter\finalyearproject\aarogyam\android\app\src\main\res" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor\logic\bloc\signup" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\lib" />
     </key>
+  </component>
+  <component name="RunManager" selected="Flutter.main.dart">
+    <configuration name="gradlew" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/android/gradlew" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/android" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Shell Script.gradlew" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
