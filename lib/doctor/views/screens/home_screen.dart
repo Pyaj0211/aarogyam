@@ -23,7 +23,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => DocterLoginScreen(),
+              builder: (context) => const DocterLoginScreen(),
             ),);
         },
         child: const Text('log out'),

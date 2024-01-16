@@ -503,7 +503,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                         child: BlocConsumer<SignUpBloc, SignUpState>(
                           listener: (context, state) {
                             if(state is SignUpSubmitState){
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Ragistration Successfully...!")));
+                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Ragistration Successfully...!")));
                               Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
                             }else if (state is ErrorState) {
                               showDialog(

@@ -92,6 +92,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           'certificate':certificateUrl,
           'status':'pending',
         });
+        // Get the user ID (UID) from the userCredential
+        String userId = userCredentials.user!.uid;
+        FirebaseFirestore.instance.collection('userRole').doc(userId).set({
+          'role': 'doctor'
+        });
         emit(SignUpSubmitState());
       } on FirebaseAuthException catch (error) {
         if (error.code == 'email-already-in-use') {

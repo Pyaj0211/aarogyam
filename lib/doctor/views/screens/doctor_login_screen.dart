@@ -1,6 +1,7 @@
 import 'package:aarogyam/doctor/logic/bloc/login_bloc.dart';
 import 'package:aarogyam/doctor/views/screens/doctor_ragistration_screen.dart';
 import 'package:aarogyam/doctor/views/screens/home_screen.dart';
+import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,6 +47,12 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: const Color(0xfffdfefd),
         surfaceTintColor:  const Color(0xfffdfefd),
         toolbarHeight: 40,
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PatientLoginScreen(),));
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -133,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: BlocConsumer<LoginBloc,LoginState>(
                               listener: (context, state) {
                                 if (state is LoginSubmitState) {
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successfully...!")));
+                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login Successfully...!")));
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorHomeScreen(),));
                                 } else if (state is ErrorState) {
                                   showDialog(
