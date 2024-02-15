@@ -1,5 +1,5 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
-import 'package:aarogyam/patient/views/screens/home_screen.dart';
+import 'package:aarogyam/patient/views/screens/Home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -67,7 +67,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                   const SizedBox(height: 20),
                   const CircleAvatar(
                     radius: 50,
-                    backgroundImage: AssetImage('assets/images/vector/ic_launcher.jpg'),
+                    backgroundImage: AssetImage('assets/img/vector/ic_launcher.jpg'),
                     child: null,
                   ),
                   const SizedBox(height: 20),

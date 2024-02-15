@@ -16,9 +16,9 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
 
   int _currentIndex = 0;
   final List<String> imageUrls = [
-    'assets/images/vector/Group3.jpg',
-    'assets/images/vector/Group2.png',
-    'assets/images/vector/Group1.png',
+    'assets/img/vector/Group3.jpg',
+    'assets/img/vector/Group2.png',
+    'assets/img/vector/Group1.png',
   ];
   final List<String> textSlider = [
     'Medicine delivery in 2 hours*',
