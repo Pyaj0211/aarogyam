@@ -6,8 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../logic/cubit/auth_cubit/auth_cubit.dart';
 import '../../logic/cubit/auth_cubit/auth_state.dart';
 
-class PatientHomeScreen extends StatelessWidget {
-  const PatientHomeScreen({ Key? key }) : super(key: key);
+class PatientHomeScreen1 extends StatelessWidget {
+  const PatientHomeScreen1({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

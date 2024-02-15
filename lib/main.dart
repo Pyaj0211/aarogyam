@@ -1,7 +1,8 @@
+import 'package:aarogyam/SplashScreen.dart';
 import 'package:aarogyam/doctor/views/screens/home_screen.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
-import 'package:aarogyam/patient/views/screens/home_screen.dart';
+import 'package:aarogyam/patient/views/screens/Home.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -9,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 
 void main() async {
@@ -26,9 +28,9 @@ void main() async {
   runApp(
     BlocProvider(
       create: (BuildContext context) => AuthCubit(),
-      child: MaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: MyApp(),
+        home: SplashScreen(),
       ),
     ),
   );
