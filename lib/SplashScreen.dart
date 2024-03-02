@@ -1,4 +1,5 @@
 import 'package:aarogyam/main.dart';
+import 'package:aarogyam/patient/views/screens/OnbordingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (_controller.value.duration == _controller.value.position) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => MyApp(),
+            builder: (context) => OnbordingScreen(),
           ),
         );
       }

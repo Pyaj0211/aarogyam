@@ -63,9 +63,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 20,),
                   Image.asset("assets/img/vector/docterlogin.png",width:double.infinity,height: 320,),
                   const Text("your expertise matter on our digital  \n   "
-                      "                      platform",style: TextStyle(fontSize: 22 ,fontWeight: FontWeight.bold ,color: Color(0xff117790)),),
+                      "                      platform",style: TextStyle(fontSize: 22 ,fontWeight: FontWeight.bold ,color:Colors.teal),),
                   const SizedBox(height: 20,),
-                  const Text("Docter Login",style: TextStyle(color: Color(0xfff89520),fontWeight: FontWeight.w500,fontSize: 35),),
+                  const Text("Docter Login",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500,fontSize: 35),),
                   const SizedBox(height: 20,),
                   Center(
                     child: Padding(
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             height: 50,
                             width: 350,
                             decoration: BoxDecoration(
-                                color: const Color(0xfff89520),
+                                color: Colors.teal,
                                 borderRadius: BorderRadius.circular(20)
                             ),
                             child: BlocConsumer<LoginBloc,LoginState>(

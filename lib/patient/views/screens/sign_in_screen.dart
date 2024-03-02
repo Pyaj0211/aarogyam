@@ -14,17 +14,7 @@ class PatientLoginScreen extends StatefulWidget {
 class _PatientLoginScreenState extends State<PatientLoginScreen> {
   TextEditingController phoneController = TextEditingController();
 
-  int _currentIndex = 0;
-  final List<String> imageUrls = [
-    'assets/img/vector/Group3.jpg',
-    'assets/img/vector/Group2.png',
-    'assets/img/vector/Group1.png',
-  ];
-  final List<String> textSlider = [
-    'Medicine delivery in 2 hours*',
-    'Lab test at home, starting at ₹199',
-    'Consult with our doctor in 15 mins',
-  ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,54 +28,11 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 50),
-                CarouselSlider.builder(
-                  itemCount: imageUrls.length,
-                  options: CarouselOptions(
-                    height: 280.0,
-                    aspectRatio: 16 / 9,
-                    autoPlay: true,
-                    autoPlayInterval: const Duration(seconds: 2),
-                    autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    pauseAutoPlayOnTouch: true,
-                    enlargeCenterPage: true,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        _currentIndex = index;
-                      });
-                    },
-                  ),
-                  itemBuilder: (BuildContext context, int index, int realIndex) {
-                    return Column(
-                      children: [
-                        Expanded(
-                          child: Image.asset(
-                            imageUrls[index],
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          textSlider[index],
-                            style: const TextStyle(fontSize: 22 ,fontWeight: FontWeight.bold ,color: Color(0xff117790)),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-                const SizedBox(height: 20,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    imageUrls.length,
-                        (index) => buildIndicator(index),
-                  ),
-                ),
-                const SizedBox(height: 120),
+
                 const Text(
                   "Sign in/sign up",
                   style: TextStyle(
-                    color: Color(0xfff89520),
+                    color: Colors.teal,
                     fontWeight: FontWeight.w500,
                     fontSize: 30,
                   ),
@@ -129,7 +76,7 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
                               height: 50,
                               width: 350,
                               decoration: BoxDecoration(
-                                color: const Color(0xfff89520),
+                                color: Colors.teal,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Center(
@@ -184,17 +131,6 @@ class _PatientLoginScreenState extends State<PatientLoginScreen> {
     );
   }
 
-  Widget buildIndicator(int index) {
-    return Container(
-      width: 8.0,
-      height: 8.0,
-      margin: const EdgeInsets.symmetric(horizontal: 4.0),
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: _currentIndex == index ? Colors.blue : Colors.grey,
-      ),
-    );
-  }
 }
 
 

@@ -4,11 +4,11 @@ import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/OrderByPrescription.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 
 import '../../logic/cubit/auth_cubit/auth_cubit.dart';
 import '../../logic/cubit/auth_cubit/auth_state.dart';
@@ -21,6 +21,27 @@ class PatientHomeScreen extends StatefulWidget {
 }
 
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user;
+  String _phoneNumber = '';
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getUserPhoneNumber();
+  }
+
+  Future<void> _getUserPhoneNumber() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      setState(() {
+        _user = user;
+        _phoneNumber = user.phoneNumber!;
+      });
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +76,15 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           const SizedBox(
                             width: 20,
                           ),
-                          const Text(
-                            "Hi Guest !",
+                          Text(
+                            _phoneNumber.isNotEmpty ? _phoneNumber.substring(3) : 'Hi Guest !',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 20,
                                 color: Colors.white),
                           ),
                           const SizedBox(
-                            width: 140,
+                            width: 120,
                           ),
                           const Expanded(
                             child: Icon(
@@ -713,42 +734,6 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
         ),
       ),
 
-      bottomNavigationBar: Container(
-        color: Colors.teal,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: GNav(
-            gap: 8,
-            padding: const EdgeInsets.all(8),
-            backgroundColor: Colors.teal,
-            color: Colors.white,
-            activeColor: Colors.teal,
-            tabBackgroundColor: Colors.grey.shade100,
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
-              ),
-              GButton(
-                icon: Icons.person_3_sharp,
-                text: 'Doctor',
-              ),
-              GButton(
-                icon: Icons.medication_liquid,
-                text: 'Medicine',
-              ),
-              GButton(
-                icon: Icons.note_alt_sharp,
-                text: 'Lab Test',
-              ),
-              GButton(
-                icon: Icons.notes,
-                text: 'Health Blogs',
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
