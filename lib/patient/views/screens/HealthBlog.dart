@@ -160,20 +160,7 @@ Widget _BlogArticle(String imagepath, String category, String title,
         color: Colors.white,
         borderRadius: const BorderRadius.only(
             bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade500,
-            offset: const Offset(4.0, 4.0),
-            blurRadius: 15,
-            spreadRadius: 1.0,
-          ),
-          BoxShadow(
-            color: Colors.grey.shade500,
-            offset: const Offset(4.0, 4.0),
-            blurRadius: 15,
-            spreadRadius: 1.0,
-          )
-        ],
+
       ),
       child: Column(
         children: [

@@ -13,30 +13,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b4cd4034-7259-474e-8c82-294309aa9704" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/SplashScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/SplashScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Video/aarogyam.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SplashScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/splashscreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/logic/bloc/demo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/logic/bloc/madicines.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/BottomNavigationBar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/BottomNavigationBar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/HealthBlog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/HealthBlog.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/Home.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/Medicine.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/Medicine.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/OnbordingScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/onbordingscreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/verify_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/verify_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/Video" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/img/vector" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -95,11 +92,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Flutter\finalyearproject\aarogyam\assets\img\vector" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets\Video" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\lib\patient\views\screens" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets\images\vector" />
-      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\patient" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor\logic\bloc\signup" />

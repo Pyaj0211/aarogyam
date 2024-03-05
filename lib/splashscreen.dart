@@ -1,14 +1,15 @@
-import 'package:aarogyam/main.dart';
-import 'package:aarogyam/patient/views/screens/OnbordingScreen.dart';
+import 'package:aarogyam/patient/views/screens/onbordingscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> {
   late VideoPlayerController _controller;
 
   @override
@@ -25,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (_controller.value.duration == _controller.value.position) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(
-            builder: (context) => OnbordingScreen(),
+            builder: (context) => const OnbordingScreen(),
           ),
         );
       }
@@ -40,14 +41,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:  Color(0xffeef9fd),
+    return  Scaffold(
+      backgroundColor: const Color(0xffeef9fd),
       body: SafeArea(
         child: Center(
           child: _controller.value.isInitialized
-              ? Container(
-            child: AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
+              ? FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: _controller.value.size.width,
+              height: _controller.value.size.height,
               child: VideoPlayer(_controller),
             ),
           )

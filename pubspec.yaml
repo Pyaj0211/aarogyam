@@ -55,6 +55,7 @@ dependencies:
   geocoding: ^2.2.0
   upi_india: ^3.0.1
   onboarding_intro_screen: ^0.0.8
+  flutter_zoom_drawer: ^3.0.3
 
 
 
