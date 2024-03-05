@@ -12,36 +12,32 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
+    <list default="true" id="b4cd4034-7259-474e-8c82-294309aa9704" name="Changes" comment="">
     <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="" />
-=======
     <list default="true" id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/dartpad/web_plugin_registrant.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.dart_tool/package_config_subset" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config_subset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/Group1.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/Group1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/Group2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/Group2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/Group3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/Group3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/docterlogin.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/docterlogin.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/ic_launcher.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/ic_launcher.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/vector/patientlogin.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/img/vector/patientlogin.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Video/aarogyam.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/SplashScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/splashscreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/doctor/views/screens/doctor_ragistration_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/HealthBlog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/HealthBlog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/Home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/Home.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/OnbordingScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/onbordingscreen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/sign_in_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/patient/views/screens/verify_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/patient/views/screens/verify_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
     </list>
->>>>>>> 1c9a6e81e096e953b4af28640ab9b97cbd1e1d68
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +86,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/Video" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/img/vector" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -99,11 +95,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Flutter\finalyearproject\aarogyam\assets\img\vector" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets\Video" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\lib\patient\views\screens" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets" />
       <recent name="E:\Flutter\finalyearproject\aarogyam\assets\images\vector" />
-      <recent name="E:\Flutter\finalyearproject\aarogyam\lib\patient" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Flutter\finalyearproject\aarogyam\lib\doctor\logic\bloc\signup" />
@@ -135,7 +131,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a4f90afb-81b9-4ad2-ada4-830dbc2dc38a" name="Changes" comment="" />
+      <changelist id="b4cd4034-7259-474e-8c82-294309aa9704" name="Changes" comment="" />
       <created>1704166286174</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

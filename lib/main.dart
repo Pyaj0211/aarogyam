@@ -1,8 +1,8 @@
-import 'package:aarogyam/SplashScreen.dart';
+import 'package:aarogyam/splashscreen.dart';
 import 'package:aarogyam/doctor/views/screens/home_screen.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
-import 'package:aarogyam/patient/views/screens/Home.dart';
+import 'package:aarogyam/patient/views/screens/BottomNavigationBar.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
@@ -28,7 +28,7 @@ void main() async {
   runApp(
     BlocProvider(
       create: (BuildContext context) => AuthCubit(),
-      child: GetMaterialApp(
+      child: const GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
@@ -38,6 +38,8 @@ void main() async {
 
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthCubit, AuthState>(
@@ -70,7 +72,7 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
       var userRole = userRoleSnapshot.data()?['role'];
 
       if (userRole == 'patient') {
-        return const PatientHomeScreen();
+        return const BottomNavigationScreen();
       } else if (userRole == 'doctor') {
         return const DoctorHomeScreen();
       }

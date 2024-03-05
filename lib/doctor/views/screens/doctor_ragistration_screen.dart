@@ -8,7 +8,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class DocterRagistrationScreen extends StatefulWidget {
-  const DocterRagistrationScreen({Key? key}) : super(key: key);
+  const DocterRagistrationScreen({super.key});
 
   @override
   State<DocterRagistrationScreen> createState() => _DocterRagistrationScreenState();
@@ -28,7 +28,7 @@ class _DocterRagistrationScreenState extends State<DocterRagistrationScreen> {
 }
 
 class RagistrationScreen extends StatefulWidget {
-  const RagistrationScreen({Key? key}) : super(key: key);
+  const RagistrationScreen({super.key});
 
   @override
   State<RagistrationScreen> createState() => _RagistrationScreenState();
@@ -54,11 +54,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
       lastDate: DateTime(3000),
     );
     if (dt != null) {
-      _ddob.text = dt.day.toString() +
-          "/" +
-          dt.month.toString() +
-          "/" +
-          dt.year.toString();
+      _ddob.text = "${dt.day}/${dt.month}/${dt.year}";
     }
     setState((){
     });
@@ -79,6 +75,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color(0xfffdfefd),
       appBar: AppBar(
@@ -93,13 +90,13 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.all(size.width * 0.05),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Docter Sign in",style: TextStyle(color: Color(0xfff89520),fontWeight: FontWeight.w500,fontSize: 35),),
-                      const SizedBox(height: 20,),
+                      const Text("Docter Sign in",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500,fontSize: 35),),
+                      SizedBox(height: size.height * 0.02),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder:  (context, state) {
                           return GestureDetector(
@@ -112,6 +109,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               setState(() {
                                 _person = File(pickedImage!.path);
                               });
+                              // ignore: use_build_context_synchronously
                               BlocProvider.of<SignUpBloc>(context).add(
                                   SignUpFieldChangeEvent(
                                       name: _dname.text,
@@ -127,7 +125,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               );
                             },
                             child: CircleAvatar(
-                              radius: 40,
+                              radius: size.width * 0.1,
                               backgroundColor: Colors.grey.shade300,
                               foregroundColor: const Color(0xff117790),
                               child: _person == null
@@ -168,6 +166,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                         }),
                       ),
+                      SizedBox(height: size.height * 0.02),
 
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
@@ -201,8 +200,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           );
 
                         },),
-
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -239,7 +237,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
 
                         },),
 
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -272,7 +270,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           );
 
                         },),
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -305,7 +303,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           );
 
                         },),
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -338,7 +336,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           );
 
                         },),
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -371,7 +369,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           );
 
                         },),
-
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           String? error;
@@ -422,9 +420,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
 
                         },),
 
-                      const SizedBox(height: 10,),
+                      SizedBox(height: size.height * 0.02),
                       const Text('Add Certificate',style: TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),),
-                      const SizedBox(height: 10,),
+                      SizedBox(height: size.height * 0.01),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder: (context, state) {
                           return GestureDetector(
@@ -437,6 +435,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                              setState(() {
                                _certificate = File(pickedImage!.path);
                              });
+                                // ignore: use_build_context_synchronously
                                 BlocProvider.of<SignUpBloc>(context).add(
                                     SignUpFieldChangeEvent(
                                         name: _dname.text,
@@ -452,8 +451,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                 );
                             },
                             child: Container(
-                              height: 300,
-                              width: 300,
+                              height: size.height * 0.35,
+                              width: size.width ,
                               decoration: BoxDecoration(
                                 border: Border.all(
                                     color: const Color(0xff117790),
@@ -475,7 +474,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                       ),
 
 
-                      const SizedBox(height: 10,),
+                      SizedBox(height: size.height * 0.02),
                       BlocBuilder<SignUpBloc, SignUpState>(
                         builder: ((context, state) {
                           if(state is SignUpUserCertificateInvalidState){
@@ -494,10 +493,10 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
 
 
                       Container(
-                        height: 50,
-                        width: 350,
+                        height: size.height * 0.05,
+                        width: size.width,
                         decoration: BoxDecoration(
-                            color: const Color(0xfff89520),
+                            color: Colors.teal,
                             borderRadius: BorderRadius.circular(20)
                         ),
                         child: BlocConsumer<SignUpBloc, SignUpState>(
@@ -569,7 +568,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           },
                         ),
                       ),
-                      const SizedBox(height: 20,),
+                      SizedBox(height: size.height * 0.02,),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
