@@ -1,3 +1,4 @@
+import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -128,126 +129,144 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            StreamBuilder<DocumentSnapshot>(
-              stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                }
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StreamBuilder<DocumentSnapshot>(
+                stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  }
 
-                if (!snapshot.hasData || snapshot.data!.data() == null) {
-                  return Container();
-                }
+                  if (!snapshot.hasData || snapshot.data!.data() == null) {
+                    return Container();
+                  }
 
-                Map<String, dynamic> userData = snapshot.data!.data() as Map<String, dynamic>;
-
-                // Autofill name and email fields if available
-                nameController.text = userData['name'] ?? '';
-                emailController.text = userData['email'] ?? '';
-
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        if (userData['address'] != null) {
-                          setState(() {
-                            addressController.text = userData['address'];
-                          });
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        padding: EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Saved Address:',
-                              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            Text(userData['address'] ?? ''),
-                          ],
+                  Map<String, dynamic> userData = snapshot.data!.data() as Map<String, dynamic>;
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (userData['address'] != null) {
+                            setState(() {
+                              // Autofill name and email fields if available
+                              addressController.text = userData['address'];
+                              nameController.text = userData['name'] ?? '';
+                              emailController.text = userData['email'] ?? '';
+                            });
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5.0),
+                          ),
+                          padding: EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Saved Address:',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                              Text(userData['address'] ?? ''),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                  ],
-                );
-              },
-            ),
-            TextFormField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                labelText: 'Name',
-                prefixIcon: Icon(Icons.person, color: Colors.teal,),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                      const SizedBox(height: 20),
+                    ],
+                  );
+                },
+              ),
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  prefixIcon: Icon(Icons.person, color: Colors.teal,),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              controller: addressController,
-              onTap: () {
-                showLocationDialog();
-              },
-              decoration: const InputDecoration(
-                labelText: 'Address',
-                prefixIcon: Icon(Icons.location_pin, color: Colors.teal,),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            TextFormField(
-              controller: emailController,
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                prefixIcon: Icon(Icons.email_outlined, color: Colors.teal,),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Center(
-              child: InkWell(
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: addressController,
                 onTap: () {
-                  if (user != null &&
-                      nameController.text.isNotEmpty &&
-                      addressController.text.isNotEmpty &&
-                      emailController.text.isNotEmpty) {
-                    FirebaseFirestore.instance.collection('users').doc(user.uid).set({
-                      'name': nameController.text,
-                      'address': addressController.text,
-                      'email': emailController.text,
-                    }).then((value) {
-                      widget.addToCartCallback({
+                  showLocationDialog();
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Address',
+                  prefixIcon: Icon(Icons.location_pin, color: Colors.teal,),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  prefixIcon: Icon(Icons.email_outlined, color: Colors.teal,),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    if (user != null &&
+                        nameController.text.isNotEmpty &&
+                        addressController.text.isNotEmpty &&
+                        emailController.text.isNotEmpty) {
+                      FirebaseFirestore.instance.collection('users').doc(user.uid).set({
                         'name': nameController.text,
                         'address': addressController.text,
                         'email': emailController.text,
-                        'medicineName': widget.medicineDetails['medicineName'],
-                        // Add other medicine details as required
-                      });
-                      Navigator.pop(context);
+                      }).then((value) {
+                        widget.addToCartCallback({
+                          'name': nameController.text,
+                          'address': addressController.text,
+                          'email': emailController.text,
+                          'medicineName': widget.medicineDetails['medicineName'],
+                          // Add other medicine details as required
+                        });
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Medicine(),));
 
-                    }).catchError((error) {
+                      }).catchError((error) {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('Error'),
+                              content: Text('Failed to save details: $error'),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      });
+                    } else {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: const Text('Error'),
-                            content: Text('Failed to save details: $error'),
+                            title: const Text('Missing Details'),
+                            content: const Text('Please fill in all the details.'),
                             actions: <Widget>[
                               TextButton(
                                 child: const Text('OK'),
@@ -259,45 +278,27 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                           );
                         },
                       );
-                    });
-                  } else {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: const Text('Missing Details'),
-                          content: const Text('Please fill in all the details.'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    color: Colors.teal,
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Buy Now',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                    }
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      color: Colors.teal,
+                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Buy Now',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
