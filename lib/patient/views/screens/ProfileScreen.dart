@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
-
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -109,10 +105,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: CircleAvatar(
                                     radius: 30,
                                     backgroundColor: Colors.transparent,
-                                      child: _userName.isNotEmpty
-                                          ? Text(
-                                          _userName[0].toUpperCase())
-                                          : Icon(Icons.person),
+                                    child: _userName.isNotEmpty
+                                        ? Text(_userName[0].toUpperCase())
+                                        : Icon(Icons.person),
                                   ),
                                 ),
                                 SizedBox(width: 10),
@@ -151,13 +146,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Future<void> _showEditProfileDialog(BuildContext context) async {
-
     TextEditingController usernameController =
     TextEditingController(text: _userName);
     TextEditingController mobileController =
     TextEditingController(text: _phoneNumber.substring(3));
-    TextEditingController gmailController =
-    TextEditingController(text: _gmail);
+    TextEditingController gmailController = TextEditingController(text: _gmail);
     TextEditingController addressController =
     TextEditingController(text: _address);
 
@@ -182,9 +175,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     radius: 40,
                     backgroundColor: Colors.transparent,
                     foregroundColor: const Color(0xff117790),
-                      child: _userName.isNotEmpty
-                          ? Text(_userName[0].toUpperCase())
-                          : Icon(Icons.person),
+                    child: _userName.isNotEmpty
+                        ? Text(_userName[0].toUpperCase())
+                        : Icon(Icons.person),
                   ),
                 ),
                 TextField(
@@ -194,7 +187,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your username',
                   ),
                   onChanged: (value) {
-                    _userName = value;
+                    setState(() {
+                      _userName = value;
+                    });
                   },
                 ),
                 TextField(
@@ -204,7 +199,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your mobile number',
                   ),
                   onChanged: (value) {
-                    _mobile = value;
+                    setState(() {
+                      _mobile = value;
+                    });
                   },
                 ),
                 TextField(
@@ -214,7 +211,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your email address',
                   ),
                   onChanged: (value) {
-                    _gmail = value;
+                    setState(() {
+                      _gmail = value;
+                    });
                   },
                 ),
                 TextField(
@@ -224,7 +223,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your address',
                   ),
                   onChanged: (value) {
-                    _address = value;
+                    setState(() {
+                      _address = value;
+                    });
                   },
                 ),
               ],
@@ -242,7 +243,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 User? user = _auth.currentUser;
                 if (user != null) {
                   try {
-
                     await _firestore
                         .collection('users')
                         .doc(user.uid)
@@ -250,7 +250,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         .doc('profileData')
                         .set({
                       'username': _userName,
-                      'mobile': _mobile,
+                      'mobile': _phoneNumber.substring(3),
                       'gmail': _gmail,
                       'address': _address,
                     });

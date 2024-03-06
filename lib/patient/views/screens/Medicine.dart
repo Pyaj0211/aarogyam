@@ -1,5 +1,4 @@
 import 'package:aarogyam/patient/views/screens/AddToCart.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -14,21 +13,9 @@ class Medicine extends StatefulWidget {
 
 class _MedicineState extends State<Medicine> {
   int? _tappedIndex;
-  List<Map<String, dynamic>> _cartItems = [];
   TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  void _addToCart(Map<String, dynamic> medicine) {
-    setState(() {
-      _cartItems.add(medicine);
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${medicine['medicineName']} added to cart'),
-        duration: const Duration(seconds: 4),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +116,7 @@ class _MedicineState extends State<Medicine> {
                       child: GestureDetector(
                         onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                              MedicineDetailsScreen(medicineDetails: medicine, addToCartCallback: _addToCart),));
+                              MedicineDetailsScreen(medicineDetails: medicine),));
                         },
                         child: SizedBox(
                           height: MediaQuery.of(context).size.height * 0.200,
@@ -138,7 +125,7 @@ class _MedicineState extends State<Medicine> {
                             children: [
                               Image.network(medicine['medImage'], width: 100, height: 100, fit: BoxFit.fill,),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15),
+                                padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 25),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -148,47 +135,6 @@ class _MedicineState extends State<Medicine> {
                                     Text('Stock Quantity: ${medicine['stockQuantity']}'),
                                     Text('Price: ${medicine['price']}'),
                                     const SizedBox(height: 5,),
-                                    InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          _tappedIndex = index;
-                                          _cartItems.add(medicines[index].data() as Map<String, dynamic>);
-                                        });
-
-                                        // Simulate adding item to cart
-                                        Future.delayed(const Duration(seconds: 2), () {
-                                          setState(() {
-                                            _tappedIndex = null;
-                                          });
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            SnackBar(
-                                              content: Text('${medicine['medicineName']} added to cart'),
-                                              duration: const Duration(seconds: 2),
-                                            ),
-                                          );
-                                        });
-                                      },
-                                      child: Container(
-                                        height: 30,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.teal, // Border color
-                                            width: 1, // Border width
-                                          ),
-                                          borderRadius: BorderRadius.circular(50), // Border radius
-                                        ),
-                                        child: Center(
-                                          child: _tappedIndex == index
-                                              ? const SizedBox(
-                                            width: 20,
-                                            height: 20,
-                                            child: CircularProgressIndicator(strokeWidth: 2,),
-                                          )
-                                              : const Text('Add to Cart'),
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
@@ -209,7 +155,7 @@ class _MedicineState extends State<Medicine> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddToCartScreen(cartItems: _cartItems),
+              builder: (context) => const AddToCartScreen(),
             ),
           );
         },
