@@ -819,8 +819,32 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   ),
                 ),
               ),
+
               SizedBox(
                 height: size.height * 0.01,
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+      ),
+
+      bottomNavigationBar: Container(
+        color: Colors.teal,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: GNav(
+            gap: 8,
+            padding: const EdgeInsets.all(8),
+            backgroundColor: Colors.teal,
+            color: Colors.white,
+            activeColor: Colors.teal,
+            tabBackgroundColor: Colors.grey.shade100,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
