@@ -4,10 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
-import 'package:sms_autofill/sms_autofill.dart';
 import '../../logic/cubit/auth_cubit/auth_cubit.dart';
 
 class VerifyPhoneNumberScreen extends StatefulWidget {
+  const VerifyPhoneNumberScreen({super.key});
+
   @override
   State<VerifyPhoneNumberScreen> createState() => _VerifyPhoneNumberScreenState();
 }
@@ -18,27 +19,11 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
   @override
   void initState() {
     super.initState();
-    _listenForSmsCode();
   }
 
   @override
   void dispose() {
     super.dispose();
-    SmsAutoFill().unregisterListener();
-  }
-
-  void _listenForSmsCode() async {
-    await SmsAutoFill().listenForCode();
-
-    SmsAutoFill().getAppSignature.then((signature) {
-      print('App Signature: $signature');
-    });
-
-    SmsAutoFill().code.listen((code) {
-      setState(() {
-        otpcode = code;
-      });
-    });
   }
 
   @override

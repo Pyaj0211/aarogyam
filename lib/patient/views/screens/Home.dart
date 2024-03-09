@@ -4,6 +4,7 @@ import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/OrderByPrescription.dart';
 import 'package:aarogyam/patient/views/screens/ProfileScreen.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
+import 'package:aarogyam/patient/views/screens/googlemapscreen.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,6 +13,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+
+
 
 import '../../logic/cubit/auth_cubit/auth_cubit.dart';
 import '../../logic/cubit/auth_cubit/auth_state.dart';
@@ -34,6 +37,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     super.initState();
     _getUserPhoneNumber();
     _getUserProfileData();
+
   }
 
   Future<void> _getUserPhoneNumber() async {
@@ -75,14 +79,12 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
       }
     }
   }
-
-
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: Colors.teal.shade600,
+      backgroundColor: Colors.grey.shade300,
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -197,240 +199,241 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
 
         body:
      SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  height: size.height * 0.15,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    color: Colors.teal.shade600,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                if(scaffoldKey.currentState!.isDrawerOpen){
-                                  scaffoldKey.currentState!.closeDrawer();
-                                  //close drawer, if drawer is open
-                                }else{
-                                  scaffoldKey.currentState!.openDrawer();
-                                  //open drawer, if drawer is closed
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 5.0),
-                                child: Container(
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.white,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                      foregroundColor: const Color(0xff117790),
-                                      child: _userName.isNotEmpty
-                                          ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
-                                          : const Icon(Icons.person),
-                                    ),
-                                  ),
+        child: Column(
+          children: [
+            Container(
+              height: size.height * 0.16,
+              width: size.width,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+                color: Colors.teal,
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: size.height * 0.032 , left: size.height * 0.01 ,right: size.height * 0.01),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if(scaffoldKey.currentState!.isDrawerOpen){
+                              scaffoldKey.currentState!.closeDrawer();
+                              //close drawer, if drawer is open
+                            }else{
+                              scaffoldKey.currentState!.openDrawer();
+                              //open drawer, if drawer is closed
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 5.0),
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 1.0,
                                 ),
                               ),
+                              child: Center(
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  foregroundColor: const Color(0xff117790),
+                                  child: _userName.isNotEmpty
+                                      ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
+                                      : const Icon(Icons.person),
+                                ),
+                              ),
+                            ),
+                          ),
 
-                            ),
-                             SizedBox(
-                              width: size.width* 0.02,
-                            ),
-                            Text(
-                              _userName.isNotEmpty ? _userName : 'Hi Guest !',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                            SizedBox(
-                              width: size.width * 0.25,
-                            ),
-                            const Expanded(
-                              child: Icon(
-                                Icons.shopping_cart,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Expanded(
-                              child: Icon(
-                                Icons.notifications_active,
-                                color: Colors.yellow,
-                              ),
-                            ),
-                            BlocConsumer<AuthCubit, AuthState>(
-                              listener: (context, state) {
-                                if(state is AuthLoggedOutState) {
-                                  Navigator.popUntil(context, (route) => route.isFirst);
-                                  Navigator.pushReplacement(context, CupertinoPageRoute(
-                                      builder: (context) => const PatientLoginScreen()
-                                  ));
-                                }
-                              },
-                              builder: (context, state) {
-                                return CupertinoButton(
-                                  onPressed: () {
-                                    BlocProvider.of<AuthCubit>(context).logOut();
-                                  },
-                                  child: const Icon(Icons.logout,color: Colors.white,size: 20,)
-                                );
-                              },
-                            ),
-                          ],
                         ),
-                      ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(right: 10, left: 10, top: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                         SizedBox(
+                          width: size.width* 0.025,
+                        ),
+                        Text(
+                          _userName.isNotEmpty ? _userName : 'Hi Guest !',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white),
+                        ),
+                        SizedBox(
+                          width: size.width * 0.40,
+                        ),
+                        const Expanded(
+                          child: Icon(
+                            Icons.shopping_cart,
                             color: Colors.white,
                           ),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: Colors.teal,
-                              ),
-                              // border: OutlineInputBorder(),
-                              hintText: 'Search for Medicine,Doctor,Lab Tests',
-                              hintStyle: TextStyle(color: Colors.teal),
-                            ),
+                        ),
+                        const Expanded(
+                          child: Icon(
+                            Icons.notifications_active,
+                            color: Colors.yellow,
                           ),
                         ),
+                        BlocConsumer<AuthCubit, AuthState>(
+                          listener: (context, state) {
+                            if(state is AuthLoggedOutState) {
+                              Navigator.popUntil(context, (route) => route.isFirst);
+                              Navigator.pushReplacement(context, CupertinoPageRoute(
+                                  builder: (context) => const PatientLoginScreen()
+                              ));
+                            }
+                          },
+                          builder: (context, state) {
+                            return CupertinoButton(
+                              onPressed: () {
+                                BlocProvider.of<AuthCubit>(context).logOut();
+                              },
+                              child: const Icon(Icons.logout,color: Colors.white,size: 20,)
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                         EdgeInsets.symmetric(horizontal: size.height * 0.015,vertical: size.height * 0.0035),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                      ),
+                      child:  TextFormField(
+                        decoration: const InputDecoration(
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide.none
+                          ),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.teal,
+                          ),
+                          // border: OutlineInputBorder(),
+                          hintText: 'Search for Medicine,Doctor,Lab Tests',
+                          hintStyle: TextStyle(color: Colors.teal),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+              child: Card(
+                shadowColor: Colors.green,
+                elevation: 0,
+                color: Colors.white,
+                child: ListTile(
+                  onTap: () {
+                    Get.to(const Medicine());
+                  },
+                  title: const Text(
+                    'Express Delivery',
+                    style: TextStyle(color: Colors.teal),
+                  ),
+                  subtitle: Row(
+                    children: [
+                      Image.asset('assets/images/Medicine.png', width: 28),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'Buy Medicine and Essentials',
+                        style: TextStyle(
+                            color: Colors.teal, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
+                  trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 9),
-                child: Card(
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () {
-                      Get.to(const Medicine());
-                    },
-                    title: const Text(
-                      'Express Delivery',
-                      style: TextStyle(color: Colors.teal),
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Image.asset('assets/images/Medicine.png', width: 28),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'Buy Medicine and Essentials',
+            ),
+             SizedBox(
+              height: size.height * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 9),
+              child: Card(
+                shadowColor: Colors.green,
+                elevation: 0,
+                color: Colors.white,
+                child: ListTile(
+                  onTap: () {
+                    Get.to(const Labtest());
+                  },
+                  title: const Text(
+                    'At Home',
+                    style: TextStyle(color: Colors.teal),
+                  ),
+                  subtitle: Row(
+                    children: [
+                      Image.asset('assets/images/Lab_reports.png', width: 28),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'Lab Tests and Packages',
+                        style: TextStyle(
+                            color: Colors.teal, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    child: Card(
+                      // margin: EdgeInsets.only(right: 200),
+                      shadowColor: Colors.green,
+                      elevation: 0,
+                      color: Colors.white,
+                      child: ListTile(
+                        onTap: () {
+                          Get.to(const DigitalConsult());
+                        },
+                        leading:
+                            Image.asset('assets/images/Doctor.png', width: 35),
+                        title: const Text(
+                          'Consult Digitaly',
                           style: TextStyle(
+                            fontSize: 12,
                               color: Colors.teal, fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
-                  ),
-                ),
-              ),
-               SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9),
-                child: Card(
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () {
-                      Get.to(const Labtest());
-                    },
-                    title: const Text(
-                      'At Home',
-                      style: TextStyle(color: Colors.teal),
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Image.asset('assets/images/Lab_reports.png', width: 28),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'Lab Tests and Packages',
-                          style: TextStyle(
-                              color: Colors.teal, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.45,
-                      child: Card(
-                        // margin: EdgeInsets.only(right: 200),
-                        shadowColor: Colors.green,
-                        elevation: 0,
-                        color: Colors.white,
-                        child: ListTile(
-                          onTap: () {
-                            Get.to(const DigitalConsult());
-                          },
-                          leading:
-                              Image.asset('assets/images/Doctor.png', width: 35),
-                          title: const Text(
-                            'Consult',
-                            style: TextStyle(
-                              fontSize: 13,
-                                color: Colors.teal, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: const Text(
-                            'Digitaly',
-                            style: TextStyle(
-                                color: Colors.teal, fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 20,
-                          ),
+                        trailing: const Icon(
+                          Icons.arrow_forward_ios,
+                          size: 20,
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width : MediaQuery.of(context).size.width * 0.45,
+                  ),
+                  SizedBox(
+                    width : MediaQuery.of(context).size.width * 0.45,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return const GoogleMapScreen();
+                        },));
+
+                      },
                       child: Card(
                         // margin: EdgeInsets.only(right: 200),
                         shadowColor: Colors.green,
@@ -440,15 +443,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           leading:
                           Image.asset('assets/images/Clinic.png', width: 35),
                           title: const Text(
-                            'Visit',
+                            'Visit Hospital',
                             style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.teal, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: const Text(
-                            'Hospital',
-                            style: TextStyle(
-                              fontSize: 13,
+                                fontSize: 12,
                                 color: Colors.teal, fontWeight: FontWeight.bold),
                           ),
                           trailing: const Icon(
@@ -458,65 +455,310 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         ),
                       ),
                     ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Container(
+                height: 270,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              decoration: const BoxDecoration(
+                                  //borderRadius: BorderRadius.circular(40),
+                                  //color: Colors.red
+                                  ),
+                              height: 60,
+                              width: 70,
+                              child: Image.asset(
+                                'assets/images/chat 1.png',
+                              ),
+                            ),
+                            const Text(
+                              'Ask Us!',
+                              style: TextStyle(
+                                  color: Colors.teal,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Feeling Unwell? ',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Take an assessment in less than 3 min',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                Text(
+                                  'and get suggestion on what to do next',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
+                      child: Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 30,
+                                    child: Container(
+                                      height: 60,
+                                      width: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.orange.shade100,
+                                        ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 5,
+                                    left: 25,
+                                    child: Image.asset(
+                                        'assets/images/medical-report.png',
+                                        width: 45),
+                                  ),
+                                  Positioned(
+                                    top: 50,
+                                    left: 35,
+                                    child: Text(
+                                      'Enter',
+                                      style: TextStyle(
+                                          color: Colors.orange.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 60,
+                                    left: 25,
+                                    child: Text(
+                                      'Symptoms',
+                                      style: TextStyle(
+                                          color: Colors.orange.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+
+                                ],
+
+                                ),
+                              ),
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 30,
+                                    child: Container(
+                                      height: 60,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.blue.shade100,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 5,
+                                    left: 25,
+                                    child: Image.asset(
+                                        'assets/images/symptoms.png',
+                                        width: 45),
+                                  ),
+                                  Positioned(
+                                    top: 50,
+                                    left: 20,
+                                    child: Text(
+                                      'Understand',
+                                      style: TextStyle(
+                                          color: Colors.blue.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 60,
+                                    left: 35,
+                                    child: Text(
+                                      'causes',
+                                      style: TextStyle(
+                                          color: Colors.blue.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+
+                                ],
+
+                              ),
+                            ),
+                            SizedBox(
+                              height: size.height * 0.01,
+                            ),
+                            SizedBox(
+                              height: 100,
+                              width: 100,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: 30,
+                                    child: Container(
+                                      height: 60,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.greenAccent.shade100,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 5,
+                                    left: 25,
+                                    child: Image.asset(
+                                        'assets/images/Clinic.png',
+                                        width: 45),
+                                  ),
+                                  Positioned(
+                                    top: 50,
+                                    left: 35,
+                                    child: Text(
+                                      'Enter',
+                                      style: TextStyle(
+                                          color: Colors.green.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 60,
+                                    left: 25,
+                                    child: Text(
+                                      'Symptoms',
+                                      style: TextStyle(
+                                          color: Colors.green.shade700,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15,),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.teal,
+                            borderRadius: BorderRadius.circular(12)),
+                        padding: const EdgeInsets.all(15),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'NEXT',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Container(
-                  height: 270,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            //HEALTH BLOGS
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Container(
+                height: 230,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.teal,
+                        ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                    //borderRadius: BorderRadius.circular(40),
-                                    //color: Colors.red
-                                    ),
-                                height: 60,
-                                width: 70,
-                                child: Image.asset(
-                                  'assets/images/chat 1.png',
-                                ),
-                              ),
-                              const Text(
-                                'Ask Us!',
-                                style: TextStyle(
-                                    color: Colors.teal,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                              Image.asset(
+                                'assets/images/BLOG.png',
+                                height: 50,
+                                width: 50,
                               ),
                               const SizedBox(
-                                width: 10,
+                                width: 15,
                               ),
                               const Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Feeling Unwell? ',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
+                                    'Health Articles & ',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 20),
                                   ),
                                   Text(
-                                    'Take an assessment in less than 3 min',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  Text(
-                                    'and get suggestion on what to do next',
-                                    style: TextStyle(fontSize: 12),
+                                    'Resources',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 20),
                                   ),
                                 ],
                               ),
@@ -524,180 +766,43 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: Container(
-                                        height: 60,
-                                        width: 100,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            color: Colors.orange.shade100,
-                                          ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 5,
-                                      left: 25,
-                                      child: Image.asset(
-                                          'assets/images/medical-report.png',
-                                          width: 45),
-                                    ),
-                                    Positioned(
-                                      top: 50,
-                                      left: 35,
-                                      child: Text(
-                                        'Enter',
-                                        style: TextStyle(
-                                            color: Colors.orange.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 60,
-                                      left: 25,
-                                      child: Text(
-                                        'Symptoms',
-                                        style: TextStyle(
-                                            color: Colors.orange.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-
-                                  ],
-
-                                  ),
-                                ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: Container(
-                                        height: 60,
-                                        width: 100,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.blue.shade100,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 5,
-                                      left: 25,
-                                      child: Image.asset(
-                                          'assets/images/symptoms.png',
-                                          width: 45),
-                                    ),
-                                    Positioned(
-                                      top: 50,
-                                      left: 20,
-                                      child: Text(
-                                        'Understand',
-                                        style: TextStyle(
-                                            color: Colors.blue.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 60,
-                                      left: 35,
-                                      child: Text(
-                                        'causes',
-                                        style: TextStyle(
-                                            color: Colors.blue.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-
-                                  ],
-
-                                ),
-                              ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
-                              SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: Container(
-                                        height: 60,
-                                        width: 100,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.greenAccent.shade100,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 5,
-                                      left: 25,
-                                      child: Image.asset(
-                                          'assets/images/Clinic.png',
-                                          width: 45),
-                                    ),
-                                    Positioned(
-                                      top: 50,
-                                      left: 35,
-                                      child: Text(
-                                        'Enter',
-                                        style: TextStyle(
-                                            color: Colors.green.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 60,
-                                      left: 25,
-                                      child: Text(
-                                        'Symptoms',
-                                        style: TextStyle(
-                                            color: Colors.green.shade700,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                    ),
+                     Column(
+                      mainAxisAlignment:  MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'HEALTH BLOG',
+                          style: TextStyle(
+                              color: Colors.orange.shade400,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15,),
+                        const Text('Explore healthcare content created everyday by'),
+                        const Text('oue experts.')
+                      ],
+                      //Maafi talaafi ki kaafi par aayi kaam nay
+                      // jii aap woh leti mera naam nay ,
+                    ),
+                    SizedBox(
+                      height: size.height * 0.01,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 10),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(const HealthBlog());
+                        },
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.teal,
+                              color: Colors.orange.shade300,
                               borderRadius: BorderRadius.circular(12)),
                           padding: const EdgeInsets.all(15),
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'NEXT',
+                                'Read latest articles',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -707,222 +812,54 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              child: Card(
+                // margin: EdgeInsets.only(right: 200),
+                shadowColor: Colors.green,
+                elevation: 0,
+                color: Colors.white,
+                child: ListTile(
+                  onTap: () {
+                    Get.to(const Prescription());
+                  },
+                  leading: Image.asset('assets/images/medical-report.png',
+                      width: 45),
+                  title: const Text(
+                    'Order via Prescription ',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  subtitle: const Text(
+                    '25% OFF',
+                    style: TextStyle(
+                        color: Colors.teal, fontWeight: FontWeight.bold),
+                  ),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 20,
                   ),
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              //HEALTH BLOGS
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Container(
-                  height: 230,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.teal,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/BLOG.png',
-                                  height: 50,
-                                  width: 50,
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                const Column(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Health Articles & ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 20),
-                                    ),
-                                    Text(
-                                      'Resources',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                       Column(
-                        mainAxisAlignment:  MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'HEALTH BLOG',
-                            style: TextStyle(
-                                color: Colors.orange.shade400,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
-                          ),
-                          const Text('Explore healthcare content created everyday by'),
-                          const Text('oue experts.')
-                        ],
-                        //Maafi talaafi ki kaafi par aayi kaam nay
-                        // jii aap woh leti mera naam nay ,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(const HealthBlog());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.orange.shade300,
-                                borderRadius: BorderRadius.circular(12)),
-                            padding: const EdgeInsets.all(15),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Read latest articles',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Card(
-                  // margin: EdgeInsets.only(right: 200),
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () {
-                      Get.to(const Prescription());
-                    },
-                    leading: Image.asset('assets/images/medical-report.png',
-                        width: 45),
-                    title: const Text(
-                      'Order via Prescription ',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '25% OFF',
-                      style: TextStyle(
-                          color: Colors.teal, fontWeight: FontWeight.bold),
-                    ),
-                    trailing: const Icon(
-                      Icons.arrow_forward_ios,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Card(
-                  // margin: EdgeInsets.only(right: 20),
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/diabetes.png',
-                              width: 40,
-                              height: 40,
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Expanded(
-                              child: Text(
-                                'Manage Diabetes',
-                                style: TextStyle(
-                                    color: Colors.teal,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                            ),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 20,
-                              textDirection: TextDirection.ltr,
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            color: Colors.greenAccent.shade100,
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Track, Manage and Improve Your Diabetes',
-                              style: TextStyle(
-                                  color: Colors.teal, fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
+          ],
         ),
       ),
-
     );
   }
 }

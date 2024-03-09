@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PaymentDetailsScreen extends StatefulWidget {
-  const PaymentDetailsScreen({Key? key}) : super(key: key);
+class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
 
   @override
-  State<PaymentDetailsScreen> createState() => _PaymentDetailsScreenState();
+  _PaymentScreenState createState() => _PaymentScreenState();
 }
 
-class _PaymentDetailsScreenState extends State<PaymentDetailsScreen> {
+class _PaymentScreenState extends State<PaymentScreen> {
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text ('Payment Details'),
-      ),
-    );
 
+    return Scaffold(
+
+    );
   }
 }
