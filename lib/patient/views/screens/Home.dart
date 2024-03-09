@@ -812,6 +812,168 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              //HEALTH BLOGS
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Container(
+                  height: 230,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            color: Colors.teal,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/images/BLOG.png',
+                                  height: 50,
+                                  width: 50,
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                const Column(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Health Articles & ',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 20),
+                                    ),
+                                    Text(
+                                      'Resources',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white,
+                                          fontSize: 20),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                       Column(
+                        mainAxisAlignment:  MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'HEALTH BLOG',
+                            style: TextStyle(
+                                color: Colors.orange.shade400,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22),
+                          ),
+                          const Text('Explore healthcare content created everyday by'),
+                          const Text('oue experts.')
+                        ],
+                        //Maafi talaafi ki kaafi par aayi kaam nay
+                        // jii aap woh leti mera naam nay ,
+                      ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 10),
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.to(const HealthBlog());
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: Colors.orange.shade300,
+                                borderRadius: BorderRadius.circular(12)),
+                            padding: const EdgeInsets.all(15),
+                            child: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Read latest articles',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              SizedBox(
+                height: size.height * 0.01,
+            ),
+            const SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+      ),
+
+      bottomNavigationBar: Container(
+        color: Colors.teal,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          child: GNav(
+            gap: 8,
+            padding: const EdgeInsets.all(8),
+            backgroundColor: Colors.teal,
+            color: Colors.white,
+            activeColor: Colors.teal,
+            tabBackgroundColor: Colors.grey.shade100,
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                child: Card(
+                  // margin: EdgeInsets.only(right: 200),
+                  shadowColor: Colors.green,
+                  elevation: 0,
+                  color: Colors.white,
+                  child: ListTile(
+                    onTap: () {
+                      Get.to(const Prescription());
+                    },
+                    leading: Image.asset('assets/images/medical-report.png',
+                        width: 45),
+                    title: const Text(
+                      'Order via Prescription ',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    subtitle: const Text(
+                      '25% OFF',
+                      style: TextStyle(
+                          color: Colors.teal, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
