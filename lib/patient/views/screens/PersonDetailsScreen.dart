@@ -239,7 +239,8 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                           'medicineName': widget.medicineDetails['medicineName'],
                           // Add other medicine details as required
                         });
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Medicine(),));
+                        Navigator.popUntil(context, ModalRoute.withName('/Medicine'));
+
 
                       }).catchError((error) {
                         showDialog(

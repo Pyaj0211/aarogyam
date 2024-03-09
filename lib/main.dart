@@ -81,7 +81,7 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
       //please return that user not found
     }
   } else if (state is AuthLoggedOutState) {
-    return  PatientLoginScreen();
+    return  const PatientLoginScreen();
   } else {
     // Splash Screen for future
     return null;
