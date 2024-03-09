@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -91,16 +92,16 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               accountName: Text(
                 'Welcome, $_userName',
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500
                 ),
               ),
               accountEmail: Text(
                 _gmail,
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
+                    color: Colors.white,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w500
                 ),
               ),
@@ -195,8 +196,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
       ),
 
 
-        body:
-     SingleChildScrollView(
+      body:
+      SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
@@ -254,7 +255,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                               ),
 
                             ),
-                             SizedBox(
+                            SizedBox(
                               width: size.width* 0.02,
                             ),
                             Text(
@@ -290,10 +291,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                               },
                               builder: (context, state) {
                                 return CupertinoButton(
-                                  onPressed: () {
-                                    BlocProvider.of<AuthCubit>(context).logOut();
-                                  },
-                                  child: const Icon(Icons.logout,color: Colors.white,size: 20,)
+                                    onPressed: () {
+                                      BlocProvider.of<AuthCubit>(context).logOut();
+                                    },
+                                    child: const Icon(Icons.logout,color: Colors.white,size: 20,)
                                 );
                               },
                             ),
@@ -301,26 +302,32 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(right: 10, left: 10, top: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10),
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white,
-                          ),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.search,
-                                color: Colors.teal,
+                            color: Colors.transparent, // Background color of the container
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5), // Shadow color
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
                               ),
-                              // border: OutlineInputBorder(),
-                              hintText: 'Search for Medicine,Doctor,Lab Tests',
-                              hintStyle: TextStyle(color: Colors.teal),
+                            ],
+                          ),
+                          child: SearchBar(
+                            shadowColor: MaterialStatePropertyAll(
+                              Colors.green
+                            ),
+                            leading: Icon(Icons.search, color: Colors.teal),
+                            hintText: 'Search for Doctors',
+                            hintStyle: MaterialStateProperty.all(
+                              TextStyle(color: Colors.teal),
                             ),
                           ),
                         ),
                       ),
+
                     ],
                   ),
                 ),
@@ -356,7 +363,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   ),
                 ),
               ),
-               SizedBox(
+              SizedBox(
                 height: size.height * 0.01,
               ),
               Padding(
@@ -410,11 +417,11 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                             Get.to(const DigitalConsult());
                           },
                           leading:
-                              Image.asset('assets/images/Doctor.png', width: 35),
+                          Image.asset('assets/images/Doctor.png', width: 35),
                           title: const Text(
                             'Consult',
                             style: TextStyle(
-                              fontSize: 13,
+                                fontSize: 13,
                                 color: Colors.teal, fontWeight: FontWeight.bold),
                           ),
                           subtitle: const Text(
@@ -448,7 +455,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           subtitle: const Text(
                             'Hospital',
                             style: TextStyle(
-                              fontSize: 13,
+                                fontSize: 13,
                                 color: Colors.teal, fontWeight: FontWeight.bold),
                           ),
                           trailing: const Icon(
@@ -483,9 +490,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                             children: [
                               Container(
                                 decoration: const BoxDecoration(
-                                    //borderRadius: BorderRadius.circular(40),
-                                    //color: Colors.red
-                                    ),
+                                  //borderRadius: BorderRadius.circular(40),
+                                  //color: Colors.red
+                                ),
                                 height: 60,
                                 width: 70,
                                 child: Image.asset(
@@ -502,23 +509,13 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                               const SizedBox(
                                 width: 10,
                               ),
-                              const Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Feeling Unwell? ',
-                                    style: TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Take an assessment in less than 3 min',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                  Text(
-                                    'and get suggestion on what to do next',
-                                    style: TextStyle(fontSize: 12),
-                                  ),
-                                ],
+                              Flexible(
+                                child: Text(
+                                  'Feeling Unwell? Take an assessment in less than 3 min and get suggestion on what to do next',
+                                  style: const TextStyle(
+                                      fontSize: 12, fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.visible,
+                                ),
                               ),
                             ],
                           ),
@@ -543,10 +540,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                       child: Container(
                                         height: 60,
                                         width: 100,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(10),
-                                            color: Colors.orange.shade100,
-                                          ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: Colors.orange.shade100,
+                                        ),
                                       ),
                                     ),
                                     Positioned(
@@ -579,8 +576,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
 
                                   ],
 
-                                  ),
                                 ),
+                              ),
                               SizedBox(
                                 height: size.height * 0.01,
                               ),
@@ -687,7 +684,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 15,),
+                          horizontal: 15,),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.teal,
@@ -769,7 +766,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                       Column(
+                      Column(
                         mainAxisAlignment:  MainAxisAlignment.start,
                         children: [
                           Text(
@@ -819,32 +816,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: size.height * 0.01,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
-      ),
-
-      bottomNavigationBar: Container(
-        color: Colors.teal,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: GNav(
-            gap: 8,
-            padding: const EdgeInsets.all(8),
-            backgroundColor: Colors.teal,
-            color: Colors.white,
-            activeColor: Colors.teal,
-            tabBackgroundColor: Colors.grey.shade100,
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
