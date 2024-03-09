@@ -1,15 +1,18 @@
 import 'package:aarogyam/patient/views/screens/onbordingscreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
+import 'main.dart';
+
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  SplashScreenState createState() => SplashScreenState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   late VideoPlayerController _controller;
 
   @override
@@ -24,13 +27,26 @@ class SplashScreenState extends State<SplashScreen> {
 
     _controller.addListener(() {
       if (_controller.value.duration == _controller.value.position) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const OnbordingScreen(),
-          ),
-        );
+        _preloadDataAndNavigate();
       }
     });
+  }
+
+  void _preloadDataAndNavigate() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      // Preload necessary data or screens here
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MyApp()),
+      );
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const OnbordingScreen(),
+        ),
+      );
+    }
   }
 
   @override
@@ -41,7 +57,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: const Color(0xffeef9fd),
       body: SafeArea(
         child: Center(

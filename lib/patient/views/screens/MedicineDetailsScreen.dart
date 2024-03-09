@@ -60,7 +60,8 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
             TextButton(
               onPressed: () {
                 _addToCart();
-                Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => const Medicine(),));
+                Navigator.popUntil(context, ModalRoute.withName('/Medicine'));
+
               },
               child: const Text('Yes'),
             ),
@@ -90,7 +91,6 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
         'timestamp': FieldValue.serverTimestamp(),
       });
       print('Data added successfully');
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Medicine(),));
     } catch (e) {
       print(e.toString());
     }
@@ -318,7 +318,7 @@ class _MedicineDetailsScreenState extends State<MedicineDetailsScreen> {
                           borderRadius: const BorderRadius.all(
                               Radius.circular(50))
                       ),
-                      child: const Center(
+                      child:  Center(
                           child: Text('Add To Cart', style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
