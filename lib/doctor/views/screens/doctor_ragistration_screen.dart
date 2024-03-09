@@ -95,7 +95,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text("Docter Sign in",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500,fontSize: 35),),
+                      const Text("Doctor Sign in",style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500,fontSize: 28),),
                       SizedBox(height: size.height * 0.02),
                       BlocBuilder<SignUpBloc,SignUpState>(
                         builder:  (context, state) {
@@ -192,6 +192,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               );
                             },
                             decoration:  InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
                               labelText: "Enter your name",
                               labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                               prefixIcon: const Icon(Icons.person,color: Color(0xff117790),),
@@ -228,6 +231,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               _selecetDate();
                             },
                             decoration:  InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 labelText: "Enter Date of birth",
                                 prefixIcon: const Icon(Icons.date_range,color: Color(0xff117790),),
                                 labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
@@ -262,6 +268,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                             },
                             controller: _daddress,
                             decoration:  InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 labelText: "Enter your Address",
                                 labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                                 prefixIcon: const Icon(Icons.note,color: Color(0xff117790),),
@@ -295,7 +304,10 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               );
                             },
                             decoration:  InputDecoration(
-                                labelText: "Enter your Spicailist",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                labelText: "Enter your Specialities",
                                 labelStyle: const TextStyle(color:  Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                                 prefixIcon: const Icon(Icons.stars_rounded,color: Color(0xff117790),),
                                 errorText: error
@@ -311,6 +323,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                             error = state.error;
                           }
                           return  TextFormField(
+                            keyboardType: TextInputType.number,
                             controller: _dgernalfeeamount,
                             onChanged: (value){
                               BlocProvider.of<SignUpBloc>(context).add(
@@ -328,7 +341,11 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               );
                             },
                             decoration:  InputDecoration(
-                                labelText: "Enter your Genralfee",
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+
+                                labelText: "Enter your General fee",
                                 labelStyle: const  TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                                 prefixIcon: const Icon(Icons.attach_money,color: Color(0xff117790),),
                                 errorText: error
@@ -361,6 +378,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               );
                             },
                             decoration:  InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 labelText: "Enter your email",
                                 labelStyle: const TextStyle(color: Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                                 prefixIcon: const Icon(Icons.email_outlined,color: Color(0xff117790),),
@@ -399,6 +419,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                             },
                             obscureText: visibility,
                             decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                                 labelText: "Enter Password",
                                 errorText: error,
                                 prefixIcon: const  Icon(Icons.lock_open,color: Color(0xff117790),),
@@ -451,9 +474,11 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                 );
                             },
                             child: Container(
+                              
                               height: size.height * 0.35,
                               width: size.width ,
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
                                 border: Border.all(
                                     color: const Color(0xff117790),
                                     width: 1

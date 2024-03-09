@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
@@ -93,16 +94,16 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               accountName: Text(
                 'Welcome, $_userName',
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w500
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500
                 ),
               ),
               accountEmail: Text(
                 _gmail,
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.0,
+                    color: Colors.white,
+                    fontSize: 16.0,
                     fontWeight: FontWeight.w500
                 ),
               ),
@@ -195,8 +196,106 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
           ],
         ),
       ),
+      body:
+      SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 25),
+                child: Container(
+                  height: size.height * 0.15,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
+                    color: Colors.teal.shade600,
+                  ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                if(scaffoldKey.currentState!.isDrawerOpen){
+                                  scaffoldKey.currentState!.closeDrawer();
+                                  //close drawer, if drawer is open
+                                }else{
+                                  scaffoldKey.currentState!.openDrawer();
+                                  //open drawer, if drawer is closed
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 5.0),
+                                child: Container(
+                                  height: 35,
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 1.0,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.transparent,
+                                      foregroundColor: const Color(0xff117790),
+                                      child: _userName.isNotEmpty
+                                          ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
+                                          : const Icon(Icons.person),
+                                    ),
+                                  ),
+                                ),
+                              ),
 
-
+                            ),
+                            SizedBox(
+                              width: size.width* 0.02,
+                            ),
+                            Text(
+                              _userName.isNotEmpty ? _userName : 'Hi Guest !',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
+                            SizedBox(
+                              width: size.width * 0.25,
+                            ),
+                            const Expanded(
+                              child: Icon(
+                                Icons.shopping_cart,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Expanded(
+                              child: Icon(
+                                Icons.notifications_active,
+                                color: Colors.yellow,
+                              ),
+                            ),
+                            BlocConsumer<AuthCubit, AuthState>(
+                              listener: (context, state) {
+                                if(state is AuthLoggedOutState) {
+                                  Navigator.popUntil(context, (route) => route.isFirst);
+                                  Navigator.pushReplacement(context, CupertinoPageRoute(
+                                      builder: (context) => const PatientLoginScreen()
+                                  ));
+                                }
+                              },
+                              builder: (context, state) {
+                                return CupertinoButton(
+                                    onPressed: () {
+                                      BlocProvider.of<AuthCubit>(context).logOut();
+                                    },
+                                    child: const Icon(Icons.logout,color: Colors.white,size: 20,)
+                                );
         body:
      SingleChildScrollView(
         child: Column(
@@ -307,6 +406,29 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                       ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent, // Background color of the container
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5), // Shadow color
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: Offset(0, 3), // changes position of shadow
+                              ),
+                            ],
+                          ),
+                          child: SearchBar(
+                            shadowColor: MaterialStatePropertyAll(
+                              Colors.green
+                            ),
+                            leading: Icon(Icons.search, color: Colors.teal),
+                            hintText: 'Search for Doctors',
+                            hintStyle: MaterialStateProperty.all(
+                              TextStyle(color: Colors.teal),
+                            ),
                       child:  TextFormField(
                         decoration: const InputDecoration(
                           border: UnderlineInputBorder(
@@ -390,6 +512,31 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
                 ),
               ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 9),
+                child: Card(
+                  shadowColor: Colors.green,
+                  elevation: 0,
+                  color: Colors.white,
+                  child: ListTile(
+                    onTap: () {
+                      Get.to(const Labtest());
+                    },
+                    title: const Text(
+                      'At Home',
+                      style: TextStyle(color: Colors.teal),
+                    ),
+                    subtitle: Row(
+                      children: [
+                        Image.asset('assets/images/Lab_reports.png', width: 28),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        const Text(
+                          'Lab Tests and Packages',
             ),
             SizedBox(
               height: size.height * 0.01,
@@ -418,6 +565,48 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                             fontSize: 12,
                               color: Colors.teal, fontWeight: FontWeight.bold),
                         ),
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.45,
+                      child: Card(
+                        // margin: EdgeInsets.only(right: 200),
+                        shadowColor: Colors.green,
+                        elevation: 0,
+                        color: Colors.white,
+                        child: ListTile(
+                          onTap: () {
+                            Get.to(const DigitalConsult());
+                          },
+                          leading:
+                          Image.asset('assets/images/Doctor.png', width: 35),
+                          title: const Text(
+                            'Consult',
+                            style: TextStyle(
+                                fontSize: 13,
+                                color: Colors.teal, fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: const Text(
+                            'Digitaly',
+                            style: TextStyle(
+                                color: Colors.teal, fontWeight: FontWeight.bold),
+                          ),
+                          trailing: const Icon(
+                            Icons.arrow_forward_ios,
+                            size: 20,
+                          ),
                         trailing: const Icon(
                           Icons.arrow_forward_ios,
                           size: 20,
@@ -445,6 +634,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           title: const Text(
                             'Visit Hospital',
                             style: TextStyle(
+                                fontSize: 13,
                                 fontSize: 12,
                                 color: Colors.teal, fontWeight: FontWeight.bold),
                           ),
@@ -456,6 +646,42 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       ),
                     ),
                   ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  //borderRadius: BorderRadius.circular(40),
+                                  //color: Colors.red
+                                ),
+                                height: 60,
+                                width: 70,
+                                child: Image.asset(
+                                  'assets/images/chat 1.png',
+                                ),
+                              ),
+                              const Text(
+                                'Ask Us!',
+                                style: TextStyle(
+                                    color: Colors.teal,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  'Feeling Unwell? Take an assessment in less than 3 min and get suggestion on what to do next',
+                                  style: const TextStyle(
+                                      fontSize: 12, fontWeight: FontWeight.bold),
+                                  overflow: TextOverflow.visible,
+                                ),
                 ],
               ),
             ),
@@ -521,6 +747,25 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ],
                         ),
                       ),
+                      SizedBox(
+                        height: size.height * 0.01,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
+                        child: Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 30,
+                                      child: Container(
+                                        height: 60,
+                                        width: 100,
                     ),
                     SizedBox(
                       height: size.height * 0.01,
@@ -545,6 +790,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                           borderRadius: BorderRadius.circular(10),
                                           color: Colors.orange.shade100,
                                         ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 5,
+                                      left: 25,
+                                      child: Image.asset(
+                                          'assets/images/medical-report.png',
+                                          width: 45),
                                     ),
                                   ),
                                   Positioned(
@@ -578,6 +831,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                 ],
 
                                 ),
+                              ),
+                              SizedBox(
+                                height: size.height * 0.01,
                               ),
                             SizedBox(
                               height: size.height * 0.01,
@@ -766,6 +1022,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 15,),
                     ),
                      Column(
                       mainAxisAlignment:  MainAxisAlignment.start,
@@ -874,7 +1133,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                       Column(
+                      Column(
                         mainAxisAlignment:  MainAxisAlignment.start,
                         children: [
                           Text(
@@ -924,32 +1183,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: size.height * 0.01,
-            ),
-            const SizedBox(
-              width: 20,
-            ),
-          ],
-        ),
-      ),
-
-      bottomNavigationBar: Container(
-        color: Colors.teal,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          child: GNav(
-            gap: 8,
-            padding: const EdgeInsets.all(8),
-            backgroundColor: Colors.teal,
-            color: Colors.white,
-            activeColor: Colors.teal,
-            tabBackgroundColor: Colors.grey.shade100,
-            tabs: const [
-              GButton(
-                icon: Icons.home,
-                text: 'Home',
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
