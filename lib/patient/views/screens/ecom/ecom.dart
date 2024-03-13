@@ -137,6 +137,7 @@ class _EcomMedicineState extends State<EcomMedicine> with SingleTickerProviderSt
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.teal,
         onPressed: () {
           Navigator.push(
             context,
@@ -145,7 +146,7 @@ class _EcomMedicineState extends State<EcomMedicine> with SingleTickerProviderSt
             ),
           );
         },
-        child: const Icon(Icons.shopping_cart),
+        child: const Icon(Icons.shopping_cart,color: Colors.white,),
       ),
     );
   }

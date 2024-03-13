@@ -674,12 +674,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "upi_india",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/upi_india-3.0.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "uuid",
       "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.3.3",
       "packageUri": "lib/",
@@ -746,7 +740,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-13T11:25:22.626890Z",
+  "generated": "2024-03-13T13:37:27.158561Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }

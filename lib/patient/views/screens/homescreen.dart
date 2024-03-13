@@ -290,26 +290,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Add some spacing between Settings and Logout
             const Divider(), // Add a divider above the logout option
-            ListTile(
-              leading: const Icon(Icons.logout,color: Colors.teal,),
-              title: const Text('Logout',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
-              onTap: () {
-                BlocConsumer<AuthCubit, AuthState>(
-                  listener: (context, state) {
-                    if(state is AuthLoggedOutState) {
-                      Navigator.popUntil(context, (route) => route.isFirst);
-                      Navigator.pushReplacement(context, CupertinoPageRoute(
-                          builder: (context) => const PatientLoginScreen()
-                      ));
-                    }
-                  },
-                  builder: (context, state) {
-                    return CupertinoButton(
-                        onPressed: () {
-                          BlocProvider.of<AuthCubit>(context).logOut();
-                        },
-                        child: const Icon(Icons.logout,color: Colors.white,size: 20,)
-                    );
+            BlocConsumer<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if(state is AuthLoggedOutState) {
+                  Navigator.popUntil(context, (route) => route.isFirst);
+                  Navigator.pushReplacement(context, CupertinoPageRoute(
+                      builder: (context) => const PatientLoginScreen()
+                  ));
+                }
+              },
+              builder: (context, state) {
+                return  ListTile(
+                  leading: const Icon(Icons.logout,color: Colors.teal,),
+                  title: const Text('Logout',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+                  onTap: () {
+                    // Handle settings tap
                   },
                 );
               },

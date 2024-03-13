@@ -1,5 +1,4 @@
 import 'package:aarogyam/splashscreen.dart';
-import 'package:aarogyam/doctor/views/screens/home_screen.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
 import 'package:aarogyam/patient/views/screens/BottomNavigationBar.dart';
@@ -11,6 +10,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'doctor/views/screens/addAppointment.dart';
+import 'doctor/views/screens/doctor_HomeScreen.dart';
 
 
 void main() async {
@@ -28,7 +29,7 @@ void main() async {
   runApp(
     BlocProvider(
       create: (BuildContext context) => AuthCubit(),
-      child: const GetMaterialApp(
+      child:  GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),
@@ -74,7 +75,7 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
       if (userRole == 'patient') {
         return const BottomNavigationScreen();
       } else if (userRole == 'doctor') {
-        return const DoctorHomeScreen();
+        return const Doctor_HomePage();
       }
     } else {
       //please return that user not found

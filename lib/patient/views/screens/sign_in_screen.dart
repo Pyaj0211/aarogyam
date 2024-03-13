@@ -116,10 +116,10 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                               child: const Text(
                                 'Login Here',
                                 style: TextStyle(
-                                  color: Color(0xfff89520),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17,
-                                  overflow: TextOverflow.visible
+                                    color: Color(0xfff89520),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                    overflow: TextOverflow.visible
                                 ),
                               ),
                             ),
