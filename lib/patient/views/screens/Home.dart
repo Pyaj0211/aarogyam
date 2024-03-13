@@ -1,10 +1,11 @@
 import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
 import 'package:aarogyam/patient/views/screens/LAbTest.dart';
-import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/OrderByPrescription.dart';
 import 'package:aarogyam/patient/views/screens/ProfileScreen.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
-import 'package:aarogyam/patient/views/screens/googlemapscreen.dart';
+import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
+import 'package:aarogyam/patient/views/screens/googlemap/googlemapscreen.dart';
+import 'package:aarogyam/patient/views/screens/homescreen.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -334,7 +335,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 color: Colors.white,
                 child: ListTile(
                   onTap: () {
-                    Get.to(const Medicine());
+                    Get.to(const EcomMedicine());
                   },
                   title: const Text(
                     'Express Delivery',
@@ -430,7 +431,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                     child: InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) {
-                            return const GoogleMapScreen();
+                            return  const HomeScreen();
                         },));
 
                       },

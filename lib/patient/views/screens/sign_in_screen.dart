@@ -112,12 +112,15 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
                             },
-                            child: const Text(
-                              'Login Here',
-                              style: TextStyle(
-                                color: Color(0xfff89520),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17,
+                            child: Flexible(
+                              child: const Text(
+                                'Login Here',
+                                style: TextStyle(
+                                  color: Color(0xfff89520),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                  overflow: TextOverflow.visible
+                                ),
                               ),
                             ),
                           )

@@ -1,4 +1,3 @@
-import 'package:aarogyam/patient/views/screens/MedicineDetailsScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -72,14 +71,7 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
                     elevation: 3,
                     child: ListTile(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => MedicineDetailsScreen(
-                              medicineDetails: cartItems[index],
-                            ),
-                          ),
-                        );
+
                       },
                       leading: Image.network(
                         cartItems[index]['medImage'],

@@ -1,4 +1,4 @@
-import 'package:aarogyam/patient/views/screens/mybutton.dart';
+import 'package:aarogyam/patient/views/common_widget/mybutton.dart';
 import 'package:flutter/material.dart';
 
 class BrandList extends StatefulWidget {

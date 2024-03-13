@@ -1,7 +1,7 @@
-import 'package:aarogyam/patient/views/screens/DocterScreen.dart';
 import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
 import 'package:aarogyam/patient/views/screens/LAbTest.dart';
-import 'package:aarogyam/patient/views/screens/Medicine.dart';
+import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
+import 'package:aarogyam/patient/views/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
@@ -18,9 +18,9 @@ class BottomNavigationScreen extends StatefulWidget {
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   var _index = 0;
   List<Widget> list = <Widget>[
-    const PatientHomeScreen(),
+    const HomeScreen(),
     const DigitalConsult(),
-    const Medicine(),
+    const EcomMedicine(),
     const Labtest(),
     const HealthBlog(),
   ];
