@@ -1,8 +1,10 @@
+import 'package:aarogyam/patient/logic/bloc/chatBot/chat_bot_bloc.dart';
 import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
 import 'package:aarogyam/patient/views/screens/LAbTest.dart';
 import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/OrderByPrescription.dart';
 import 'package:aarogyam/patient/views/screens/ProfileScreen.dart';
+import 'package:aarogyam/patient/views/screens/chatbot.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/googlemapscreen.dart';
 import 'package:aarogyam/patient/views/screens/sign_in_screen.dart';
@@ -11,11 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
-
 
 import '../../logic/cubit/auth_cubit/auth_cubit.dart';
 import '../../logic/cubit/auth_cubit/auth_state.dart';
@@ -38,7 +37,6 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     super.initState();
     _getUserPhoneNumber();
     _getUserProfileData();
-
   }
 
   Future<void> _getUserPhoneNumber() async {
@@ -49,6 +47,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
       });
     }
   }
+
   String _userName = '';
   String _gmail = '';
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -65,8 +64,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
             .get();
 
         if (snapshot.exists) {
-          Map<String, dynamic> data =
-          snapshot.data() as Map<String, dynamic>;
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
             _phoneNumber = data['mobile'] ?? '';
@@ -80,6 +78,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -96,16 +95,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
-                    fontWeight: FontWeight.w500
-                ),
+                    fontWeight: FontWeight.w500),
               ),
               accountEmail: Text(
                 _gmail,
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
-                    fontWeight: FontWeight.w500
-                ),
+                    fontWeight: FontWeight.w500),
               ),
               currentAccountPicture: Container(
                 decoration: BoxDecoration(
@@ -119,41 +116,75 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                   backgroundColor: Colors.transparent,
                   foregroundColor: const Color(0xff117790),
                   child: _userName.isNotEmpty
-                      ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
+                      ? Text(
+                          _userName[0].toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.w500),
+                        )
                       : const Icon(Icons.person),
                 ),
               ),
-
               decoration: const BoxDecoration(
                 color: Colors.teal,
               ),
-
             ),
             ListTile(
-              leading: const Icon(Icons.person,color: Colors.teal,),
-              title: const Text('My Profile',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'My Profile',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
                 // Handle profile tap
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ));
               },
             ),
             ListTile(
-              leading: const Icon(Icons.calendar_today,color: Colors.teal,),
-              title: const Text('Appointments',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.calendar_today,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Appointments',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
                 // Handle appointments tap
               },
             ),
             ListTile(
-              leading: const Icon(Icons.chat,color: Colors.teal,),
-              title: const Text('Chat with Doctor',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Chat with Doctor',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
                 // Handle chat tap
               },
             ),
             ListTile(
-              leading: const Icon(Icons.settings,color: Colors.teal,),
-              title: const Text('Settings',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Settings',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
                 // Handle settings tap
               },
@@ -161,14 +192,21 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
             const SizedBox(height: 10),
             ListTile(
               leading: const Icon(Icons.person_pin_rounded, color: Colors.teal),
-              title: const Text('About', style: TextStyle(color: Colors.teal, fontWeight: FontWeight.w500)),
+              title: const Text('About',
+                  style: TextStyle(
+                      color: Colors.teal, fontWeight: FontWeight.w500)),
               onTap: () {
                 showAboutDialog(
                   context: context,
                   applicationName: 'aarogyam',
                   applicationVersion: '1.0.0',
                   applicationLegalese: '© 2024 aarogyam',
-                  applicationIcon: Image.asset('assets/images/aarogyam.png',width: 50,height: 50,), // Set the application icon
+                  applicationIcon: Image.asset(
+                    'assets/images/aarogyam.png',
+                    width: 50,
+                    height: 50,
+                  ),
+                  // Set the application icon
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(top: 16.0),
@@ -184,120 +222,23 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
             // Add some spacing between Settings and Logout
             const Divider(), // Add a divider above the logout option
             ListTile(
-              leading: const Icon(Icons.logout,color: Colors.teal,),
-              title: const Text('Logout',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.logout,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Logout',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
                 // Handle logout tap
               },
             ),
-
-
-
           ],
         ),
       ),
-      body:
-      SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  height: size.height * 0.15,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
-                    color: Colors.teal.shade600,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                if(scaffoldKey.currentState!.isDrawerOpen){
-                                  scaffoldKey.currentState!.closeDrawer();
-                                  //close drawer, if drawer is open
-                                }else{
-                                  scaffoldKey.currentState!.openDrawer();
-                                  //open drawer, if drawer is closed
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 5.0),
-                                child: Container(
-                                  height: 35,
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.white,
-                                      width: 1.0,
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.transparent,
-                                      foregroundColor: const Color(0xff117790),
-                                      child: _userName.isNotEmpty
-                                          ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
-                                          : const Icon(Icons.person),
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                            ),
-                            SizedBox(
-                              width: size.width* 0.02,
-                            ),
-                            Text(
-                              _userName.isNotEmpty ? _userName : 'Hi Guest !',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20,
-                                  color: Colors.white),
-                            ),
-                            SizedBox(
-                              width: size.width * 0.25,
-                            ),
-                            const Expanded(
-                              child: Icon(
-                                Icons.shopping_cart,
-                                color: Colors.white,
-                              ),
-                            ),
-                            const Expanded(
-                              child: Icon(
-                                Icons.notifications_active,
-                                color: Colors.yellow,
-                              ),
-                            ),
-                            BlocConsumer<AuthCubit, AuthState>(
-                              listener: (context, state) {
-                                if(state is AuthLoggedOutState) {
-                                  Navigator.popUntil(context, (route) => route.isFirst);
-                                  Navigator.pushReplacement(context, CupertinoPageRoute(
-                                      builder: (context) => const PatientLoginScreen()
-                                  ));
-                                }
-                              },
-                              builder: (context, state) {
-                                return CupertinoButton(
-                                    onPressed: () {
-                                      BlocProvider.of<AuthCubit>(context).logOut();
-                                    },
-                                    child: const Icon(Icons.logout,color: Colors.white,size: 20,)
-                                );
-        body:
-     SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -313,16 +254,19 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: size.height * 0.032 , left: size.height * 0.01 ,right: size.height * 0.01),
+                    padding: EdgeInsets.only(
+                        top: size.height * 0.032,
+                        left: size.height * 0.01,
+                        right: size.height * 0.01),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         GestureDetector(
                           onTap: () {
-                            if(scaffoldKey.currentState!.isDrawerOpen){
+                            if (scaffoldKey.currentState!.isDrawerOpen) {
                               scaffoldKey.currentState!.closeDrawer();
                               //close drawer, if drawer is open
-                            }else{
+                            } else {
                               scaffoldKey.currentState!.openDrawer();
                               //open drawer, if drawer is closed
                             }
@@ -344,16 +288,20 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                   backgroundColor: Colors.transparent,
                                   foregroundColor: const Color(0xff117790),
                                   child: _userName.isNotEmpty
-                                      ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
+                                      ? Text(
+                                          _userName[0].toUpperCase(),
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500),
+                                        )
                                       : const Icon(Icons.person),
                                 ),
                               ),
                             ),
                           ),
-
                         ),
-                         SizedBox(
-                          width: size.width* 0.025,
+                        SizedBox(
+                          width: size.width * 0.025,
                         ),
                         Text(
                           _userName.isNotEmpty ? _userName : 'Hi Guest !',
@@ -379,61 +327,44 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         ),
                         BlocConsumer<AuthCubit, AuthState>(
                           listener: (context, state) {
-                            if(state is AuthLoggedOutState) {
-                              Navigator.popUntil(context, (route) => route.isFirst);
-                              Navigator.pushReplacement(context, CupertinoPageRoute(
-                                  builder: (context) => const PatientLoginScreen()
-                              ));
+                            if (state is AuthLoggedOutState) {
+                              Navigator.popUntil(
+                                  context, (route) => route.isFirst);
+                              Navigator.pushReplacement(
+                                  context,
+                                  CupertinoPageRoute(
+                                      builder: (context) =>
+                                          const PatientLoginScreen()));
                             }
                           },
                           builder: (context, state) {
                             return CupertinoButton(
-                              onPressed: () {
-                                BlocProvider.of<AuthCubit>(context).logOut();
-                              },
-                              child: const Icon(Icons.logout,color: Colors.white,size: 20,)
-                            );
+                                onPressed: () {
+                                  BlocProvider.of<AuthCubit>(context).logOut();
+                                },
+                                child: const Icon(
+                                  Icons.logout,
+                                  color: Colors.white,
+                                  size: 20,
+                                ));
                           },
                         ),
                       ],
                     ),
                   ),
                   Padding(
-                    padding:
-                         EdgeInsets.symmetric(horizontal: size.height * 0.015,vertical: size.height * 0.0035),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: size.height * 0.015,
+                        vertical: size.height * 0.0035),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.transparent, // Background color of the container
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5), // Shadow color
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: Offset(0, 3), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: SearchBar(
-                            shadowColor: MaterialStatePropertyAll(
-                              Colors.green
-                            ),
-                            leading: Icon(Icons.search, color: Colors.teal),
-                            hintText: 'Search for Doctors',
-                            hintStyle: MaterialStateProperty.all(
-                              TextStyle(color: Colors.teal),
-                            ),
-                      child:  TextFormField(
+                      child: TextFormField(
                         decoration: const InputDecoration(
-                          border: UnderlineInputBorder(
-                            borderSide: BorderSide.none
-                          ),
+                          border:
+                              UnderlineInputBorder(borderSide: BorderSide.none),
                           prefixIcon: Icon(
                             Icons.search,
                             color: Colors.teal,
@@ -449,7 +380,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 9),
               child: Card(
                 shadowColor: Colors.green,
                 elevation: 0,
@@ -475,11 +406,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       ),
                     ],
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 20,
+                  ),
                 ),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: size.height * 0.01,
             ),
             Padding(
@@ -509,34 +443,12 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       ),
                     ],
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 20,
+                  ),
                 ),
               ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 9),
-                child: Card(
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () {
-                      Get.to(const Labtest());
-                    },
-                    title: const Text(
-                      'At Home',
-                      style: TextStyle(color: Colors.teal),
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Image.asset('assets/images/Lab_reports.png', width: 28),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        const Text(
-                          'Lab Tests and Packages',
             ),
             SizedBox(
               height: size.height * 0.01,
@@ -562,51 +474,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         title: const Text(
                           'Consult Digitaly',
                           style: TextStyle(
-                            fontSize: 12,
-                              color: Colors.teal, fontWeight: FontWeight.bold),
+                              fontSize: 12,
+                              color: Colors.teal,
+                              fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.45,
-                      child: Card(
-                        // margin: EdgeInsets.only(right: 200),
-                        shadowColor: Colors.green,
-                        elevation: 0,
-                        color: Colors.white,
-                        child: ListTile(
-                          onTap: () {
-                            Get.to(const DigitalConsult());
-                          },
-                          leading:
-                          Image.asset('assets/images/Doctor.png', width: 35),
-                          title: const Text(
-                            'Consult',
-                            style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.teal, fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: const Text(
-                            'Digitaly',
-                            style: TextStyle(
-                                color: Colors.teal, fontWeight: FontWeight.bold),
-                          ),
-                          trailing: const Icon(
-                            Icons.arrow_forward_ios,
-                            size: 20,
-                          ),
                         trailing: const Icon(
                           Icons.arrow_forward_ios,
                           size: 20,
@@ -615,13 +486,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    width : MediaQuery.of(context).size.width * 0.45,
+                    width: MediaQuery.of(context).size.width * 0.45,
                     child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
                             return const GoogleMapScreen();
-                        },));
-
+                          },
+                        ));
                       },
                       child: Card(
                         // margin: EdgeInsets.only(right: 200),
@@ -629,14 +501,14 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                         elevation: 0,
                         color: Colors.white,
                         child: ListTile(
-                          leading:
-                          Image.asset('assets/images/Clinic.png', width: 35),
+                          leading: Image.asset('assets/images/Clinic.png',
+                              width: 35),
                           title: const Text(
                             'Visit Hospital',
                             style: TextStyle(
-                                fontSize: 13,
                                 fontSize: 12,
-                                color: Colors.teal, fontWeight: FontWeight.bold),
+                                color: Colors.teal,
+                                fontWeight: FontWeight.bold),
                           ),
                           trailing: const Icon(
                             Icons.arrow_forward_ios,
@@ -646,42 +518,6 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                       ),
                     ),
                   ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: const BoxDecoration(
-                                  //borderRadius: BorderRadius.circular(40),
-                                  //color: Colors.red
-                                ),
-                                height: 60,
-                                width: 70,
-                                child: Image.asset(
-                                  'assets/images/chat 1.png',
-                                ),
-                              ),
-                              const Text(
-                                'Ask Us!',
-                                style: TextStyle(
-                                    color: Colors.teal,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Flexible(
-                                child: Text(
-                                  'Feeling Unwell? Take an assessment in less than 3 min and get suggestion on what to do next',
-                                  style: const TextStyle(
-                                      fontSize: 12, fontWeight: FontWeight.bold),
-                                  overflow: TextOverflow.visible,
-                                ),
                 ],
               ),
             ),
@@ -747,31 +583,13 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
-                        child: Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SizedBox(
-                                height: 100,
-                                width: 100,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      top: 30,
-                                      child: Container(
-                                        height: 60,
-                                        width: 100,
                     ),
                     SizedBox(
                       height: size.height * 0.01,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 10, horizontal: 9),
                       child: Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -786,18 +604,10 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                     child: Container(
                                       height: 60,
                                       width: 100,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.orange.shade100,
-                                        ),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.orange.shade100,
                                       ),
-                                    ),
-                                    Positioned(
-                                      top: 5,
-                                      left: 25,
-                                      child: Image.asset(
-                                          'assets/images/medical-report.png',
-                                          width: 45),
                                     ),
                                   ),
                                   Positioned(
@@ -827,14 +637,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-
                                 ],
-
-                                ),
                               ),
-                              SizedBox(
-                                height: size.height * 0.01,
-                              ),
+                            ),
                             SizedBox(
                               height: size.height * 0.01,
                             ),
@@ -881,9 +686,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ),
-
                                 ],
-
                               ),
                             ),
                             SizedBox(
@@ -941,23 +744,33 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 15,),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.circular(12)),
-                        padding: const EdgeInsets.all(15),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'NEXT',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                        horizontal: 15,
+                      ),
+                      child: InkWell(
+                        onTap: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => BlocProvider(
+                            create: (context) => ChatBotBloc(),
+                            child: ChatBot(),
+                          ),
+                        )),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(12)),
+                          padding: const EdgeInsets.all(15),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'NEXT',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -980,7 +793,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 10),
                       child: Container(
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -1022,12 +836,9 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 15,),
                     ),
-                     Column(
-                      mainAxisAlignment:  MainAxisAlignment.start,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
                           'HEALTH BLOG',
@@ -1036,7 +847,8 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                               fontWeight: FontWeight.bold,
                               fontSize: 22),
                         ),
-                        const Text('Explore healthcare content created everyday by'),
+                        const Text(
+                            'Explore healthcare content created everyday by'),
                         const Text('oue experts.')
                       ],
                       //Maafi talaafi ki kaafi par aayi kaam nay
@@ -1071,144 +883,6 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              //HEALTH BLOGS
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Container(
-                  height: 230,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                            color: Colors.teal,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/BLOG.png',
-                                  height: 50,
-                                  width: 50,
-                                ),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                const Column(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Health Articles & ',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 20),
-                                    ),
-                                    Text(
-                                      'Resources',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white,
-                                          fontSize: 20),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment:  MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'HEALTH BLOG',
-                            style: TextStyle(
-                                color: Colors.orange.shade400,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22),
-                          ),
-                          const Text('Explore healthcare content created everyday by'),
-                          const Text('oue experts.')
-                        ],
-                        //Maafi talaafi ki kaafi par aayi kaam nay
-                        // jii aap woh leti mera naam nay ,
-                      ),
-                      SizedBox(
-                        height: size.height * 0.01,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 10),
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.to(const HealthBlog());
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.orange.shade300,
-                                borderRadius: BorderRadius.circular(12)),
-                            padding: const EdgeInsets.all(15),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Read latest articles',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.01,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                child: Card(
-                  // margin: EdgeInsets.only(right: 200),
-                  shadowColor: Colors.green,
-                  elevation: 0,
-                  color: Colors.white,
-                  child: ListTile(
-                    onTap: () {
-                      Get.to(const Prescription());
-                    },
-                    leading: Image.asset('assets/images/medical-report.png',
-                        width: 45),
-                    title: const Text(
-                      'Order via Prescription ',
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                    subtitle: const Text(
-                      '25% OFF',
-                      style: TextStyle(
-                          color: Colors.teal, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
