@@ -116,18 +116,14 @@ class _SummaryPageState extends State<SummaryPage> {
       address = placemarks[0].street! + " " + placemarks[0].subLocality! + " " + placemarks[0].locality! + " " + placemarks[0].postalCode! + " " + placemarks[0].administrativeArea! + " " + placemarks[0].country!;
     });
   }
-
   final TextEditingController nameController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
-
+  
   @override
   Widget build(BuildContext context) {
     var size  = MediaQuery.of(context).size;
     final User? user = FirebaseAuth.instance.currentUser;
-
-
 
     return Scaffold(
       appBar: AppBar(
@@ -232,7 +228,7 @@ class _SummaryPageState extends State<SummaryPage> {
                               });
                             }
                           },
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 15,
                             child: Text("-",style: TextStyle(fontWeight: FontWeight.bold),),
                           ),

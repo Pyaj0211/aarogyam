@@ -7,7 +7,7 @@ Widget bannerWidget(Size size, {required String text, required IconData icon}) {
     child: Container(
       height: size.height * 0.055,
       width: size.width * 0.45,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         color: Colors.white,
       ),
@@ -16,11 +16,11 @@ Widget bannerWidget(Size size, {required String text, required IconData icon}) {
         child: Row(
           children: [
             FaIcon(icon, color: Colors.teal,size: 20,),
-            SizedBox(width: 5),
+            const SizedBox(width: 5),
             Flexible(
               child: Text(
                 text,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                   color: Colors.teal,

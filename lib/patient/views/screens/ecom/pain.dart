@@ -48,8 +48,6 @@ class _PainScreenState extends State<PainScreen> {
 
 
                     return Container(
-                      width: MediaQuery.of(context).size.width * 0.25, // Set the width to 25% of the screen width
-                      height: MediaQuery.of(context).size.width * 0.25, // Set the height to 25% of the screen width
                       margin: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: Colors.white,

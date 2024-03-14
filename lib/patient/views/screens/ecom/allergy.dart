@@ -48,9 +48,7 @@ class _AllergyScreenState extends State<AllergyScreen> {
                     var docID = medicineDetail['documentId'];
 
                     return Container(
-                      width: MediaQuery.of(context).size.width * 0.25, // Set the width to 25% of the screen width
-                      height: MediaQuery.of(context).size.width * 0.25, // Set the height to 25% of the screen width
-                      margin: EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),

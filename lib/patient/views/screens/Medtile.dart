@@ -57,7 +57,7 @@ class MedTile extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('\₹' + medicineData.price),
+                Text('₹${medicineData.price}'),
                 Row(
                   children: [
                     const Icon(

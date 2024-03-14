@@ -1,4 +1,5 @@
 import 'package:aarogyam/doctor/views/screens/doctor_profileScreen.dart';
+import 'package:aarogyam/doctor/views/screens/session_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'addAppointment.dart';
@@ -36,7 +37,7 @@ class _Doctor_HomePageState extends State<Doctor_HomePage> {
           body: TabBarView(
             children: [
               AddAppointmentSlots(),
-              Container(color: Colors.teal,),
+              const SessionScreen(),
               Doctor_Profile(),
             ],
           ),

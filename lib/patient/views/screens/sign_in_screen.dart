@@ -2,6 +2,7 @@ import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
 import 'package:aarogyam/patient/views/screens/verify_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +38,7 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                   style: TextStyle(
                     color: Colors.teal,
                     fontWeight: FontWeight.w700,
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
@@ -59,7 +60,6 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                           ),
                           labelStyle: TextStyle(
                             color: Color(0xff117790),
-                            fontSize: 17,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
@@ -68,7 +68,7 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                       BlocConsumer<AuthCubit, AuthState>(
                         listener: (context, state) {
                           if (state is AuthCodeSentState) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => VerifyPhoneNumberScreen(),));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const VerifyPhoneNumberScreen(),));
                           }
                         },
                         builder: (context, state) {
@@ -94,33 +94,28 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                           );
                         },
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            "Login to your corporate account. ",
+                            "Login to your corporate account.",
                             style: TextStyle(
-                              fontSize: 17,
                               fontWeight: FontWeight.bold,
                               color: Color(0xff117790),
                             ),
                           ),
-                          const SizedBox(width: 5),
                           GestureDetector(
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
                             },
-                            child: Flexible(
-                              child: const Text(
-                                'Login Here',
-                                style: TextStyle(
-                                    color: Color(0xfff89520),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
-                                    overflow: TextOverflow.visible
-                                ),
+                            child: const Text(
+                              'Login Here',
+                              style: TextStyle(
+                                  color: Color(0xfff89520),
+                                  fontWeight: FontWeight.bold,
+                                  overflow: TextOverflow.visible
                               ),
                             ),
                           )

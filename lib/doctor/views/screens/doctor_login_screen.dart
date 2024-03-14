@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DocterLoginScreen extends StatefulWidget {
-  const DocterLoginScreen({super.key});
+  const  DocterLoginScreen({super.key});
 
   @override
   State<DocterLoginScreen> createState() => _DocterLoginScreenState();
@@ -49,12 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
         surfaceTintColor: const Color(0xfffdfefd),
         toolbarHeight: 40,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const PatientLoginScreen()),
-            );
+          onPressed: (){
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const PatientLoginScreen(),));
           },
           icon: const Icon(Icons.arrow_back),
         ),

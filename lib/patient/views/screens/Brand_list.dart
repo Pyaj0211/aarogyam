@@ -1,8 +1,9 @@
+// ignore: file_names
 import 'package:aarogyam/patient/views/common_widget/mybutton.dart';
 import 'package:flutter/material.dart';
 
 class BrandList extends StatefulWidget {
-  const BrandList({Key? key}) : super(key: key);
+  const BrandList({super.key});
 
   @override
   State<BrandList> createState() => _BrandListState();
@@ -77,7 +78,7 @@ Widget _Products(String imagepath, String title, String price) {
                   //title
                   Text(title),
                   //price
-                  Text("\₹" + price)
+                  Text("₹$price")
                 ],
               ),
             ),

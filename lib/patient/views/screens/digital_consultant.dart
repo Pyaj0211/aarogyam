@@ -1,8 +1,10 @@
+import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
+import 'package:aarogyam/patient/views/screens/doctor_list_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DigitalConsult extends StatefulWidget {
-  const DigitalConsult({Key? key}) : super(key: key);
+  const DigitalConsult({super.key});
 
   @override
   State<DigitalConsult> createState() => _DigitalConsultState();
@@ -82,7 +84,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                           Expanded(
                             child: Text(
                               'Browse by symptoms',
-                              style: TextStyle(color: Colors.black, fontSize: 18),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18),
                             ),
                           ),
                           Icon(
@@ -104,7 +107,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.teal, width: 2),
+                                border:
+                                    Border.all(color: Colors.teal, width: 2),
                               ),
                               child: Column(
                                 children: [
@@ -127,7 +131,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.teal, width: 2),
+                                border:
+                                    Border.all(color: Colors.teal, width: 2),
                               ),
                               child: Column(
                                 children: [
@@ -148,7 +153,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.teal, width: 2),
+                                border:
+                                    Border.all(color: Colors.teal, width: 2),
                               ),
                               child: Column(
                                 children: [
@@ -169,7 +175,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: Colors.teal, width: 2),
+                                border:
+                                    Border.all(color: Colors.teal, width: 2),
                               ),
                               child: Column(
                                 children: [
@@ -218,11 +225,26 @@ class _DigitalConsultState extends State<DigitalConsult> {
                 children: [
                   Row(
                     children: [
-                      _ConsultTile( 'assets/images/Neurology.jpg', 'Neurology'),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "neurology")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Neurology.jpg', 'Neurology')),
                       const SizedBox(width: 10),
-                      _ConsultTile('assets/images/Bariatrics.jpg', 'Bariatrics'),
+                      _ConsultTile(
+                          'assets/images/Bariatrics.jpg', 'Bariatrics'),
                       const SizedBox(width: 10),
-                      _ConsultTile( 'assets/images/Cardiology.jpg', 'Cardiology'),
+                      _ConsultTile(
+                          'assets/images/Cardiology.jpg', 'Cardiology'),
                     ],
                   ),
                   const SizedBox(
@@ -230,11 +252,14 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   ),
                   Row(
                     children: [
-                      _ConsultTile('assets/images/Dermatology.jpg','Dermatology'),
+                      _ConsultTile(
+                          'assets/images/Dermatology.jpg', 'Dermatology'),
                       const SizedBox(width: 10),
-                      _ConsultTile( 'assets/images/Psychiatry_img.jpg', 'Psychiatry'),
+                      _ConsultTile(
+                          'assets/images/Psychiatry_img.jpg', 'Psychiatry'),
                       const SizedBox(width: 10),
-                      _ConsultTile('assets/images/Paediatrics.jpg', 'Paediatrics'),
+                      _ConsultTile(
+                          'assets/images/Paediatrics.jpg', 'Paediatrics'),
                     ],
                   ),
                   const SizedBox(
@@ -242,11 +267,13 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   ),
                   Row(
                     children: [
-                      _ConsultTile(  'assets/images/Physiotherapy.jpg', 'Physiotherapy'),
+                      _ConsultTile(
+                          'assets/images/Physiotherapy.jpg', 'Physiotherapy'),
                       const SizedBox(width: 10),
-                      _ConsultTile( 'assets/images/Diabetology.jpg', 'Diabetology'),
+                      _ConsultTile(
+                          'assets/images/Diabetology.jpg', 'Diabetology'),
                       const SizedBox(width: 10),
-                      _ConsultTile( 'assets/images/Urology.jpg',  'Urology'),
+                      _ConsultTile('assets/images/Urology.jpg', 'Urology'),
                     ],
                   ),
                 ],
@@ -481,22 +508,25 @@ class _DigitalConsultState extends State<DigitalConsult> {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.teal,
-                            borderRadius: BorderRadius.circular(12)),
-                        padding: const EdgeInsets.all(15),
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Get Started',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ],
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.teal,
+                              borderRadius: BorderRadius.circular(12)),
+                          padding: const EdgeInsets.all(15),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Get Started',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -510,8 +540,10 @@ class _DigitalConsultState extends State<DigitalConsult> {
     );
   }
 }
-Widget _ConsultTile (String imagepath , String title) {
-  return  Expanded(
+
+// ignore: non_constant_identifier_names
+Widget _ConsultTile(String imagepath, String title) {
+  return Expanded(
     child: Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -525,11 +557,10 @@ Widget _ConsultTile (String imagepath , String title) {
             height: 75,
             fit: BoxFit.cover,
           ),
-           Text(
+          Text(
             title,
             style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold),
+                color: Colors.black, fontWeight: FontWeight.bold),
           ),
         ],
       ),

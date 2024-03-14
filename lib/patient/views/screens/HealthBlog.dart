@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class HealthBlog extends StatefulWidget {
-  const HealthBlog({Key? key}) : super(key: key);
+  const HealthBlog({super.key});
 
   @override
   State<HealthBlog> createState() => _HealthBlogState();
@@ -10,6 +10,7 @@ class HealthBlog extends StatefulWidget {
 
 class _HealthBlogState extends State<HealthBlog> {
   int currentIndex = 0;
+  // ignore: non_constant_identifier_names
   final Myitems = [
     Image.asset('assets/icons/LabTest/Heart.png'),
     Image.asset('assets/icons/LabTest/Kidneys.png'),

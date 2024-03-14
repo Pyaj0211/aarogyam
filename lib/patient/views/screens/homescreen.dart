@@ -39,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
     _getUserProfileData();
 
   }
-
   Future<void> _getUserPhoneNumber() async {
     User? user = _auth.currentUser;
     if (user != null) {
@@ -51,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String _userName = '';
   String _gmail = '';
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
   Future<void> _getUserProfileData() async {
     User? user = _auth.currentUser;
     if (user != null) {
@@ -146,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         _userName.isNotEmpty ? _userName : 'Hi Guest !',
                         style: const TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 20,
+                            fontSize: 17,
                             color: Colors.white),
                       ),
                       SizedBox(
@@ -180,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         // border: OutlineInputBorder(),
                         hintText: 'Search for Medicine,Doctor,Lab Tests',
-                        hintStyle: TextStyle(color: Colors.teal),
+                        hintStyle: TextStyle(color: Colors.teal,fontSize: 15),
                       ),
                     ),
                   ),
@@ -329,7 +327,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       title: const Text(
                         'Express Delivery',
-                        style: TextStyle(color: Colors.teal),
+                        style: TextStyle(color: Colors.teal,fontSize: 15),
                       ),
                       subtitle: Row(
                         children: [
@@ -340,7 +338,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Text(
                             'Buy Medicine and Essentials',
                             style: TextStyle(
-                                color: Colors.teal, fontWeight: FontWeight.bold),
+                                color: Colors.teal, fontWeight: FontWeight.bold,fontSize: 13),
                           ),
                         ],
                       ),
@@ -363,7 +361,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       title: const Text(
                         'At Home',
-                        style: TextStyle(color: Colors.teal),
+                        style: TextStyle(color: Colors.teal,fontSize: 15),
                       ),
                       subtitle: Row(
                         children: [
@@ -374,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const Text(
                             'Lab Tests and Packages',
                             style: TextStyle(
-                                color: Colors.teal, fontWeight: FontWeight.bold),
+                                color: Colors.teal, fontWeight: FontWeight.bold,fontSize: 13),
                           ),
                         ],
                       ),
@@ -391,7 +389,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.45,
+                        width: MediaQuery.of(context).size.width * 0.47,
                         child: Card(
                           // margin: EdgeInsets.only(right: 200),
                           shadowColor: Colors.green,
@@ -406,7 +404,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             title: const Text(
                               'Consult Digitaly',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 11,
                                   color: Colors.teal, fontWeight: FontWeight.bold),
                             ),
                             trailing: const Icon(
@@ -417,7 +415,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       SizedBox(
-                        width : MediaQuery.of(context).size.width * 0.45,
+                        width : MediaQuery.of(context).size.width * 0.47,
                         child: InkWell(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -435,7 +433,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               title: const Text(
                                 'Visit Hospital',
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 11,
                                     color: Colors.teal, fontWeight: FontWeight.bold),
                               ),
                               trailing: const Icon(
@@ -455,8 +453,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Container(
-                    height: 270,
-                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -474,8 +470,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     //borderRadius: BorderRadius.circular(40),
                                     //color: Colors.red
                                   ),
-                                  height: 60,
-                                  width: 70,
+                                  height: 50,
+                                  width: 60,
                                   child: Image.asset(
                                     'assets/images/chat 1.png',
                                   ),
@@ -485,13 +481,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: TextStyle(
                                       color: Colors.teal,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 18),
+                                      fontSize: 16),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
                                 const Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
@@ -512,11 +507,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          height: size.height * 0.01,
-                        ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 9),
+                          padding: const EdgeInsets.symmetric(horizontal: 9,vertical: 6),
                           child: Expanded(
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -550,6 +542,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'Enter',
                                           style: TextStyle(
+                                            fontSize: 13,
                                               color: Colors.orange.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -560,13 +553,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'Symptoms',
                                           style: TextStyle(
+                                            fontSize: 13,
                                               color: Colors.orange.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
-
                                     ],
-
                                   ),
                                 ),
                                 SizedBox(
@@ -601,6 +593,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'Understand',
                                           style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.blue.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -611,6 +604,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'causes',
                                           style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.blue.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -652,6 +646,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'Enter',
                                           style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.green.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -662,6 +657,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Text(
                                           'Symptoms',
                                           style: TextStyle(
+                                              fontSize: 13,
                                               color: Colors.green.shade700,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -675,7 +671,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
-                            horizontal: 15,),
+                            horizontal: 15,vertical: 7),
                           child: Container(
                             decoration: BoxDecoration(
                                 color: Colors.teal,
@@ -688,7 +684,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   'NEXT',
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 20,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ],
@@ -706,7 +702,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Container(
-                    height: 230,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.white,
@@ -741,14 +736,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
-                                            fontSize: 20),
+                                            fontSize: 15),
                                       ),
                                       Text(
                                         'Resources',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white,
-                                            fontSize: 20),
+                                            fontSize: 15),
                                       ),
                                     ],
                                   ),
@@ -795,7 +790,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     'Read latest articles',
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],

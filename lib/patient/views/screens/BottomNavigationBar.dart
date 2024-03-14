@@ -1,13 +1,14 @@
 import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
 import 'package:aarogyam/patient/views/screens/LAbTest.dart';
+import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
 import 'package:aarogyam/patient/views/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'digital_consultant.dart';
+
 
 class BottomNavigationScreen extends StatefulWidget {
-  const BottomNavigationScreen({Key? key}) : super(key: key);
+  const BottomNavigationScreen({super.key});
 
   @override
   State<BottomNavigationScreen> createState() => _BottomNavigationScreenState();
