@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 
 class AllTest extends StatefulWidget {
-  const AllTest({Key? key}) : super(key: key);
+  const AllTest({super.key});
 
   @override
   State<AllTest> createState() => _AllTestState();

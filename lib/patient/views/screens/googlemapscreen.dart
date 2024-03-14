@@ -18,7 +18,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Google Maps Example'),
+        title: const Text('Google Maps Example'),
       ),
       body: GoogleMap(
         initialCameraPosition: cameraPosition,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HealthPackage extends StatefulWidget {
-  const HealthPackage({Key? key}) : super(key: key);
+  const HealthPackage({super.key});
 
   @override
   State<HealthPackage> createState() => _HealthPackageState();

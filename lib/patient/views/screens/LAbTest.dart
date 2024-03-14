@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'AllTest.dart';
 
 class Labtest extends StatefulWidget {
-  const Labtest({Key? key}) : super(key: key);
+  const Labtest({super.key});
 
   @override
   State<Labtest> createState() => _LabtestState();
@@ -19,7 +19,7 @@ class _LabtestState extends State<Labtest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white
         ),
         backgroundColor: Colors.teal,

@@ -1,22 +1,22 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  User? _user;
   String _phoneNumber = '';
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String _userName = '';
-  String _mobile = '';
   String _gmail = '';
   String _address = '';
 
@@ -24,7 +24,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     User? user = _auth.currentUser;
     if (user != null) {
       setState(() {
-        _user = user;
         _phoneNumber = user.phoneNumber!;
       });
     }
@@ -46,7 +45,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
-            _mobile = data['mobile'] ?? '';
             _gmail = data['gmail'] ?? '';
             _address = data['address'] ?? '';
           });
@@ -69,9 +67,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Text(
+        title: const Text(
           "Profile",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -107,10 +105,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     backgroundColor: Colors.transparent,
                                     child: _userName.isNotEmpty
                                         ? Text(_userName[0].toUpperCase())
-                                        : Icon(Icons.person),
+                                        : const Icon(Icons.person),
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
@@ -122,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         _phoneNumber.isNotEmpty
                                             ? _phoneNumber.substring(3)
                                             : 'Mobile no :- ',
-                                        style: TextStyle(color: Colors.black),
+                                        style: const TextStyle(color: Colors.black),
                                       ),
                                       Text('Gmail :- $_gmail'),
                                       Text('Address :- $_address'),
@@ -158,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Edit Profile'),
+          title: const Text('Edit Profile'),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -177,12 +175,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     foregroundColor: const Color(0xff117790),
                     child: _userName.isNotEmpty
                         ? Text(_userName[0].toUpperCase())
-                        : Icon(Icons.person),
+                        : const Icon(Icons.person),
                   ),
                 ),
                 TextField(
                   controller: usernameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Username',
                     hintText: 'Enter your username',
                   ),
@@ -194,19 +192,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 TextField(
                   controller: mobileController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Mobile',
                     hintText: 'Enter your mobile number',
                   ),
                   onChanged: (value) {
                     setState(() {
-                      _mobile = value;
                     });
                   },
                 ),
                 TextField(
                   controller: gmailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Gmail',
                     hintText: 'Enter your email address',
                   ),
@@ -218,7 +215,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 TextField(
                   controller: addressController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Address',
                     hintText: 'Enter your address',
                   ),
@@ -236,7 +233,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             ElevatedButton(
               onPressed: () async {
@@ -254,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'gmail': _gmail,
                       'address': _address,
                     });
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Profile Updated successfully'),
                     ));
                     _getUserProfileData();
@@ -266,7 +263,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
                 Navigator.pop(context);
               },
-              child: Text('Save'),
+              child: const Text('Save'),
             ),
           ],
         );

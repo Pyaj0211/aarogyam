@@ -29,7 +29,7 @@ void main() async {
   runApp(
     BlocProvider(
       create: (BuildContext context) => AuthCubit(),
-      child:  GetMaterialApp(
+      child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
       ),

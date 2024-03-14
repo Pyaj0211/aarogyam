@@ -1,3 +1,4 @@
+import 'package:aarogyam/main.dart';
 import 'package:aarogyam/patient/views/screens/onbordingscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SplashScreenState createState() => _SplashScreenState();
 }
 
@@ -27,7 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
     _controller.addListener(() {
       if (_controller.value.duration == _controller.value.position) {
-        _preloadDataAndNavigate();
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const MyApp(),
+          ),
+        );
       }
     });
   }
@@ -58,18 +64,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffeef9fd),
+      backgroundColor:  const Color(0xffeef9fd),
       body: SafeArea(
         child: Center(
           child: _controller.value.isInitialized
-              ? FittedBox(
-            fit: BoxFit.cover,
-            child: SizedBox(
-              width: _controller.value.size.width,
-              height: _controller.value.size.height,
-              child: VideoPlayer(_controller),
-            ),
-          )
+              ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
               : const CircularProgressIndicator(),
         ),
       ),

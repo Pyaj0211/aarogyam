@@ -57,8 +57,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(SignUpLoadingState());
         final userCredentials = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-            email: event.email!,
-            password: event.password!);
+            email: event.email,
+            password: event.password);
 
         final person = FirebaseStorage.instance
             .ref()

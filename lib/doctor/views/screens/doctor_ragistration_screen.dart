@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:aarogyam/doctor/logic/bloc/signup_bloc.dart';
 import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -69,7 +71,6 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     _dgernalfeeamount.dispose();
     _demail.dispose();
     _dpassword.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -458,7 +459,6 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                              setState(() {
                                _certificate = File(pickedImage!.path);
                              });
-                                // ignore: use_build_context_synchronously
                                 BlocProvider.of<SignUpBloc>(context).add(
                                     SignUpFieldChangeEvent(
                                         name: _dname.text,

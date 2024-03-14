@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Unhealthy extends StatefulWidget {
-  const Unhealthy({Key? key}) : super(key: key);
+  const Unhealthy({super.key});
 
   @override
   State<Unhealthy> createState() => _UnhealthyState();

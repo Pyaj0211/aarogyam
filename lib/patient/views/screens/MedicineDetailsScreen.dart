@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 class MedicineDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> medicineDetails;
 
-  const MedicineDetailsScreen({Key? key, required this.medicineDetails})
-      : super(key: key);
+  const MedicineDetailsScreen({super.key, required this.medicineDetails});
 
   @override
   State<MedicineDetailsScreen> createState() => _MedicineDetailsScreenState();

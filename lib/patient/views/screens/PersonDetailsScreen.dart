@@ -9,7 +9,7 @@ class PersonDetailsScreen extends StatefulWidget {
   final Function(Map<String, dynamic>) addToCartCallback;
   final Map<String, dynamic> medicineDetails;
 
-  const PersonDetailsScreen({Key? key, required this.addToCartCallback, required this.medicineDetails}) : super(key: key);
+  const PersonDetailsScreen({super.key, required this.addToCartCallback, required this.medicineDetails});
 
   @override
   State<PersonDetailsScreen> createState() => _PersonDetailsScreenState();
@@ -75,9 +75,9 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: ListTile(
+          title: const ListTile(
             leading: Icon(Icons.location_pin, color: Colors.teal),
-            title: const Text("Use current location?"),
+            title: Text("Use current location?"),
           ),
           content: const Text("Do you want to use your current location as the address?"),
           actions: <Widget>[
@@ -107,7 +107,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
     List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
     if (disposed) return; // Check if the state is disposed
     setState(() {
-      address = placemarks[0].street! + " " + placemarks[0].subLocality! + " " + placemarks[0].locality! + " " + placemarks[0].postalCode! + " " + placemarks[0].administrativeArea! + " " + placemarks[0].country!;
+      address = "${placemarks[0].street!} ${placemarks[0].subLocality!} ${placemarks[0].locality!} ${placemarks[0].postalCode!} ${placemarks[0].administrativeArea!} ${placemarks[0].country!}";
     });
   }
 
@@ -139,7 +139,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                 stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
 
                   if (!snapshot.hasData || snapshot.data!.data() == null) {
@@ -166,11 +166,11 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                             border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(5.0),
                           ),
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Saved Address:',
                                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                               ),
@@ -223,8 +223,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
               Center(
                 child: InkWell(
                   onTap: () {
-                    if (user != null &&
-                        nameController.text.isNotEmpty &&
+                    if (nameController.text.isNotEmpty &&
                         addressController.text.isNotEmpty &&
                         emailController.text.isNotEmpty) {
                       FirebaseFirestore.instance.collection('users').doc(user.uid).set({
@@ -287,7 +286,7 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                       color: Colors.teal,
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
                     ),
                     child: const Center(
                       child: Text(

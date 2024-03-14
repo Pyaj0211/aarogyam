@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Prescription extends StatefulWidget {
-  const Prescription({Key? key}) : super(key: key);
+  const Prescription({super.key});
 
   @override
   State<Prescription> createState() => _PrescriptionState();
