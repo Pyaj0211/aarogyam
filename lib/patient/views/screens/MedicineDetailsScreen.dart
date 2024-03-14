@@ -1,4 +1,3 @@
-import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/PersonDetailsScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,8 +6,7 @@ import 'package:flutter/material.dart';
 class MedicineDetailsScreen extends StatefulWidget {
   final Map<String, dynamic> medicineDetails;
 
-  const MedicineDetailsScreen({Key? key, required this.medicineDetails})
-      : super(key: key);
+  const MedicineDetailsScreen({super.key, required this.medicineDetails});
 
   @override
   State<MedicineDetailsScreen> createState() => _MedicineDetailsScreenState();

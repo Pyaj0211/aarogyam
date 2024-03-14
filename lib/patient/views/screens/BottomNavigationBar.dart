@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 import 'Home.dart';
-import 'digital_consultant.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
-  const BottomNavigationScreen({Key? key}) : super(key: key);
+  const BottomNavigationScreen({super.key});
 
   @override
   State<BottomNavigationScreen> createState() => _BottomNavigationScreenState();
@@ -19,7 +18,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   var _index = 0;
   List<Widget> list = <Widget>[
     const PatientHomeScreen(),
-    const DigitalConsult(),
+    const DocterScreen(),
     const Medicine(),
     const Labtest(),
     const HealthBlog(),

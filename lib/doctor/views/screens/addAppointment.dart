@@ -1,9 +1,12 @@
-import 'package:aarogyam/doctor/views/screens/doctor_profileScreen.dart';
-import 'package:aarogyam/doctor/views/screens/viewAppointment.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddAppointmentSlots extends StatefulWidget {
+  const AddAppointmentSlots({super.key});
+
   @override
   _AddAppointmentSlotsState createState() => _AddAppointmentSlotsState();
 }
@@ -277,20 +280,23 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text('Confirm Appointment'),
-                            content: Text('Are you sure you want to add this appointment?'),
+                            title: const Text('Confirm Appointment'),
+                            content: const Text(
+                                'Are you sure you want to add this appointment?'),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop(false); // No, don't add the appointment
+                                  Navigator.of(context).pop(
+                                      false); // No, don't add the appointment
                                 },
-                                child: Text('No'),
+                                child: const Text('No'),
                               ),
                               TextButton(
                                 onPressed: () {
-                                  Navigator.of(context).pop(true); // Yes, add the appointment
+                                  Navigator.of(context)
+                                      .pop(true); // Yes, add the appointment
                                 },
-                                child: Text('Yes'),
+                                child: const Text('Yes'),
                               ),
                             ],
                           );
@@ -298,17 +304,28 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                       ).then((confirmed) {
                         if (confirmed != null && confirmed) {
                           // Extract selected time slots from _selectedTimes list
-                          List<TimeOfDay> selectedSlots = _selectedTimes.sublist(0, _selectedNumber!);
-
+                          List<TimeOfDay> selectedSlots =
+                              _selectedTimes.sublist(0, _selectedNumber!);
+                          final dateTime = DateTime.now();
+                          int count = 0;
                           // Convert TimeOfDay objects to formatted strings
-                          List<String> formattedSlots = selectedSlots.map((time) {
-                            return '${time.hour}:${time.minute}';
+                          List<Map<String, dynamic>> formattedSlots =
+                              selectedSlots.map((time) {
+                                count++;
+                            return {
+                              "slot$count":[DateTime(dateTime.year,dateTime.month,dateTime.day,time.hour,time.minute),false]
+                            };
                           }).toList();
-
                           // Add data to Firestore
-                          FirebaseFirestore.instance.collection('TimeSlot').add({
+                          final uid = FirebaseAuth.instance.currentUser?.uid;
+                          FirebaseFirestore.instance
+                              .collection('TimeSlot')
+                              .doc(uid)
+                              .collection("Slot")
+                              .add({
                             'option': _selectedOption,
                             'price': _selectedPrice,
+                            'doctorId': uid,
                             'slot': _selectedNumber,
                             'times': formattedSlots,
                             'timestamp': DateTime.now(),
@@ -320,11 +337,14 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                               _selectedOption = null;
                               _selectedPrice = '';
                               _selectedNumber = null;
-                              _selectedTimes = List.filled(20, const TimeOfDay(hour: 0, minute: 0));
+                              _selectedTimes = List.filled(
+                                  20, const TimeOfDay(hour: 0, minute: 0));
                             });
                             // Show a message that appointment is added
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text('Appointment added successfully')),
+                              const SnackBar(
+                                  content:
+                                      Text('Appointment added successfully')),
                             );
                           }).catchError((error) {
                             // Error adding data
@@ -334,8 +354,6 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                       });
                     }
                   },
-
-
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.indigo[300],

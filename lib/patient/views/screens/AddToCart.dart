@@ -54,7 +54,7 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
         future: fetchCartItems(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.hasError) {
@@ -98,7 +98,7 @@ class _AddToCartScreenState extends State<AddToCartScreen> {
                         ],
                       ),
                       trailing: IconButton(
-                        icon: Icon(Icons.delete),
+                        icon: const Icon(Icons.delete),
                         onPressed: () {
                           setState(() {
                             _removeFromCart(cartItems[index]['documentId']);

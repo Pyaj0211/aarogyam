@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WomenCare extends StatefulWidget {
-  const WomenCare({Key? key}) : super(key: key);
+  const WomenCare({super.key});
 
   @override
   State<WomenCare> createState() => _WomenCareState();
