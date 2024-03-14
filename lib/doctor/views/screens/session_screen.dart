@@ -1,7 +1,5 @@
-import 'package:aarogyam/doctor/data/services/doctor_database_services.dart';
 import 'package:aarogyam/doctor/logic/bloc/session_bloc/session_bloc.dart';
 import 'package:aarogyam/doctor/views/screens/session_details_Screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

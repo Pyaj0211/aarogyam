@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DoctorModel {
   final String? uid;
+  final String? token;
   final String? address;
   final String? certificate;
   final String? dob;
@@ -19,6 +20,7 @@ class DoctorModel {
     this.certificate,
     this.dob,
     this.email,
+    this.token,
     this.genralFee,
     this.image,
     this.name,
@@ -30,6 +32,7 @@ class DoctorModel {
   DoctorModel.fromDocumentSnashot(DocumentSnapshot<Map<String, dynamic>?> doc)
       : uid = doc.id,
         address = doc.data()?["address"],
+        token = doc.data()?["token"],
         certificate = doc.data()?["certificate"],
         dob = doc.data()?["dob"],
         email = doc.data()?["email"],
@@ -46,6 +49,7 @@ class DoctorModel {
     String? certificate,
     String? dob,
     String? email,
+    String? token,
     String? genralFee,
     String? image,
     String? name,
@@ -62,6 +66,7 @@ class DoctorModel {
         genralFee: genralFee ?? this.genralFee,
         image: image ?? this.image,
         name: name ?? this.name,
+        token: token ?? this.token,
         password: password ?? this.password,
         spicailist: spicailist ?? this.spicailist,
         status: status ?? this.status,

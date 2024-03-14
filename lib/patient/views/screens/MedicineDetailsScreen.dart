@@ -1,4 +1,3 @@
-import 'package:aarogyam/patient/views/screens/Medicine.dart';
 import 'package:aarogyam/patient/views/screens/PersonDetailsScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

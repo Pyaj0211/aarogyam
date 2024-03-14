@@ -29,7 +29,7 @@ class PatientHomeScreen extends StatefulWidget {
 class _PatientHomeScreenState extends State<PatientHomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String _phoneNumber = '';
+  String phoneNumber = '';
 
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
     User? user = _auth.currentUser;
     if (user != null) {
       setState(() {
-        _phoneNumber = user.phoneNumber!;
+        phoneNumber = user.phoneNumber!;
       });
     }
   }
@@ -68,7 +68,7 @@ class _PatientHomeScreenState extends State<PatientHomeScreen> {
           snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
-            _phoneNumber = data['mobile'] ?? '';
+            phoneNumber = data['mobile'] ?? '';
             _gmail = data['gmail'] ?? '';
           });
         }

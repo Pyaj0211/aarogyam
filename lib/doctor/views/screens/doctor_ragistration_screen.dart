@@ -110,7 +110,6 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               setState(() {
                                 _person = File(pickedImage!.path);
                               });
-                              // ignore: use_build_context_synchronously
                               BlocProvider.of<SignUpBloc>(context).add(
                                   SignUpFieldChangeEvent(
                                       name: _dname.text,

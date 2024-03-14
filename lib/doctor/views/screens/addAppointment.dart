@@ -1,10 +1,12 @@
-import 'package:aarogyam/doctor/views/screens/doctor_profileScreen.dart';
-import 'package:aarogyam/doctor/views/screens/viewAppointment.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddAppointmentSlots extends StatefulWidget {
+  const AddAppointmentSlots({super.key});
+
   @override
   _AddAppointmentSlotsState createState() => _AddAppointmentSlotsState();
 }

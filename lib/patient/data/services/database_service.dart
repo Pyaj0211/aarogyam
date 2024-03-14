@@ -2,6 +2,7 @@ import 'package:aarogyam/doctor/data/models/doctor_model.dart';
 import 'package:aarogyam/patient/data/models/videocalling_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class DatabaseService {
   final _db = FirebaseFirestore.instance;
@@ -38,5 +39,20 @@ class DatabaseService {
     return snapshot.docs
         .map((e) => DoctorModel.fromDocumentSnashot(e))
         .toList();
+  }
+
+  Future<DoctorModel> getDoctorByUid(DoctorModel doctorModel) async {
+    final snapshot = await _db.collection("request").doc(doctorModel.uid).get();
+    return DoctorModel.fromDocumentSnashot(snapshot);
+  }
+
+  addToken() async {
+    final fcmToken = await FirebaseMessaging.instance.getToken();
+    _db.collection("Tokens").doc(uid).set({"token": fcmToken});
+  }
+
+  Future<DoctorModel> getToken(DoctorModel doctorModel) async {
+    final snapshot = await _db.collection("Tokens").doc(doctorModel.uid).get();
+    return DoctorModel.fromDocumentSnashot(snapshot);
   }
 }
