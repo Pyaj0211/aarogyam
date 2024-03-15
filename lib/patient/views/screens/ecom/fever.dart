@@ -1,6 +1,5 @@
 import 'package:aarogyam/patient/views/screens/ecom/medicinedetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FeverScreen extends StatefulWidget {
@@ -24,7 +23,7 @@ class _FeverScreenState extends State<FeverScreen> {
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -48,7 +47,7 @@ class _FeverScreenState extends State<FeverScreen> {
                       var docID = medicineDetail['documentId'];
 
                       return Container(
-                        margin: EdgeInsets.all(8.0),
+                        margin: const EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10.0),
@@ -57,7 +56,7 @@ class _FeverScreenState extends State<FeverScreen> {
                               color: Colors.grey.withOpacity(0.5),
                               spreadRadius: 3,
                               blurRadius: 5,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -93,21 +92,21 @@ class _FeverScreenState extends State<FeverScreen> {
                                   height: 50,
                                   fit: BoxFit.cover,
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       medicineName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 5),
+                                    const SizedBox(height: 5),
                                     Text('Dosage Form: $dosageForm'),
                                     Text('Expiry Date: $expiryDate'),
-                                    Text('Price: \₹$price',
-                                      style: TextStyle(
+                                    Text('Price: ₹$price',
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         color: Colors.green,
                                       ),

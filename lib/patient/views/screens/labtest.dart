@@ -1,11 +1,11 @@
-import 'package:aarogyam/patient/views/screens/HealthPackage.dart';
-import 'package:aarogyam/patient/views/screens/Unhealthy.dart';
-import 'package:aarogyam/patient/views/screens/WomenCare.dart';
+import 'package:aarogyam/patient/views/screens/healthpackage.dart';
+import 'package:aarogyam/patient/views/screens/unhealthy.dart';
+import 'package:aarogyam/patient/views/screens/womencare.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-import 'AllTest.dart';
+import 'alltest.dart';
 
 class Labtest extends StatefulWidget {
   const Labtest({super.key});

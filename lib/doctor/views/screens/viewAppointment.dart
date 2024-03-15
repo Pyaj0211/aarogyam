@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ViewAppointmentScreen extends StatelessWidget {
   final String selectedOption;
@@ -8,7 +7,7 @@ class ViewAppointmentScreen extends StatelessWidget {
   final int selectedNumber;
   final List<TimeOfDay> selectedTimes;
 
-  ViewAppointmentScreen({
+  const ViewAppointmentScreen({super.key,
     required this.selectedOption,
     required this.selectedPrice,
     required this.selectedNumber,
@@ -18,13 +17,11 @@ class ViewAppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      body: Container(
-        child: ListView(
-          children: [
-            ListTile(
-            )
-          ],
-        ),
+      body: ListView(
+        children: const [
+          ListTile(
+          )
+        ],
       ),
     );
   }

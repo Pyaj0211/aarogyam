@@ -1,25 +1,27 @@
+
+
 import 'package:flutter/material.dart';
 
-class WomenCare extends StatefulWidget {
-  const WomenCare({super.key});
+class HealthPackage extends StatefulWidget {
+  const HealthPackage({super.key});
 
   @override
-  State<WomenCare> createState() => _WomenCareState();
+  State<HealthPackage> createState() => _HealthPackageState();
 }
 
-class _WomenCareState extends State<WomenCare> {
+class _HealthPackageState extends State<HealthPackage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          'WOMEN CARE',
+          'HEALTH PACKAGES',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -43,9 +45,11 @@ class _WomenCareState extends State<WomenCare> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
-                _testCard('assets/icons/LabTest/pcod.png', 'PCOD'),
-                _testCard('assets/icons/LabTest/Pregnancy.png', 'Pregnancy'),
-                _testCard('assets/images/Lab_reports.png', 'Blood study'),
+                _testCard(
+                    'assets/icons/LabTest/FullBody.png', 'Full Body checkup'),
+                _testCard(
+                    'assets/icons/LabTest/Diabetes.png', 'Diabetes Package'),
+                _testCard('assets/icons/LabTest/Women.png', 'Women Wellness'),
               ],
             ),
           ),
@@ -53,9 +57,35 @@ class _WomenCareState extends State<WomenCare> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
-                _testCard('assets/icons/LabTest/Vitamins.png', 'Vitamins'),
                 _testCard(
-                    'assets/icons/LabTest/Iron_studies.png', 'Iron Studies'),
+                    'assets/icons/LabTest/Thyroid.png', 'Thyroid Packages'),
+                _testCard('assets/icons/LabTest/Heart.png', 'Heart (Cardiac)'),
+                _testCard(
+                    'assets/icons/LabTest/Harifall.png', 'Hairfall Packages'),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            child: Row(
+              children: [
+                _testCard('assets/icons/LabTest/Fever.png', 'Fever Packages'),
+                _testCard(
+                    'assets/icons/LabTest/Vitamins.png', 'Vitamin Packages'),
+                _testCard(
+                  'assets/icons/LabTest/Kidneys.png',
+                  'Kidney Packages',
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+            child: Row(
+              children: [
+                _testCard('assets/images/Lab_reports.png', 'Blood Packages'),
+                _testCard('assets/icons/LabTest/Liver.png', 'Liver Packages'),
+                _testCard('assets/images/Doctor.png', 'Men  Wellness'),
               ],
             ),
           ),
@@ -64,6 +94,7 @@ class _WomenCareState extends State<WomenCare> {
     );
   }
 }
+
 Widget _testCard(String imagepath, String title) {
   return Expanded(
     child: Padding(

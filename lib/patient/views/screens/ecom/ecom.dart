@@ -14,6 +14,7 @@ class EcomMedicine extends StatefulWidget {
   const EcomMedicine({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _EcomMedicineState createState() => _EcomMedicineState();
 }
 
@@ -44,7 +45,7 @@ class _EcomMedicineState extends State<EcomMedicine> with SingleTickerProviderSt
         backgroundColor: Colors.teal,
         centerTitle: true,
         bottom: TabBar(
-          indicator: UnderlineTabIndicator(
+          indicator: const UnderlineTabIndicator(
             insets: EdgeInsets.zero, // Remove the space before the first tab
           ),
           labelColor: Colors.white,
@@ -142,7 +143,7 @@ class _EcomMedicineState extends State<EcomMedicine> with SingleTickerProviderSt
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>  AddToCartScreen(),
+              builder: (context) =>  const AddToCartScreen(),
             ),
           );
         },

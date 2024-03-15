@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -65,7 +68,10 @@ class _PersonDetailsScreenState extends State<PersonDetailsScreen> {
       getAddress(value.latitude, value.longitude);
     }).catchError((error) {
       if (disposed) return; // Check if the state is disposed
-      print("Error $error");
+
+      if (kDebugMode) {
+        print("Error $error");
+      }
     });
   }
 

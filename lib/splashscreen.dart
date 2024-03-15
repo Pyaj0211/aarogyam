@@ -27,13 +27,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     _controller.addListener(() {
       if (_controller.value.duration == _controller.value.position) {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => const MyApp(),
-          ),
-        );
+        _preloadDataAndNavigate();
       }
     });
+
   }
 
   void _preloadDataAndNavigate() async {

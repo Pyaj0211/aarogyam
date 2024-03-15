@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:aarogyam/doctor/views/screens/doctor_profileScreen.dart';
 import 'package:aarogyam/doctor/views/screens/session_screen.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'addAppointment.dart';
 
 class Doctor_HomePage extends StatefulWidget {
-  const Doctor_HomePage({Key? key}) : super(key: key);
+  const Doctor_HomePage({super.key});
 
   @override
   State<Doctor_HomePage> createState() => _Doctor_HomePageState();
@@ -34,10 +36,10 @@ class _Doctor_HomePageState extends State<Doctor_HomePage> {
                   Tab(text: 'Profile',icon: Icon(Icons.person),),
                 ]),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
               AddAppointmentSlots(),
-              const SessionScreen(),
+              SessionScreen(),
               Doctor_Profile(),
             ],
           ),

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_build_context_synchronously, duplicate_ignore
+
 import 'dart:convert';
 
 import 'package:aarogyam/doctor/data/models/doctor_model.dart';

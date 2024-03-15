@@ -1,10 +1,9 @@
 import 'package:aarogyam/patient/views/screens/ecom/medicinedetails.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AllergyScreen extends StatefulWidget {
-  const AllergyScreen({Key? key}) : super(key: key);
+  const AllergyScreen({super.key});
 
   @override
   State<AllergyScreen> createState() => _AllergyScreenState();
@@ -24,7 +23,7 @@ class _AllergyScreenState extends State<AllergyScreen> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
@@ -57,7 +56,7 @@ class _AllergyScreenState extends State<AllergyScreen> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -92,23 +91,23 @@ class _AllergyScreenState extends State<AllergyScreen> {
                                 height: 50,
                                 fit: BoxFit.cover,
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Flexible(
                                     child: Text(
                                       medicineName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text('Dosage Form: $dosageForm'),
                                   Text('Expiry Date: $expiryDate'),
-                                  Text('Price: \₹$price',
-                                    style: TextStyle(
+                                  Text('Price: ₹$price',
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.green,
                                     ),
@@ -120,8 +119,6 @@ class _AllergyScreenState extends State<AllergyScreen> {
                         ),
                       ),
                     );
-
-
                   },
                 );
               },

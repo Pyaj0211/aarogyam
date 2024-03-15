@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class PainScreen extends StatefulWidget {
-  const PainScreen({Key? key}) : super(key: key);
+  const PainScreen({super.key});
 
   @override
   State<PainScreen> createState() => _PainScreenState();
@@ -23,7 +23,7 @@ class _PainScreenState extends State<PainScreen> {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
@@ -48,7 +48,7 @@ class _PainScreenState extends State<PainScreen> {
 
 
                     return Container(
-                      margin: EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0),
@@ -57,7 +57,7 @@ class _PainScreenState extends State<PainScreen> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 5,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -92,21 +92,21 @@ class _PainScreenState extends State<PainScreen> {
                                 height: 50,
                                 fit: BoxFit.cover,
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     medicineName,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text('Dosage Form: $dosageForm'),
                                   Text('Expiry Date: $expiryDate'),
-                                  Text('Price: \₹$price',
-                                    style: TextStyle(
+                                  Text('Price: ₹$price',
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: Colors.green,
                                     ),

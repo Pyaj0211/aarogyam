@@ -1,9 +1,9 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
-import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
-import 'package:aarogyam/patient/views/screens/LAbTest.dart';
-import 'package:aarogyam/patient/views/screens/OrderByPrescription.dart';
-import 'package:aarogyam/patient/views/screens/ProfileScreen.dart';
+import 'package:aarogyam/patient/views/screens/healthblog.dart';
+import 'package:aarogyam/patient/views/screens/labtest.dart';
+import 'package:aarogyam/patient/views/screens/orderbyprescription.dart';
+import 'package:aarogyam/patient/views/screens/profilescreen.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
 import 'package:aarogyam/patient/views/screens/googlemap/googlemapscreen.dart';
@@ -13,10 +13,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -29,7 +27,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  String _phoneNumber = '';
 
   @override
   void initState() {
@@ -43,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
     User? user = _auth.currentUser;
     if (user != null) {
       setState(() {
-        _phoneNumber = user.phoneNumber!;
       });
     }
   }
@@ -66,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
           snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
-            _phoneNumber = data['mobile'] ?? '';
             _gmail = data['gmail'] ?? '';
           });
         }
@@ -98,63 +93,63 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top:size.height * 0.01 ,left: size.height * 0.01 ,right: size.height * 0.01),
+                  padding: EdgeInsets.only(top:size.height * 0.01 ,left: size.height * 0.01 ,right: size.height * 0.02),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          if(scaffoldKey.currentState!.isDrawerOpen){
-                            scaffoldKey.currentState!.closeDrawer();
-                            //close drawer, if drawer is open
-                          }else{
-                            scaffoldKey.currentState!.openDrawer();
-                            //open drawer, if drawer is closed
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5.0),
-                          child: Container(
-                            height: 35,
-                            width: 35,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: Colors.white,
-                                width: 1.0,
-                              ),
-                            ),
-                            child: Center(
-                              child: CircleAvatar(
-                                backgroundColor: Colors.transparent,
-                                foregroundColor: const Color(0xff117790),
-                                child: _userName.isNotEmpty
-                                    ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
-                                    : const Icon(Icons.person),
-                              ),
-                            ),
-                          ),
-                        ),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.start,
+                       children: [
+                         GestureDetector(
+                           onTap: () {
+                             if(scaffoldKey.currentState!.isDrawerOpen){
+                               scaffoldKey.currentState!.closeDrawer();
+                               //close drawer, if drawer is open
+                             }else{
+                               scaffoldKey.currentState!.openDrawer();
+                               //open drawer, if drawer is closed
+                             }
+                           },
+                           child: Padding(
+                             padding: const EdgeInsets.only(left: 5.0),
+                             child: Container(
+                               height: 35,
+                               width: 35,
+                               decoration: BoxDecoration(
+                                 shape: BoxShape.circle,
+                                 border: Border.all(
+                                   color: Colors.white,
+                                   width: 1.0,
+                                 ),
+                               ),
+                               child: Center(
+                                 child: CircleAvatar(
+                                   backgroundColor: Colors.transparent,
+                                   foregroundColor: const Color(0xff117790),
+                                   child: _userName.isNotEmpty
+                                       ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
+                                       : const Icon(Icons.person),
+                                 ),
+                               ),
+                             ),
+                           ),
 
-                      ),
-                      SizedBox(
-                        width: size.width* 0.025,
-                      ),
-                      Text(
-                        _userName.isNotEmpty ? _userName : 'Hi Guest !',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                            color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: size.width * 0.55,
-                      ),
-                      const Expanded(
-                        child: Icon(
-                          Icons.notifications_active,
-                          color: Colors.yellow,
-                        ),
+                         ),
+                         SizedBox(
+                           width: size.width* 0.025,
+                         ),
+                         Text(
+                           _userName.isNotEmpty ? _userName : 'Hi Guest !',
+                           style: const TextStyle(
+                               fontWeight: FontWeight.bold,
+                               fontSize: 17,
+                               color: Colors.white),
+                         ),
+                       ],
+                     ),
+                      const Icon(
+                        Icons.notifications_active,
+                        color: Colors.yellow,
                       ),
                     ],
                   ),
@@ -844,7 +839,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-
           ],
         ),
       ),
