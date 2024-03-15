@@ -101,11 +101,10 @@ flutter:
     - assets/images/
     - assets/img/vector/
     - assets/images/logos/
-    - assets/images/Products/
-    - assets/icons/LabTest/
     - assets/Video/
     - assets/img/
     - assets/ecom/icons/
+    - assets/icons/helthblog/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

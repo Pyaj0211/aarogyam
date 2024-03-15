@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -146,202 +147,136 @@ class _PaymentScreenState extends State<PaymentScreen> {
         title: const Text('Payment',style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Card(
-              elevation: 4,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Medicine:- ${widget.medicineName}',
-                            style: const TextStyle(
-                              fontSize: 18,
-                            ),
-                          ),
-                        ],
-                      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _paymentdetails('Medicine :- ', widget.medicineName),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Manufacturer :- ', widget.manufacturer),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Username :- ', widget.name),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Mobile no:-', _phoneNumber.substring(3)),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Email :-', widget.email),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Address :-', widget.address),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              _paymentdetails('Quantity :-', widget.quantity.toString()),
+              SizedBox(
+                height: size.height * 0.01,
+              ),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(10),
+                margin: const EdgeInsets.symmetric(horizontal: 2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  //  border: Border.all(width: 2, color: Colors.blue),
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    const BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(1, 1),
+                      blurRadius: 15,
+                      spreadRadius: 1,
                     ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding:  const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Manufacturer:- ${widget.manufacturer}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      offset: const Offset(1,1),
+                      blurRadius: 5,
+                      spreadRadius: 1,
                     ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Username:- ${widget.name}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Mobile no:- ${_phoneNumber.substring(3)}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Email:- ${widget.email}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Address:- ${widget.address}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding:  const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Quantity:- ${widget.quantity}',
-                            style: const TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: size.height * 0.01,),
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(5.0),
-                      ),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Price:- ₹${widget.price * widget.quantity}',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-
                   ],
                 ),
-              ),
-            ),
-            SizedBox(height: size.height * 0.03,),
-            Center(
-              child: InkWell(
-                onTap: () {
-                  _openCheckout();
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.45,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
-                    color: Colors.teal,
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
+                child: Text(
+                  'Price:  ₹${widget.price * widget.quantity}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green,
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Pay Now',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+              ),
+              SizedBox(height: size.height * 0.03,),
+              Center(
+                child: InkWell(
+                  onTap: () {
+                    _openCheckout();
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.06,
+                    width: MediaQuery.of(context).size.width * 0.45,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      color: Colors.teal,
+                      borderRadius: const BorderRadius.all(Radius.circular(50)),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'Pay Now',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+}
+Widget _paymentdetails(String type, String data) {
+  return Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(10),
+    margin: const EdgeInsets.symmetric(horizontal: 2),
+    decoration: BoxDecoration(
+      color: Colors.white,
+      //  border: Border.all(width: 2, color: Colors.blue),
+      borderRadius: BorderRadius.circular(12),
+      boxShadow: [
+        const BoxShadow(
+          color: Colors.white,
+          offset: Offset(1, 1),
+          blurRadius: 15,
+          spreadRadius: 1,
+        ),
+        BoxShadow(
+          color: Colors.grey.shade400,
+          offset: const Offset(1,1),
+          blurRadius: 5,
+          spreadRadius: 1,
+        ),
+      ],
+    ),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          type,
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+        ),
+        Flexible(
+            child: Text(data,style: const TextStyle(fontSize: 15,),)
+        ),
+      ],
+    ),
+  );
 }

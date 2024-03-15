@@ -1,4 +1,4 @@
-import 'package:aarogyam/patient/views/screens/ecom/summarypage.dart';
+import 'package:aarogyam/patient/views/screens/ecom/summarydetails.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -233,7 +233,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SummaryPage(
+                              builder: (context) => Summarypage(
                                 medicineName: widget.medicineName,
                                 manufacturer: widget.manufacturer,
                                 price: widget.price,

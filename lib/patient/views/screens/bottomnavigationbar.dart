@@ -20,7 +20,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     const HomeScreen(),
     const DigitalConsult(),
     const EcomMedicine(),
-    const Labtest(),
+    PurchaseDetailsScreen(),
     const HealthBlog(),
   ];
 
@@ -59,8 +59,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 text: 'Medicine',
               ),
               GButton(
-                icon: Icons.note_alt_sharp,
-                text: 'Lab Test',
+                icon: Icons.shopping_cart,
+                text: 'Buy medicine',
               ),
               GButton(
                 icon: Icons.notes,

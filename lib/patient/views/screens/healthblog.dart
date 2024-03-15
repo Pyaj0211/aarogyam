@@ -13,12 +13,12 @@ class _HealthBlogState extends State<HealthBlog> {
   int currentIndex = 0;
   // ignore: non_constant_identifier_names
   final Myitems = [
-    Image.asset('assets/icons/LabTest/Heart.png'),
-    Image.asset('assets/icons/LabTest/Kidneys.png'),
-    Image.asset('assets/icons/LabTest/Liver.png'),
-    Image.asset('assets/icons/LabTest/Thyroid.png'),
-    Image.asset('assets/icons/LabTest/Lung.png'),
-    Image.asset('assets/icons/LabTest/Bones.png'),
+    Image.asset('assets/icons/helthblog/Heart.png'),
+    Image.asset('assets/icons/helthblog/Kidneys.png'),
+    Image.asset('assets/icons/helthblog/Liver.png'),
+    Image.asset('assets/icons/helthblog/Thyroid.png'),
+    Image.asset('assets/icons/helthblog/Lung.png'),
+    Image.asset('assets/icons/helthblog/Bones.png'),
   ];
 
   @override
