@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/data/services/notification_servies.dart';
 import 'package:aarogyam/splashscreen.dart';
