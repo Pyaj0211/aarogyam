@@ -1,5 +1,6 @@
 import 'package:aarogyam/patient/views/screens/ecom/summarypage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -17,7 +18,7 @@ class MedicineDetails extends StatefulWidget {
   final String docid;
 
   const MedicineDetails({
-    Key? key,
+    super.key,
     required this.medicineName,
     required this.dosageForm,
     required this.expiryDate,
@@ -29,7 +30,7 @@ class MedicineDetails extends StatefulWidget {
     required this.strength,
     required this.useInfo,
     required this.docid,
-  }) : super(key: key);
+  });
 
   @override
   State<MedicineDetails> createState() => _MedicineDetailsState();
@@ -61,10 +62,14 @@ class _MedicineDetailsState extends State<MedicineDetails> {
         setState(() {
           addedToCart = true;
         });
-        print('Data added successfully');
+        if (kDebugMode) {
+          print('Data added successfully');
+        }
       });
     } catch (e) {
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
@@ -91,13 +96,19 @@ class _MedicineDetailsState extends State<MedicineDetails> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.teal,
+        iconTheme: const IconThemeData(
+            color: Colors.white
+        ),
         title: Text(
           widget.medicineName,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
+            color: Colors.white
           ),
         ),
+
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -110,7 +121,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
               },
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Hero(
                     tag: widget.medImage,
                     child: Container(
@@ -122,7 +133,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                             color: Colors.grey.withOpacity(0.5),
                             spreadRadius: 3,
                             blurRadius: 7,
-                            offset: Offset(0, 3),
+                            offset: const Offset(0, 3),
                           ),
                         ],
                       ),
@@ -163,7 +174,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                   ),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         'Price: ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -171,8 +182,8 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                         ),
                       ),
                       Text(
-                        '\₹${widget.price.toStringAsFixed(2)}',
-                        style: TextStyle(
+                        '₹${widget.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.green,
                           fontSize: 20,
@@ -187,11 +198,16 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                   _buildRow('Expiry Date', widget.expiryDate),
                   _buildRow('Strength', widget.strength),
                   _buildRow('Usage Information', widget.useInfo),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton.icon(
+                        style: const ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll(
+                                Colors.teal
+                            )
+                        ),
                         onPressed: addedToCart
                             ? null
                             : () {
@@ -202,11 +218,17 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                         },
                         icon: Icon(
                           addedToCart ? Icons.check : Icons.add_shopping_cart,
+                          color: Colors.white,
                         ),
-                        label: Text(addedToCart ? 'Added to Cart' : 'Add to Cart'),
+                        label: Text(addedToCart ? 'Added to Cart' : 'Add to Cart',style: const TextStyle(color: Colors.white),),
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       ElevatedButton(
+                        style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                            Colors.teal
+                          )
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -219,7 +241,7 @@ class _MedicineDetailsState extends State<MedicineDetails> {
                             ),
                           );
                         },
-                        child: Text('Buy Now'),
+                        child: const Text('Buy Now',style: TextStyle(color: Colors.white),),
                       ),
                     ],
                   ),
@@ -246,12 +268,12 @@ class _MedicineDetailsState extends State<MedicineDetails> {
             color: Colors.grey[600],
           ),
         ),
-        SizedBox(height: 4),
+        const SizedBox(height: 4),
         Text(
           data,
-          style: TextStyle(fontSize: 16),
+          style: const TextStyle(fontSize: 16),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
       ],
     );
   }

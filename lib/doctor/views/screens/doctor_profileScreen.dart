@@ -1,11 +1,13 @@
+// ignore_for_file: file_names, camel_case_types, use_build_context_synchronously
+
 import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 
 class Doctor_Profile extends StatefulWidget {
-  const Doctor_Profile({Key? key}) : super(key: key);
+  const Doctor_Profile({super.key});
 
   @override
   State<Doctor_Profile> createState() => _Doctor_ProfileState();
@@ -21,7 +23,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
   String specialist = '';
   String? imageUrl; // Store user's profile image URL
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> _getUserProfileData() async {
@@ -47,7 +49,9 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
           });
         }
       } catch (e) {
-        print('Error fetching profile data: $e');
+        if (kDebugMode) {
+          print('Error fetching profile data: $e');
+        }
       }
     }
   }
@@ -72,9 +76,9 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
               children: [
                 CircleAvatar(
                   radius: 45,
-                  backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : AssetImage('assets/img/vector/ic_launcher.jpg') as ImageProvider,
+                  backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : const AssetImage('assets/img/vector/ic_launcher.jpg') as ImageProvider,
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
@@ -84,12 +88,12 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                       children: [
                         Text(
                           'Dr. $name',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
-                          '$specialist',
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          specialist,
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ],
                     ),
@@ -97,7 +101,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Card(
               elevation: 3,
               child: Padding(
@@ -105,11 +109,11 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Personal Information',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text('Date of Birth: $dob'),
                     Text('Email: $email'),
                     Text('Address: $address'),
@@ -117,7 +121,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Card(
               elevation: 3,
               child: Padding(
@@ -125,18 +129,18 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Professional Information',
                       style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text('Specialist: $specialist'),
                     Text('General Fee: $generalfee'),
                   ],
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -150,16 +154,16 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.logout),
-                  label: Text('Log Out'),
+                  icon: const Icon(Icons.logout),
+                  label: const Text('Log Out'),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 ElevatedButton.icon(
                   onPressed: () {
                     // Navigate to edit profile screen
                   },
-                  icon: Icon(Icons.edit),
-                  label: Text('Edit'),
+                  icon: const Icon(Icons.edit),
+                  label: const Text('Edit'),
                 ),
               ],
             ),

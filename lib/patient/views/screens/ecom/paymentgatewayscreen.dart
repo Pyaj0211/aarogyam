@@ -301,8 +301,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Price:- \₹${widget.price * widget.quantity}',
-                            style: TextStyle(
+                            'Price:- ₹${widget.price * widget.quantity}',
+                            style: const TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.green,
                             ),

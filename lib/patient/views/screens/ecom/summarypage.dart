@@ -1,6 +1,7 @@
-import 'package:aarogyam/patient/views/screens/ecom/PaymentGateWayScreen.dart';
+import 'package:aarogyam/patient/views/screens/ecom/paymentgatewayscreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -11,11 +12,11 @@ class SummaryPage extends StatefulWidget {
   final double price;
 
   const SummaryPage({
-    Key? key,
+    super.key,
     required this.medicineName,
     required this.manufacturer,
     required this.price,
-  }) : super(key: key);
+  });
 
   @override
   State<SummaryPage> createState() => _SummaryPageState();
@@ -72,7 +73,9 @@ class _SummaryPageState extends State<SummaryPage> {
       getAddress(value.latitude, value.longitude);
     }).catchError((error) {
       if (disposed) return; // Check if the state is disposed
-      print("Error $error");
+      if (kDebugMode) {
+        print("Error $error");
+      }
     });
   }
 
@@ -81,9 +84,9 @@ class _SummaryPageState extends State<SummaryPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: ListTile(
+          title: const ListTile(
             leading: Icon(Icons.location_pin, color: Colors.teal),
-            title: const Text("Use current location?"),
+            title: Text("Use current location?"),
           ),
           content: const Text("Do you want to use your current location as the address?"),
           actions: <Widget>[
@@ -113,7 +116,7 @@ class _SummaryPageState extends State<SummaryPage> {
     List<Placemark> placemarks = await placemarkFromCoordinates(latitude, longitude);
     if (disposed) return; // Check if the state is disposed
     setState(() {
-      address = placemarks[0].street! + " " + placemarks[0].subLocality! + " " + placemarks[0].locality! + " " + placemarks[0].postalCode! + " " + placemarks[0].administrativeArea! + " " + placemarks[0].country!;
+      address = "${placemarks[0].street!} ${placemarks[0].subLocality!} ${placemarks[0].locality!} ${placemarks[0].postalCode!} ${placemarks[0].administrativeArea!} ${placemarks[0].country!}";
     });
   }
   final TextEditingController nameController = TextEditingController();
@@ -128,10 +131,10 @@ class _SummaryPageState extends State<SummaryPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white
         ),
-        title: Text('Summary',style: TextStyle(color: Colors.white),),
+        title: const Text('Summary',style: TextStyle(color: Colors.white),),
         centerTitle: true,
       ),
       body: Padding(
@@ -150,7 +153,7 @@ class _SummaryPageState extends State<SummaryPage> {
                       stream: FirebaseFirestore.instance.collection('users').doc(user!.uid).snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.waiting) {
-                          return Center(child: CircularProgressIndicator());
+                          return const Center(child: CircularProgressIndicator());
                         }
 
                         if (!snapshot.hasData || snapshot.data!.data() == null) {
@@ -177,11 +180,11 @@ class _SummaryPageState extends State<SummaryPage> {
                                   border: Border.all(color: Colors.grey),
                                   borderRadius: BorderRadius.circular(5.0),
                                 ),
-                                padding: EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Saved Address:',
                                       style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                     ),
@@ -197,7 +200,7 @@ class _SummaryPageState extends State<SummaryPage> {
                     ),
                     Text(
                       'Medicine: ${widget.medicineName}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -205,14 +208,14 @@ class _SummaryPageState extends State<SummaryPage> {
                     SizedBox(height: size.height * 0.01,),
                     Text(
                       'Manufacturer: ${widget.manufacturer}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 16,
                       ),
                     ),
                     SizedBox(height: size.height * 0.01,),
                     Text(
-                      'Price: \₹${widget.price.toStringAsFixed(2)}',
-                      style: TextStyle(
+                      'Price: ₹${widget.price.toStringAsFixed(2)}',
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
                       ),
@@ -235,7 +238,7 @@ class _SummaryPageState extends State<SummaryPage> {
                         ),
                         const SizedBox(width: 5,),
                         Text('$quantity',
-                            style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15)),
+                            style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 15)),
                         const SizedBox(width: 5,),
                         InkWell(
                           onTap: (){
@@ -244,7 +247,7 @@ class _SummaryPageState extends State<SummaryPage> {
                             });
 
                           },
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 15,
                             child: Text("+",style: TextStyle(fontWeight: FontWeight.bold),),
                           ),
@@ -294,12 +297,11 @@ class _SummaryPageState extends State<SummaryPage> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Center(
               child: InkWell(
                 onTap: () {
-                  if (user != null &&
-                      nameController.text.isNotEmpty &&
+                  if (nameController.text.isNotEmpty &&
                       addressController.text.isNotEmpty &&
                       emailController.text.isNotEmpty) {
                     Navigator.push(
@@ -342,7 +344,7 @@ class _SummaryPageState extends State<SummaryPage> {
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.white),
                     color: Colors.teal,
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
                   ),
                   child: const Center(
                     child: Text(

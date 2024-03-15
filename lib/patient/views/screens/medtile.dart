@@ -1,4 +1,6 @@
-import 'package:aarogyam/patient/views/screens/Medicinedata.dart';
+// ignore_for_file: file_names
+
+import 'package:aarogyam/patient/views/screens/medicinedata.dart';
 import 'package:flutter/material.dart';
 
 

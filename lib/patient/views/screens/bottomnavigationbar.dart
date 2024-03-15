@@ -1,5 +1,5 @@
-import 'package:aarogyam/patient/views/screens/HealthBlog.dart';
-import 'package:aarogyam/patient/views/screens/LAbTest.dart';
+import 'package:aarogyam/patient/views/screens/healthblog.dart';
+import 'package:aarogyam/patient/views/screens/labtest.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
 import 'package:aarogyam/patient/views/screens/homescreen.dart';

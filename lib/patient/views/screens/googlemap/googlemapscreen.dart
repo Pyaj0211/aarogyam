@@ -6,16 +6,17 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({Key? key}) : super(key: key);
+  const MapScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MapScreenState createState() => _MapScreenState();
 }
 
 class _MapScreenState extends State<MapScreen> {
   late GoogleMapController mapController;
   final TextEditingController _searchController = TextEditingController();
-  Set<Marker> _markers = {};
+  final Set<Marker> _markers = {};
   LatLng? _currentLocation;
 
   @override
@@ -40,9 +41,9 @@ class _MapScreenState extends State<MapScreen> {
       _markers.clear();
       _markers.add(
         Marker(
-          markerId: MarkerId('currentLocation'),
+          markerId: const MarkerId('currentLocation'),
           position: _currentLocation!,
-          infoWindow: InfoWindow(
+          infoWindow: const InfoWindow(
             title: 'Current Location',
             snippet: 'This is your current location',
           ),
@@ -53,7 +54,7 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _fetchNearbyHospitals(LatLng position) async {
-    final apiKey = 'AIzaSyCN7n62KYaihhc4adMLyaFd2WgrfBr4hUo';
+    const apiKey = 'AIzaSyCN7n62KYaihhc4adMLyaFd2WgrfBr4hUo';
     final response = await http.get(Uri.parse(
         'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${position.latitude},${position.longitude}&radius=1500&type=hospital&key=$apiKey'));
     if (response.statusCode == 200) {
@@ -99,7 +100,7 @@ class _MapScreenState extends State<MapScreen> {
         _markers.clear();
         _markers.add(
           Marker(
-            markerId: MarkerId('searchedLocation'),
+            markerId: const MarkerId('searchedLocation'),
             position: LatLng(location.latitude, location.longitude),
             infoWindow: InfoWindow(
               title: searchText,
@@ -128,7 +129,7 @@ class _MapScreenState extends State<MapScreen> {
       body: Stack(
         children: [
           GoogleMap(
-            initialCameraPosition: CameraPosition(
+            initialCameraPosition: const CameraPosition(
               target: LatLng(21.213955, 72.862732),
               zoom: 14,
             ),
@@ -137,7 +138,7 @@ class _MapScreenState extends State<MapScreen> {
                 mapController = controller;
               });
             },
-            padding: EdgeInsets.only(bottom: 70, right: 5),
+            padding: const EdgeInsets.only(bottom: 70, right: 5),
             markers: _markers,
 
           ),
@@ -169,10 +170,10 @@ class _MapScreenState extends State<MapScreen> {
                     ),
                   ),
                 ),
-                SizedBox(width: 8.0),
+                const SizedBox(width: 8.0),
                 ElevatedButton(
                   onPressed: _searchLocation,
-                  child: Text('Search', style: TextStyle(color: Colors.black)),
+                  child: const Text('Search', style: TextStyle(color: Colors.black)),
                 ),
               ],
             ),
@@ -183,7 +184,7 @@ class _MapScreenState extends State<MapScreen> {
         mini: true,
         onPressed: _moveToCurrentLocation,
         tooltip: 'Current Location',
-        child: Icon(Icons.my_location),
+        child: const Icon(Icons.my_location),
       ),
     );
   }

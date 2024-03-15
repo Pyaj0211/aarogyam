@@ -1,6 +1,7 @@
-// ignore: file_names
-import 'package:aarogyam/patient/views/common_widget/mybutton.dart';
+
 import 'package:flutter/material.dart';
+
+import '../common_widget/mybutton.dart';
 
 class BrandList extends StatefulWidget {
   const BrandList({super.key});
@@ -53,6 +54,7 @@ class _BrandListState extends State<BrandList> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget _Products(String imagepath, String title, String price) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),

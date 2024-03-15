@@ -1,21 +1,23 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class Unhealthy extends StatefulWidget {
-  const Unhealthy({super.key});
+class WomenCare extends StatefulWidget {
+  const WomenCare({super.key});
 
   @override
-  State<Unhealthy> createState() => _UnhealthyState();
+  State<WomenCare> createState() => _WomenCareState();
 }
 
-class _UnhealthyState extends State<Unhealthy> {
+class _WomenCareState extends State<WomenCare> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          'UNHEALTHY LIFESTYLE',
-          style: TextStyle(fontSize: 18),
+          'WOMEN CARE',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         actions: const [
           Padding(
@@ -43,9 +45,9 @@ class _UnhealthyState extends State<Unhealthy> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
-                _testCard('assets/icons/LabTest/Alcohol.png', 'Alcohol'),
-                _testCard('assets/icons/LabTest/Smoking.png', 'Smoking'),
-                _testCard('assets/images/Stress.png', 'Stress'),
+                _testCard('assets/icons/LabTest/pcod.png', 'PCOD'),
+                _testCard('assets/icons/LabTest/Pregnancy.png', 'Pregnancy'),
+                _testCard('assets/images/Lab_reports.png', 'Blood study'),
               ],
             ),
           ),
@@ -53,21 +55,9 @@ class _UnhealthyState extends State<Unhealthy> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
+                _testCard('assets/icons/LabTest/Vitamins.png', 'Vitamins'),
                 _testCard(
-                    'assets/icons/LabTest/Badlife.png', 'Inactive Lifestyle'),
-                _testCard('assets/icons/LabTest/Anger.png', 'Anger Management'),
-                _testCard(
-                    'assets/icons/LabTest/Overdose.png', 'Medicine Overuse'),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            child: Row(
-              children: [
-                _testCard('assets/icons/LabTest/Junkfood.png', 'Junk Food'),
-                _testCard('assets/icons/LabTest/Badsleep.png', 'Less Sleep'),
-                _testCard('assets/icons/LabTest/Heartburn.png', 'Heartburn'),
+                    'assets/icons/LabTest/Iron_studies.png', 'Iron Studies'),
               ],
             ),
           ),
@@ -76,7 +66,6 @@ class _UnhealthyState extends State<Unhealthy> {
     );
   }
 }
-
 Widget _testCard(String imagepath, String title) {
   return Expanded(
     child: Padding(

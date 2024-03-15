@@ -1,25 +1,27 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-class HealthPackage extends StatefulWidget {
-  const HealthPackage({super.key});
+class Unhealthy extends StatefulWidget {
+  const Unhealthy({super.key});
 
   @override
-  State<HealthPackage> createState() => _HealthPackageState();
+  State<Unhealthy> createState() => _UnhealthyState();
 }
 
-class _HealthPackageState extends State<HealthPackage> {
+class _UnhealthyState extends State<Unhealthy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         title: const Text(
-          'HEALTH PACKAGES',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          'UNHEALTHY LIFESTYLE',
+          style: TextStyle(fontSize: 18),
         ),
         actions: const [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
+            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -43,11 +45,9 @@ class _HealthPackageState extends State<HealthPackage> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
-                _testCard(
-                    'assets/icons/LabTest/FullBody.png', 'Full Body checkup'),
-                _testCard(
-                    'assets/icons/LabTest/Diabetes.png', 'Diabetes Package'),
-                _testCard('assets/icons/LabTest/Women.png', 'Women Wellness'),
+                _testCard('assets/icons/LabTest/Alcohol.png', 'Alcohol'),
+                _testCard('assets/icons/LabTest/Smoking.png', 'Smoking'),
+                _testCard('assets/images/Stress.png', 'Stress'),
               ],
             ),
           ),
@@ -56,10 +56,10 @@ class _HealthPackageState extends State<HealthPackage> {
             child: Row(
               children: [
                 _testCard(
-                    'assets/icons/LabTest/Thyroid.png', 'Thyroid Packages'),
-                _testCard('assets/icons/LabTest/Heart.png', 'Heart (Cardiac)'),
+                    'assets/icons/LabTest/Badlife.png', 'Inactive Lifestyle'),
+                _testCard('assets/icons/LabTest/Anger.png', 'Anger Management'),
                 _testCard(
-                    'assets/icons/LabTest/Harifall.png', 'Hairfall Packages'),
+                    'assets/icons/LabTest/Overdose.png', 'Medicine Overuse'),
               ],
             ),
           ),
@@ -67,23 +67,9 @@ class _HealthPackageState extends State<HealthPackage> {
             padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             child: Row(
               children: [
-                _testCard('assets/icons/LabTest/Fever.png', 'Fever Packages'),
-                _testCard(
-                    'assets/icons/LabTest/Vitamins.png', 'Vitamin Packages'),
-                _testCard(
-                  'assets/icons/LabTest/Kidneys.png',
-                  'Kidney Packages',
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            child: Row(
-              children: [
-                _testCard('assets/images/Lab_reports.png', 'Blood Packages'),
-                _testCard('assets/icons/LabTest/Liver.png', 'Liver Packages'),
-                _testCard('assets/images/Doctor.png', 'Men  Wellness'),
+                _testCard('assets/icons/LabTest/Junkfood.png', 'Junk Food'),
+                _testCard('assets/icons/LabTest/Badsleep.png', 'Less Sleep'),
+                _testCard('assets/icons/LabTest/Heartburn.png', 'Heartburn'),
               ],
             ),
           ),

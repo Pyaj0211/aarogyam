@@ -1,3 +1,4 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
@@ -157,9 +158,9 @@ Widget _BlogArticle(String imagepath, String category, String title,
     child: Container(
       width: double.infinity,
       height: 400,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
-        borderRadius: const BorderRadius.only(
+        borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15)),
 
       ),
