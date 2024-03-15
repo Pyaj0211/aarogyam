@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:aarogyam/doctor/logic/bloc/signup_bloc.dart';
-import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -527,7 +526,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           listener: (context, state) {
                             if(state is SignUpSubmitState){
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Ragistration Successfully...!")));
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
+                             Navigator.pop(context);
                             }else if (state is ErrorState) {
                               showDialog(
                                   context: context,
@@ -601,10 +600,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           const SizedBox(width: 5,),
                           GestureDetector(
                               onTap: (){
-                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-                                  return const LoginScreen();
-                                },));
-
+                                Navigator.pop(context);
                               },
                               child: const Text('Log in',style: TextStyle(color: Color(0xfff89520),fontWeight: FontWeight.bold,fontSize: 17),)
                           )

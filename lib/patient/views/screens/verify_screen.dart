@@ -1,5 +1,5 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
-import 'package:aarogyam/patient/views/screens/BottomNavigationBar.dart';
+import 'package:aarogyam/patient/views/screens/bottomnavigationbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

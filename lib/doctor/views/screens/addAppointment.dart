@@ -1,7 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AddAppointmentSlots extends StatefulWidget {
@@ -63,16 +64,16 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                     //   ),
                     // ],
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const Text('Select Date:',
+                      Text('Select Date:',
                           style: TextStyle(
                               color: Colors.teal,
                               fontSize: 17,
                               fontWeight: FontWeight.w500)),
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
                       DatePicker(),
                     ],
                   ),
@@ -331,7 +332,9 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                             'timestamp': DateTime.now(),
                           }).then((value) {
                             // Data added successfully
-                            print('Appointment added to Firestore');
+                            if (kDebugMode) {
+                              print('Appointment added to Firestore');
+                            }
                             // Clear all fields
                             setState(() {
                               _selectedOption = null;
@@ -348,7 +351,9 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
                             );
                           }).catchError((error) {
                             // Error adding data
-                            print('Error adding appointment: $error');
+                            if (kDebugMode) {
+                              print('Error adding appointment: $error');
+                            }
                           });
                         }
                       });
@@ -389,6 +394,8 @@ class _AddAppointmentSlotsState extends State<AddAppointmentSlots> {
 
 class DatePicker extends StatefulWidget {
   static DateTime selectedDate = DateTime.now();
+
+  const DatePicker({super.key});
 
   @override
   _DatePickerState createState() => _DatePickerState();
@@ -432,7 +439,7 @@ class TimePicker extends StatefulWidget {
   final int index;
   final ValueChanged<TimeOfDay> onChanged;
 
-  const TimePicker({required this.index, required this.onChanged});
+  const TimePicker({super.key, required this.index, required this.onChanged});
 
   @override
   _TimePickerState createState() => _TimePickerState();

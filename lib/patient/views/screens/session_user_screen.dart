@@ -3,7 +3,6 @@ import 'dart:developer';
 
 import 'package:aarogyam/doctor/data/models/doctor_model.dart';
 import 'package:aarogyam/doctor/data/models/session_model.dart';
-import 'package:aarogyam/doctor/data/services/doctor_database_services.dart';
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
 import 'package:aarogyam/patient/views/screens/video_call_screen.dart';
