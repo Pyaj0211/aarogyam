@@ -3,17 +3,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class PurchaseDetailsScreen extends StatelessWidget {
+  const PurchaseDetailsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, userSnapshot) {
         if (userSnapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         }
 
         if (!userSnapshot.hasData || userSnapshot.data == null) {
-          return Center(child: Text('No user logged in.'));
+          return const Center(child: Text('No user logged in.'));
         }
 
         String userId = userSnapshot.data!.uid;
@@ -41,11 +43,11 @@ class PurchaseDetailsScreen extends StatelessWidget {
               }
 
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               }
 
               if (snapshot.data!.docs.isEmpty) {
-                return Center(child: Text('No purchase history.'));
+                return const Center(child: Text('No purchase history.'));
               }
 
               return ListView.builder(
@@ -60,7 +62,7 @@ class PurchaseDetailsScreen extends StatelessWidget {
                       .inHours;
 
                   return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 12),
+                    padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 12),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -118,14 +120,14 @@ class PurchaseDetailsScreen extends StatelessWidget {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return AlertDialog(
-                                          title: Text("Cancel Order"),
-                                          content: Text("Are you sure you want to cancel this order?"),
+                                          title: const Text("Cancel Order"),
+                                          content: const Text("Are you sure you want to cancel this order?"),
                                           actions: [
                                             TextButton(
                                               onPressed: () {
                                                 Navigator.of(context).pop();
                                               },
-                                              child: Text("No"),
+                                              child: const Text("No"),
                                             ),
                                             TextButton(
                                               onPressed: () {
@@ -139,7 +141,7 @@ class PurchaseDetailsScreen extends StatelessWidget {
                                                     .then((value) {
                                                   Navigator.of(context).pop();
                                                   ScaffoldMessenger.of(context).showSnackBar(
-                                                    SnackBar(content: Text('Order canceled successfully')),
+                                                    const SnackBar(content: Text('Order canceled successfully')),
                                                   );
                                                 }).catchError((error) {
                                                   Navigator.of(context).pop();
@@ -155,15 +157,15 @@ class PurchaseDetailsScreen extends StatelessWidget {
                                       },
                                     );
                                   },
-                                  child: Text(
-                                    'Cancel Order',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
                                   style: ButtonStyle(
                                     backgroundColor: MaterialStateProperty.all(Colors.red),
                                     padding: MaterialStateProperty.all(
-                                      EdgeInsets.symmetric(horizontal: 12),
+                                      const EdgeInsets.symmetric(horizontal: 12),
                                     ),
+                                  ),
+                                  child: const Text(
+                                    'Cancel Order',
+                                    style: TextStyle(color: Colors.white),
                                   ),
                                 ),
                             ],

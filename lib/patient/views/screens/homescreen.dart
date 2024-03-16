@@ -1,7 +1,8 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
+import 'package:aarogyam/patient/views/screens/chatbot.dart';
 import 'package:aarogyam/patient/views/screens/healthblog.dart';
-import 'package:aarogyam/patient/views/screens/labtest.dart';
+import 'package:aarogyam/patient/views/screens/purchasemedicine.dart';
 import 'package:aarogyam/patient/views/screens/orderbyprescription.dart';
 import 'package:aarogyam/patient/views/screens/profilescreen.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
@@ -651,22 +652,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 15,vertical: 7),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.teal,
-                                borderRadius: BorderRadius.circular(12)),
-                            padding: const EdgeInsets.all(15),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'NEXT',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatBot(),));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius: BorderRadius.circular(12)),
+                              padding: const EdgeInsets.all(15),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'NEXT',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

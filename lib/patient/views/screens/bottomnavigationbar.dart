@@ -1,5 +1,5 @@
 import 'package:aarogyam/patient/views/screens/healthblog.dart';
-import 'package:aarogyam/patient/views/screens/labtest.dart';
+import 'package:aarogyam/patient/views/screens/purchasemedicine.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
 import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
 import 'package:aarogyam/patient/views/screens/homescreen.dart';
@@ -20,7 +20,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     const HomeScreen(),
     const DigitalConsult(),
     const EcomMedicine(),
-    PurchaseDetailsScreen(),
+    const PurchaseDetailsScreen(),
     const HealthBlog(),
   ];
 
@@ -60,7 +60,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
               ),
               GButton(
                 icon: Icons.shopping_cart,
-                text: 'Buy medicine',
+                text: 'Your Orders',
               ),
               GButton(
                 icon: Icons.notes,
