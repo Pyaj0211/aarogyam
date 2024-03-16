@@ -1,7 +1,8 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
+import 'package:aarogyam/patient/views/screens/chatbot.dart';
 import 'package:aarogyam/patient/views/screens/healthblog.dart';
-import 'package:aarogyam/patient/views/screens/labtest.dart';
+import 'package:aarogyam/patient/views/screens/purchasemedicine.dart';
 import 'package:aarogyam/patient/views/screens/orderbyprescription.dart';
 import 'package:aarogyam/patient/views/screens/profilescreen.dart';
 import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
@@ -56,7 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
             .collection('Profile')
             .doc('profileData')
             .get();
-
         if (snapshot.exists) {
           Map<String, dynamic> data =
           snapshot.data() as Map<String, dynamic>;
@@ -104,10 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                            onTap: () {
                              if(scaffoldKey.currentState!.isDrawerOpen){
                                scaffoldKey.currentState!.closeDrawer();
-                               //close drawer, if drawer is open
                              }else{
                                scaffoldKey.currentState!.openDrawer();
-                               //open drawer, if drawer is closed
                              }
                            },
                            child: Padding(
@@ -133,7 +131,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                ),
                              ),
                            ),
-
                          ),
                          SizedBox(
                            width: size.width* 0.025,
@@ -182,7 +179,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ],
-
       ),
       key: scaffoldKey,
       backgroundColor: Colors.grey.shade300,
@@ -233,7 +229,6 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.person,color: Colors.teal,),
               title: const Text('My Profile',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
               onTap: () {
-                // Handle profile tap
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
               },
             ),
@@ -241,21 +236,18 @@ class _HomeScreenState extends State<HomeScreen> {
               leading: const Icon(Icons.calendar_today,color: Colors.teal,),
               title: const Text('Appointments',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
               onTap: () {
-                // Handle appointments tap
               },
             ),
             ListTile(
               leading: const Icon(Icons.chat,color: Colors.teal,),
               title: const Text('Chat with Doctor',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
               onTap: () {
-                // Handle chat tap
               },
             ),
             ListTile(
               leading: const Icon(Icons.settings,color: Colors.teal,),
               title: const Text('Settings',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
               onTap: () {
-                // Handle settings tap
               },
             ),
             const SizedBox(height: 10),
@@ -280,16 +272,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 );
               },
             ),
-
             // Add some spacing between Settings and Logout
             const Divider(), // Add a divider above the logout option
             BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if(state is AuthLoggedOutState) {
-                  Navigator.popUntil(context, (route) => route.isFirst);
+
                   Navigator.pushReplacement(context, CupertinoPageRoute(
                       builder: (context) => const PatientLoginScreen()
                   ));
+                  Navigator.popUntil(context, (route) => route.isFirst);
                 }
               },
               builder: (context, state) {
@@ -311,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+                  padding: const EdgeInsets.only(top: 5,left: 9,right: 9),
                   child: Card(
                     shadowColor: Colors.green,
                     elevation: 0,
@@ -341,9 +333,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: size.height * 0.01,
-                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 9),
                   child: Card(
@@ -352,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     child: ListTile(
                       onTap: () {
-                        Get.to(const Labtest());
+                        Get.to( PurchaseDetailsScreen());
                       },
                       title: const Text(
                         'At Home',
@@ -374,9 +363,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -418,7 +404,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             },));
                           },
                           child: Card(
-                            // margin: EdgeInsets.only(right: 200),
                             shadowColor: Colors.green,
                             elevation: 0,
                             color: Colors.white,
@@ -443,7 +428,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.01,
+                  height: size.height * 0.005,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -667,22 +652,27 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 15,vertical: 7),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Colors.teal,
-                                borderRadius: BorderRadius.circular(12)),
-                            padding: const EdgeInsets.all(15),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'NEXT',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
+                          child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ChatBot(),));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius: BorderRadius.circular(12)),
+                              padding: const EdgeInsets.all(15),
+                              child: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'NEXT',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -760,8 +750,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             const Text('Explore healthcare content created everyday by'),
                             const Text('oue experts.')
                           ],
-                          //Maafi talaafi ki kaafi par aayi kaam nay
-                          // jii aap woh leti mera naam nay ,
                         ),
                         SizedBox(
                           height: size.height * 0.01,
@@ -798,10 +786,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: size.height * 0.01,
+                  height: size.height * 0.005,
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                  padding: const EdgeInsets.symmetric( horizontal: 10),
                   child: Card(
                     // margin: EdgeInsets.only(right: 200),
                     shadowColor: Colors.green,
@@ -830,9 +818,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: size.height * 0.01,
                 ),
                 SizedBox(
                   height: size.height * 0.01,
