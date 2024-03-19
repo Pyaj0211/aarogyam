@@ -150,10 +150,6 @@ class _ChatBotState extends State<ChatBot> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 12),
-                          child: Text('Loading'),
-                        ),
                         const SizedBox(
                           width: 5,
                         ),
