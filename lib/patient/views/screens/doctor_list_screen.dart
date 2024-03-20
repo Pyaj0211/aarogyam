@@ -33,12 +33,17 @@ class DoctorListScreen extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => BlocProvider(
-                                create: (context) => DigitalBloc()..add(GetSlot(uid: data.uid!)),
-                                child: SlotScreen(doctorModel: data,),
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => BlocProvider(
+                        create: (context) =>
+                            DigitalBloc()..add(GetSlot(uid: data.uid!)),
+                        child: SlotScreen(
+                          doctorModel: data,
+                        ),
+                      ),
+                    ),
+                  );
                 },
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(data.image!),

@@ -268,7 +268,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   Row(
                     children: [
                       _ConsultTile(
-                          'assets/images/Physiotherapy.jpg', 'Physiotherapy'),
+                          'assets/images/Physiotherapy.jpg', 'Physiotherpy'),
                       const SizedBox(width: 10),
                       _ConsultTile(
                           'assets/images/Diabetology.jpg', 'Diabetology'),

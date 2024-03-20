@@ -23,6 +23,14 @@ class GetSlot extends DigitalEvent{
   List<Object> get props => [uid];
 }
 
+class GetWithoutLoadingSlot extends DigitalEvent{
+  final String uid;
+
+  const GetWithoutLoadingSlot({required this.uid});
+  @override
+  List<Object> get props => [uid];
+}
+
 class BookSlot extends DigitalEvent{
   final List<dynamic> list;
   final String docId;

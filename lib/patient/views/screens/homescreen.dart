@@ -341,7 +341,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     child: ListTile(
                       onTap: () {
-                        Get.to( PurchaseDetailsScreen());
+                        Get.to( const PurchaseDetailsScreen());
                       },
                       title: const Text(
                         'At Home',
@@ -475,11 +475,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                     Text(
                                       'Take an assessment in less than 3 min',
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(fontSize: 9),
                                     ),
                                     Text(
                                       'and get suggestion on what to do next',
-                                      style: TextStyle(fontSize: 12),
+                                      style: TextStyle(fontSize: 9),
                                     ),
                                   ],
                                 ),

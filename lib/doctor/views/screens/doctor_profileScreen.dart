@@ -6,21 +6,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
 
-class Doctor_Profile extends StatefulWidget {
-  const Doctor_Profile({super.key});
+class DoctorProfile extends StatefulWidget {
+  const DoctorProfile({super.key});
 
   @override
-  State<Doctor_Profile> createState() => _Doctor_ProfileState();
+  State<DoctorProfile> createState() => _DoctorProfileState();
 }
 
-class _Doctor_ProfileState extends State<Doctor_Profile> {
+class _DoctorProfileState extends State<DoctorProfile> {
+
   String name = '';
   String email = '';
   String generalfee = '';
   String dob = '';
   String address = '';
   String specialist = '';
-  String? imageUrl; // Store user's profile image URL
+  String? imageUrl; 
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -69,102 +70,76 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.symmetric(horizontal: 5),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                //  border: Border.all(width: 2, color: Colors.blue),
-                borderRadius: BorderRadius.circular(12),
-                boxShadow:[
-                  const BoxShadow(
-                    color: Colors.white,
-                    offset: Offset(4, 4),
-                    blurRadius: 15,
-                    spreadRadius: 1,
-                  ),
-                  BoxShadow(
-                    color: Colors.grey.shade400,
-                    offset: const Offset(1,1),
-                    blurRadius: 5,
-                    spreadRadius: 1,
-                  ),
-                ],
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: imageUrl != null
-                        ? NetworkImage(imageUrl!)
-                        : const AssetImage('assets/img/vector/ic_launcher.jpg')
-                    as ImageProvider,
-                  ),
-                   SizedBox(width: size.width * 0.04),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Dr. $name',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 22),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            specialist,
-                            style:
-                            const TextStyle(fontSize: 16, color: Colors.grey),
-                          ),
-                        ],
-                      ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 45,
+                  backgroundImage: imageUrl != null ? NetworkImage(imageUrl!) : const AssetImage('assets/img/vector/ic_launcher.jpg') as ImageProvider,
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Dr. $name',
+                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          specialist,
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-             SizedBox(height: size.height * 0.02),
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: size.width * 0.03),
-              child: const Text(
-                'Personal Information',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: const Divider(),
-            ),
-            SizedBox(height: size.height * 0.01),
-            _DecoratedCard("Date of birth", dob),
-            SizedBox(height: size.height * 0.01),
-            _DecoratedCard("Email", email),
-            SizedBox(height: size.height * 0.01),
-            _DecoratedCard("Address", address),
             const SizedBox(height: 20),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
-              child: const Text(
-                'Professional Information',
-                style:
-                TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            Card(
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Personal Information',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    const SizedBox(height: 10),
+                    Text('Date of Birth: $dob'),
+                    Text('Email: $email'),
+                    Text('Address: $address'),
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-              child: const Divider(),
+            const SizedBox(height: 20),
+            Card(
+              elevation: 3,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Professional Information',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    const SizedBox(height: 10),
+                    Text('Specialist: $specialist'),
+                    Text('General Fee: $generalfee'),
+                  ],
+                ),
+              ),
             ),
-            SizedBox(height: size.height * 0.01),
-            _DecoratedCard('Specialist', specialist),
-            SizedBox(height: size.height * 0.01),
-            _DecoratedCard('General Fee', ' ₹$generalfee'),
-            SizedBox(height: size.height * 0.02),
-
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -181,7 +156,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                   icon: const Icon(Icons.logout),
                   label: const Text('Log Out'),
                 ),
-                SizedBox(height: size.height * 0.02),
+                const SizedBox(width: 20),
                 ElevatedButton.icon(
                   onPressed: () {
                     // Navigate to edit profile screen

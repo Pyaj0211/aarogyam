@@ -7,7 +7,7 @@ class ViewAppointmentScreen extends StatelessWidget {
   final int selectedNumber;
   final List<TimeOfDay> selectedTimes;
 
-  const ViewAppointmentScreen({super.key,
+  const ViewAppointmentScreen({super.key, 
     required this.selectedOption,
     required this.selectedPrice,
     required this.selectedNumber,
