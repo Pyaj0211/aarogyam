@@ -1161,7 +1161,7 @@
     },
     {
       "name": "zego_uikit",
-      "rootUri": "file:///C:/Users/3563tu/AppData/Local/Pub/Cache/hosted/pub.dev/zego_uikit-2.18.9",
+      "rootUri": "file:///C:/Users/3563tu/AppData/Local/Pub/Cache/hosted/pub.dev/zego_uikit-2.19.0",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -1196,7 +1196,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-15T19:43:01.745100Z",
+  "generated": "2024-03-20T10:00:13.173488Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }

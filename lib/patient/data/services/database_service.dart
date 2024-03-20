@@ -1,4 +1,5 @@
 import 'package:aarogyam/doctor/data/models/doctor_model.dart';
+import 'package:aarogyam/patient/data/models/blog_model.dart';
 import 'package:aarogyam/patient/data/models/videocalling_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,4 +56,12 @@ class DatabaseService {
     final snapshot = await _db.collection("Tokens").doc(doctorModel.uid).get();
     return DoctorModel.fromDocumentSnashot(snapshot);
   }
+  Stream<List<BlogModel>> getBlogsStream() {
+    return _db.collection("Blogs").snapshots().map(
+          (snapshot) => snapshot.docs.map(
+            (doc) => BlogModel.fromDocumentSnapshot(doc),
+      ).toList(),
+    );
+  }
 }
+

@@ -29,3 +29,7 @@ class ErrorState extends LoginState{
   ErrorState({required this.error});
   String error;
 }
+
+class LoginPendingState extends LoginState{}
+class LoginAcceptState extends LoginState{}
+class LoginRejectState extends LoginState{}

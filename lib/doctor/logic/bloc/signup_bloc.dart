@@ -94,7 +94,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         });
         final databaseService = DatabaseService();
         databaseService.addToken();
-        // Get the user ID (UID) from the userCredential
         String userId = userCredentials.user!.uid;
         FirebaseFirestore.instance
             .collection('userRole')

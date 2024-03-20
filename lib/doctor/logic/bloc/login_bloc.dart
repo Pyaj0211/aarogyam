@@ -1,12 +1,15 @@
 import 'package:bloc/bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 part 'login_event.dart';
+
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginFieldChangedEvent>((event, emit) {
+      print('this is login feild changes event');
       if (event.email!.isEmpty ||
           event.email?.trim() == null ||
           !event.email!.contains('@')) {
@@ -16,6 +19,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             error: 'Password must be 8 character long'));
       } else {
         emit(LoginValidState());
+        print('login is valid nice');
       }
     });
 
@@ -31,13 +35,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       },
     );
 
-
     on<LoginSubmitEvent>((event, emit) async {
       try {
         emit(LoginLoadingState());
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        print('login loading state');
+        final userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
             email: event.email!, password: event.password!);
-        emit(LoginSubmitState());
+        final uid = userCredential.user!.uid;
+        DocumentSnapshot userData = await FirebaseFirestore.instance
+            .collection('request')
+            .doc(uid)
+            .get();
+        Map<String, dynamic> data = userData.data() as Map<String, dynamic>;
+        final status = data['status'];
+        if (status == 'pending') {
+          emit(LoginPendingState());
+          FirebaseAuth.instance.signOut();
+        } else if (status == 'rejected') {
+          emit(LoginRejectState());
+          FirebaseAuth.instance.signOut();
+        } else if(status == 'accepted'){
+          emit(LoginAcceptState());
+        }
       } on FirebaseAuthException catch (error) {
         emit(ErrorState(error: error.message!));
       }

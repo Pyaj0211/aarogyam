@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DocterLoginScreen extends StatefulWidget {
-  const  DocterLoginScreen({super.key});
+  const DocterLoginScreen({super.key});
 
   @override
   State<DocterLoginScreen> createState() => _DocterLoginScreenState();
@@ -16,7 +16,6 @@ class DocterLoginScreen extends StatefulWidget {
 class _DocterLoginScreenState extends State<DocterLoginScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: MultiBlocProvider(
         providers: [
@@ -49,8 +48,12 @@ class _LoginScreenState extends State<LoginScreen> {
         surfaceTintColor: const Color(0xfffdfefd),
         toolbarHeight: 40,
         leading: IconButton(
-          onPressed: (){
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const PatientLoginScreen(),));
+          onPressed: () {
+            Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const PatientLoginScreen(),
+                ));
           },
           icon: const Icon(Icons.arrow_back),
         ),
@@ -69,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const Text(
                   "Your expertise matter on our digital  \n   "
-                  "                    platform...",
+                      "                    platform...",
                   style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
@@ -120,7 +123,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             );
                           },
                         ),
-                        SizedBox(height: size.height*0.01,),
+                        SizedBox(
+                          height: size.height * 0.01,
+                        ),
                         BlocBuilder<LoginBloc, LoginState>(
                           builder: (context, state) {
                             String? error;
@@ -151,9 +156,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   onPressed: () {
                                     visibility
                                         ? BlocProvider.of<LoginBloc>(context)
-                                            .add(PassVisibilityFalseEvent())
+                                        .add(PassVisibilityFalseEvent())
                                         : BlocProvider.of<LoginBloc>(context)
-                                            .add(PassVisibilityTrueEvent());
+                                        .add(PassVisibilityTrueEvent());
                                   },
                                 ),
                                 labelStyle: const TextStyle(
@@ -176,16 +181,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           child: BlocConsumer<LoginBloc, LoginState>(
                             listener: (context, state) {
-                              if (state is LoginSubmitState) {
+                              if (state is LoginAcceptState) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(
                                         content:
-                                            Text("Login Successfully...!")));
+                                        Text("Login Successfully...!")));
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const Doctor_HomePage(),
+                                      const Doctor_HomePage(),
                                     ));
                               } else if (state is ErrorState) {
                                 showDialog(
@@ -203,6 +208,61 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ],
                                     );
                                   },
+                                );
+                              } else if (state is LoginPendingState) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text('Pending Request',style: TextStyle(color: Colors.white),),
+                                    content: const Text(
+                                        'Thank you for signing up! Your request is currently being processed. Please remain patient while we review and approve your request. We will notify you as soon as your account is ready for login. Thank you for your understanding.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                MaterialStateColor
+                                                    .resolveWith((states) =>
+                                                Colors.teal))),
+                                        child: const Text(
+                                          'OK',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              } else if (state is LoginRejectState) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: const Text(
+                                      'Request Rejected',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                    content: const Text(
+                                      'We regret to inform you that your request has been rejected due to some reasons. For further details or if you have any questions, please feel free to reach out to us at pyajfoundation0211@gmail.com. Thank you for your understanding and cooperation.',
+                                    ),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        style: ButtonStyle(
+                                            backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                MaterialStateColor
+                                                    .resolveWith((states) =>
+                                                Colors.teal))),
+                                        child: const Text(
+                                          'OK',style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               }
                             },
@@ -272,7 +332,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ));
                               },
                               child: const Text(
-                                'Sign in',
+                                'Sign Up',
                                 style: TextStyle(
                                     color: Color(0xfff89520),
                                     fontWeight: FontWeight.bold,

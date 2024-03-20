@@ -289,7 +289,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   leading: const Icon(Icons.logout,color: Colors.teal,),
                   title: const Text('Logout',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
                   onTap: () {
-                    // Handle settings tap
+                    print('log out not worked');
+                    BlocProvider.of<AuthCubit>(context).logOut();
                   },
                 );
               },
