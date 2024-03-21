@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:aarogyam/doctor/data/models/doctor_model.dart';
+import 'package:aarogyam/doctor/views/screens/pending_screen.dart';
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/data/services/notification_servies.dart';
 import 'package:aarogyam/splashscreen.dart';
@@ -157,11 +159,20 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
 
     if (userRoleSnapshot.exists) {
       var userRole = userRoleSnapshot.data()?['role'];
-
+      final dbService = DatabaseService();
+      final doctorModel = DoctorModel();
+      final doctor =
+          await dbService.getDoctorByUid(doctorModel.copyWith(uid: user!.uid));
       if (userRole == 'patient') {
         return const BottomNavigationScreen();
       } else if (userRole == 'doctor') {
-        return const Doctor_HomePage();
+        if (doctor.status == "pending") {
+          return const PendingScreen(title: "Your request is pending. Please try after some times.",);
+        } else if(doctor.status == "rejected"){
+          return const PendingScreen(title: "Your request is rejected by admin.",);
+        }else {
+          return const DoctorHomePage();
+        }
       }
     } else {
       //please return that user not found

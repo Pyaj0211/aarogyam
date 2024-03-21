@@ -30,8 +30,6 @@ class _SplashScreenState extends State<SplashScreen> {
         _preloadDataAndNavigate();
       }
     });
-
-
   }
 
   void _preloadDataAndNavigate() async {

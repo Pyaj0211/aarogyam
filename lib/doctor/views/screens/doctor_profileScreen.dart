@@ -1,3 +1,4 @@
+
 // ignore_for_file: camel_case_types, use_build_context_synchronously, non_constant_identifier_names
 
 import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
@@ -102,7 +103,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                         : const AssetImage('assets/img/vector/ic_launcher.jpg')
                     as ImageProvider,
                   ),
-                   SizedBox(width: size.width * 0.04),
+                  SizedBox(width: size.width * 0.04),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -128,7 +129,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 ],
               ),
             ),
-             SizedBox(height: size.height * 0.02),
+            SizedBox(height: size.height * 0.02),
             Padding(
               padding:  EdgeInsets.symmetric(horizontal: size.width * 0.03),
               child: const Text(

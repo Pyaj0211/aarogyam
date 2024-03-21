@@ -185,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          const Doctor_HomePage(),
+                                          const DoctorHomePage(),
                                     ));
                               } else if (state is ErrorState) {
                                 showDialog(

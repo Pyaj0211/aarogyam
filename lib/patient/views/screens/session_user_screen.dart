@@ -73,8 +73,12 @@ class SessionUserDetailScreen extends StatelessWidget {
                     return ElevatedButton(
                       onPressed: () {
                         if (DateTime.now().isAfter(data.times![index]
-                                ["slot${index + 1}"][0]
-                            .toDate())) {
+                                    ["slot${index + 1}"][0]
+                                .toDate()) &&
+                            DateTime.now().isBefore(data.times![index]
+                                    ["slot${index + 1}"][0]
+                                .toDate()
+                                .add(const Duration(minutes: 30)))) {
                           _setupPushNotifications(
                               "Your meeting is start.",
                               "Dr.${doctorModel.name} your patient is waiting.",
@@ -85,7 +89,7 @@ class SessionUserDetailScreen extends StatelessWidget {
                               builder: (_) => VideoCallScreen(
                                 uid: data.uid!,
                                 userId: uid!,
-                                userName: "Jaydeep",
+                                userName: "Patient",
                               ),
                             ),
                           );

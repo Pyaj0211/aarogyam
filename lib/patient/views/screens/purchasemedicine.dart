@@ -56,6 +56,12 @@ class PurchaseDetailsScreen extends StatelessWidget {
                   DocumentSnapshot document = snapshot.data!.docs[index];
                   Map<String, dynamic> data = document.data() as Map<String, dynamic>;
 
+                  Timestamp? timestamp = data['timestamp'] as Timestamp?;
+                  if (timestamp == null) {
+                    // Handle the case where timestamp is null
+                    return Container();
+                  }
+
                   // Calculate the difference in hours between now and the purchase timestamp
                   int differenceInHours = DateTime.now()
                       .difference((data['timestamp'] as Timestamp).toDate())

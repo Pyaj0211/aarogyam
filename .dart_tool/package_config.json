@@ -231,7 +231,7 @@
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-6.2.0",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-6.2.1",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -507,7 +507,7 @@
     },
     {
       "name": "geolocator_android",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.5.3+1",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/geolocator_android-4.5.4",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -1149,13 +1149,13 @@
     },
     {
       "name": "zego_express_engine",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_express_engine-3.12.5",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_express_engine-3.13.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
     {
       "name": "zego_plugin_adapter",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_plugin_adapter-2.11.4",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_plugin_adapter-2.11.5",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -1167,7 +1167,7 @@
     },
     {
       "name": "zego_uikit_prebuilt_call",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_uikit_prebuilt_call-4.5.0",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_uikit_prebuilt_call-4.5.1",
       "packageUri": "lib/",
       "languageVersion": "2.16"
     },
@@ -1185,7 +1185,7 @@
     },
     {
       "name": "zego_zpns",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_zpns-2.6.0+1",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/zego_zpns-2.6.0+2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -1196,7 +1196,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-20T07:28:09.483472Z",
+  "generated": "2024-03-21T08:03:45.964885Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }

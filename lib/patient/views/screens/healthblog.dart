@@ -157,7 +157,7 @@ Widget _BlogArticle(String imagepath, String category, String title,
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     child: Container(
       width: double.infinity,
-      height: 400,
+      height: 450,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

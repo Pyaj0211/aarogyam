@@ -21,6 +21,7 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
     on<GetDoctorData>(_onGetDoctorData);
     on<GetSlot>(_onGetSlot);
     on<BookSlot>(_onBookSlot);
+    on<GetWithoutLoadingSlot>(_onGetWithoutSlot);
   }
   final dbService = DatabaseService();
   final dbDoctorService = DoctorDatabaseService();
@@ -34,7 +35,8 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       for (var doctor in doctorData) {
         log(doctor.spicailist.toString());
         log(event.specialist);
-        if (doctor.spicailist == event.specialist) {
+        if (doctor.spicailist == event.specialist &&
+            doctor.status == "accepted") {
           specificData.add(doctor);
         }
       }
@@ -60,8 +62,18 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
     }
   }
 
+  _onGetWithoutSlot(GetWithoutLoadingSlot event, Emitter<DigitalState> emit) async {
+    try {
+      final doctorModel = DoctorModel();
+      final data = await dbDoctorService
+          .getAllMeetingByDocId(doctorModel.copyWith(uid: event.uid));
+      emit(state.copyWith(sessionData: data));
+    } catch (ex) {
+      emit(state.copyWith(error: ex.toString()));
+    }
+  }
+
   _onBookSlot(BookSlot event, Emitter<DigitalState> emit) async {
-    emit(state.copyWith(isLoading: true));
     try {
       final doctorModel = DoctorModel();
       final sessionModel = SessionModel();
@@ -71,11 +83,9 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
             uid: event.docId,
           ),
           sessionModel.copyWith(uid: event.uid, times: event.list));
-      add(GetSlot(uid: event.uid));
+      add(GetWithoutLoadingSlot(uid: event.docId));
     } catch (ex) {
       emit(state.copyWith(error: ex.toString()));
-    } finally {
-      emit(state.copyWith(isLoading: false));
-    }
+    } 
   }
 }

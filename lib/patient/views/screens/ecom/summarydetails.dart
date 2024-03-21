@@ -502,3 +502,4 @@ Widget _summarycard(String type, String data) {
     ),
   );
 }
+//AIzaSyCN7n62KYaihhc4adMLyaFd2WgrfBr4hUo
