@@ -41,7 +41,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
   final _ddob = TextEditingController();
   final _daddress = TextEditingController();
   final _dSpecialist = TextEditingController();
-  final _dgernalfeeamount = TextEditingController();
+  final _dgeneralfeeamount = TextEditingController();
   final _demail = TextEditingController();
   final _dpassword = TextEditingController();
   File? _person;
@@ -67,7 +67,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     _ddob.dispose();
     _daddress.dispose();
     _dSpecialist.dispose();
-    _dgernalfeeamount.dispose();
+    _dgeneralfeeamount.dispose();
     _demail.dispose();
     _dpassword.dispose();
     super.dispose();
@@ -115,7 +115,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -182,7 +182,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -218,7 +218,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -257,7 +257,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -294,7 +294,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -323,7 +323,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                           }
                           return  TextFormField(
                             keyboardType: TextInputType.number,
-                            controller: _dgernalfeeamount,
+                            controller: _dgeneralfeeamount,
                             onChanged: (value){
                               BlocProvider.of<SignUpBloc>(context).add(
                                   SignUpFieldChangeEvent(
@@ -331,7 +331,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -368,7 +368,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -408,7 +408,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                       dob: _ddob.text,
                                       address: _daddress.text,
                                       spicalist: _dSpecialist.text,
-                                      generalfee: _dgernalfeeamount.text,
+                                      generalfee: _dgeneralfeeamount.text,
                                       email: _demail.text,
                                       password: _dpassword.text,
                                       person: _person,
@@ -463,7 +463,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         dob: _ddob.text,
                                         address: _daddress.text,
                                         spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        generalfee: _dgeneralfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -554,7 +554,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         dob: _ddob.text,
                                         address: _daddress.text,
                                         spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        generalfee: _dgeneralfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -568,7 +568,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         dob: _ddob.text,
                                           spicalist: _dSpecialist.text,
                                         address: _daddress.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        generalfee: _dgeneralfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,

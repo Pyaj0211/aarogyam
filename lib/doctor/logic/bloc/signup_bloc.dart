@@ -85,7 +85,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           'dob': event.dob,
           'address': event.address,
           'spicailist': event.spicalist,
-          'genralFee': event.generalfee,
+          'generalfee': event.generalfee,
           'email': event.email,
           'password': event.password,
           'image': personUrl,
