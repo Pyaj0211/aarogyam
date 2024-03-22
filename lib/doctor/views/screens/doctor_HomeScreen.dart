@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 
 import 'addAppointment.dart';
 
-class Doctor_HomePage extends StatefulWidget {
-  const Doctor_HomePage({super.key});
+class DoctorHomePage extends StatefulWidget {
+  const DoctorHomePage({super.key});
 
   @override
-  State<Doctor_HomePage> createState() => _Doctor_HomePageState();
+  State<DoctorHomePage> createState() => _DoctorHomePageState();
 }
 
-class _Doctor_HomePageState extends State<Doctor_HomePage> {
+class _DoctorHomePageState extends State<DoctorHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,8 +22,8 @@ class _Doctor_HomePageState extends State<Doctor_HomePage> {
           backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
             toolbarHeight: 15,
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.grey.shade100,
-          //  title: const Text('Doctor Panel'),
             bottom: const TabBar(
               //isScrollable: true,
                 labelColor: Colors.teal,

@@ -1,3 +1,4 @@
+
 import 'dart:developer';
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/data/services/notification_servies.dart';
@@ -50,7 +51,7 @@ Future<void> backGrounHandler(RemoteMessage message) async {
 
 void isTokenRefresh() {
   FirebaseMessaging.instance.onTokenRefresh.listen(
-    (event) async {
+        (event) async {
       DatabaseService databaseService = DatabaseService();
       databaseService.addToken();
     },
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FirebaseMessaging.instance.getInitialMessage().then(
-      (message) {
+          (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.instance.getInitialMessage");
         }
@@ -82,7 +83,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     FirebaseMessaging.onMessage.listen(
-      (message) {
+          (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.onMessage.listen");
         }
@@ -105,7 +106,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     FirebaseMessaging.onMessageOpenedApp.listen(
-      (message) {
+          (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.onMessageOpenedApp.listen");
         }
@@ -157,11 +158,10 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
 
     if (userRoleSnapshot.exists) {
       var userRole = userRoleSnapshot.data()?['role'];
-
       if (userRole == 'patient') {
         return const BottomNavigationScreen();
       } else if (userRole == 'doctor') {
-        return const Doctor_HomePage();
+        return const DoctorHomePage();
       }
     } else {
       //please return that user not found

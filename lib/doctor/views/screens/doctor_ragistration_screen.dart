@@ -1,3 +1,4 @@
+
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:aarogyam/doctor/logic/bloc/signup_bloc.dart';
@@ -40,7 +41,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
   final _dname = TextEditingController();
   final _ddob = TextEditingController();
   final _daddress = TextEditingController();
-  final _dSpecialist = TextEditingController();
+  final _dspecialist = TextEditingController();
   final _dgernalfeeamount = TextEditingController();
   final _demail = TextEditingController();
   final _dpassword = TextEditingController();
@@ -66,7 +67,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     _dname.dispose();
     _ddob.dispose();
     _daddress.dispose();
-    _dSpecialist.dispose();
+    _dspecialist.dispose();
     _dgernalfeeamount.dispose();
     _demail.dispose();
     _dpassword.dispose();
@@ -114,12 +115,12 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                     )
                                 );
                               },
@@ -181,8 +182,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -217,8 +218,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -256,8 +257,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -276,7 +277,6 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                   errorText: error
                               ),
                             );
-
                           },),
                         SizedBox(height: size.height * 0.01),
                         BlocBuilder<SignUpBloc,SignUpState>(
@@ -286,15 +286,15 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                               error = state.error;
                             }
                             return  TextFormField(
-                              controller: _dSpecialist,
+                              controller: _dspecialist,
                               onChanged: (value){
                                 BlocProvider.of<SignUpBloc>(context).add(
                                     SignUpFieldChangeEvent(
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -330,8 +330,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -367,8 +367,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -407,8 +407,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -462,8 +462,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         name: _dname.text,
                                         dob: _ddob.text,
                                         address: _daddress.text,
-                                        spicalist: _dSpecialist.text,
-                                        generalfee: _dgernalfeeamount.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
@@ -553,8 +553,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                           name: _dname.text,
                                           dob: _ddob.text,
                                           address: _daddress.text,
-                                          spicalist: _dSpecialist.text,
-                                          generalfee: _dgernalfeeamount.text,
+                                          specialist: _dspecialist.text,
+                                          generalFee: _dgernalfeeamount.text,
                                           email: _demail.text,
                                           password: _dpassword.text,
                                           person: _person,
@@ -566,9 +566,9 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         SignUpSubmitEvent(
                                           name: _dname.text,
                                           dob: _ddob.text,
-                                          spicalist: _dSpecialist.text,
+                                          specialist: _dspecialist.text,
+                                          generalFee: _dgernalfeeamount.text,
                                           address: _daddress.text,
-                                          generalfee: _dgernalfeeamount.text,
                                           email: _demail.text,
                                           password: _dpassword.text,
                                           person: _person,
@@ -639,4 +639,3 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
     );
   }
 }
-

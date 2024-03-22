@@ -7,11 +7,11 @@ class DoctorModel {
   final String? certificate;
   final String? dob;
   final String? email;
-  final String? genralFee;
+  final String? generalFee;
   final String? image;
   final String? name;
   final String? password;
-  final String? spicailist;
+  final String? specialist;
   final String? status;
 
   DoctorModel({
@@ -21,11 +21,11 @@ class DoctorModel {
     this.dob,
     this.email,
     this.token,
-    this.genralFee,
+    this.generalFee,
     this.image,
     this.name,
     this.password,
-    this.spicailist,
+    this.specialist,
     this.status,
   });
 
@@ -36,11 +36,11 @@ class DoctorModel {
         certificate = doc.data()?["certificate"],
         dob = doc.data()?["dob"],
         email = doc.data()?["email"],
-        genralFee = doc.data()?["genralFee"],
+        generalFee = doc.data()?["generalFee"],
         image = doc.data()?["image"],
         name = doc.data()?["name"],
         password = doc.data()?["password"],
-        spicailist = doc.data()?["spicailist"],
+        specialist = doc.data()?["specialist"],
         status = doc.data()?["status"];
 
   DoctorModel copyWith({
@@ -50,11 +50,11 @@ class DoctorModel {
     String? dob,
     String? email,
     String? token,
-    String? genralFee,
+    String? generalFee,
     String? image,
     String? name,
     String? password,
-    String? spicailist,
+    String? specialist,
     String? status,
   }) =>
       DoctorModel(
@@ -63,12 +63,12 @@ class DoctorModel {
         certificate: certificate ?? this.certificate,
         dob: dob ?? this.dob,
         email: email ?? this.email,
-        genralFee: genralFee ?? this.genralFee,
+        generalFee: generalFee ?? this.generalFee,
         image: image ?? this.image,
         name: name ?? this.name,
         token: token ?? this.token,
         password: password ?? this.password,
-        spicailist: spicailist ?? this.spicailist,
+        specialist: specialist ?? this.specialist,
         status: status ?? this.status,
       );
 }

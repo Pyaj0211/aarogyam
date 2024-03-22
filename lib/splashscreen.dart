@@ -1,6 +1,7 @@
 import 'package:aarogyam/main.dart';
 import 'package:aarogyam/patient/views/screens/onbordingscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -30,14 +31,14 @@ class _SplashScreenState extends State<SplashScreen> {
         _preloadDataAndNavigate();
       }
     });
-
-
   }
 
   void _preloadDataAndNavigate() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
-      // Preload necessary data or screens here
+      if (kDebugMode) {
+        print("_preload");
+      }
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MyApp()),

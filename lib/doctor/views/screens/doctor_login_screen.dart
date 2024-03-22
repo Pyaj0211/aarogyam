@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                      const Doctor_HomePage(),
+                                      const DoctorHomePage(),
                                     ));
                               } else if (state is ErrorState) {
                                 showDialog(
@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    title: const Text('Pending Request',style: TextStyle(color: Colors.white),),
+                                    title: const Text('Pending Request',style: TextStyle(color: Colors.black),),
                                     content: const Text(
                                         'Thank you for signing up! Your request is currently being processed. Please remain patient while we review and approve your request. We will notify you as soon as your account is ready for login. Thank you for your understanding.'),
                                     actions: [

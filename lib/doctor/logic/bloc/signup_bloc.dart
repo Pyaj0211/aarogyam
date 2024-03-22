@@ -21,9 +21,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           emit(SignUpDobInvalidState(error: 'Enter your Date of birth'));
         } else if (event.address.isEmpty || event.address.length < 15) {
           emit(SignUpAddreesInvalidState(error: 'Enter your valid address'));
-        } else if (event.spicalist.isEmpty) {
+        } else if (event.specialist.isEmpty) {
           emit(SignUpSpaicalistInvalidState(error: 'Enter you Spacailist'));
-        } else if (event.generalfee.isEmpty) {
+        } else if (event.generalFee.isEmpty) {
           emit(SignUpGeneralfeeInvalidState(
               error: 'Enter your GeneralfeeAmount'));
         } else if (event.email.isEmpty || !event.email.contains('@gmail.com')) {
@@ -84,8 +84,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
           'name': event.name,
           'dob': event.dob,
           'address': event.address,
-          'spicailist': event.spicalist,
-          'genralFee': event.generalfee,
+          'specialist': event.specialist,
+          'generalFee': event.generalFee,
           'email': event.email,
           'password': event.password,
           'image': personUrl,

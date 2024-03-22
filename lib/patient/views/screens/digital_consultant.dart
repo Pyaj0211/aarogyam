@@ -1,4 +1,5 @@
 import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
+import 'package:aarogyam/patient/views/screens/chatbot.dart';
 import 'package:aarogyam/patient/views/screens/doctor_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,96 +16,85 @@ class _DigitalConsultState extends State<DigitalConsult> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Digital Consult'),
+        backgroundColor: Colors.teal,
+        title: const Text('Digital Consult',style: TextStyle(color: Colors.white),),
+        centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10),
+            padding: const EdgeInsets.only(right: 15),
             child: Row(
               children: [
                 IconButton(
                   onPressed: () {},
                   icon: const Icon(
                     Icons.location_on,
-                    color: Colors.green,
+                    color: Colors.white,
                   ),
                 ),
-                const Text('Surat'),
+                const Text('Surat',style: TextStyle(color: Colors.white),),
               ],
             ),
           ),
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: 10, left: 10, top: 10),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.teal),
-                  color: Colors.white,
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: TextField(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: Colors.teal),
+                  ),
+                  child: const TextField(
                     decoration: InputDecoration(
+                      border: InputBorder.none,
                       prefixIcon: Icon(
                         Icons.search,
-                        size: 30,
                         color: Colors.teal,
                       ),
-                      // border: OutlineInputBorder(),
                       hintText: 'Search Doctors, Specialities & Symptoms',
                       hintStyle: TextStyle(color: Colors.teal),
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Card(
-                shadowColor: Colors.green,
-                color: Colors.white,
-                elevation: 2,
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                            height: 15,
-                          ),
-                          Expanded(
-                            child: Text(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Card(
+                  shadowColor: Colors.green,
+                  color: Colors.white,
+                  elevation: 2,
+                  child: Column(
+                    children: [
+                       const Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
                               'Browse by symptoms',
                               style:
                                   TextStyle(color: Colors.black, fontSize: 18),
                             ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 15,
-                            color: Colors.orange,
-                            textDirection: TextDirection.ltr,
-                          ),
-                        ],
+                            Icon(
+                              Icons.arrow_forward_ios,
+                              size: 15,
+                              color: Colors.orange,
+                              textDirection: TextDirection.ltr,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border:
@@ -125,10 +115,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border:
@@ -147,10 +134,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border:
@@ -169,10 +153,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Container(
+                            Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 border:
@@ -191,120 +172,119 @@ class _DigitalConsultState extends State<DigitalConsult> {
                                 ],
                               ),
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                        ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Specialties for Digital Consult',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.orange,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Specialties for Digital Consult',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.orange,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => BlocProvider(
+                                            create: (context) => DigitalBloc()
+                                              ..add(const GetDoctorData(
+                                                  specialist: "neurology")),
+                                            child: const DoctorListScreen(),
+                                          )));
+                            },
+                            child: _ConsultTile(
+                                'assets/images/Neurology.jpg', 'Neurology')),
+                        const SizedBox(width: 8),
+                        _ConsultTile(
+                            'assets/images/Bariatrics.jpg', 'Bariatrics'),
+                        const SizedBox(width: 8),
+                        _ConsultTile(
+                            'assets/images/Cardiology.jpg', 'Cardiology'),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (_) => BlocProvider(
-                                          create: (context) => DigitalBloc()
-                                            ..add(const GetDoctorData(
-                                                specialist: "neurology")),
-                                          child: const DoctorListScreen(),
-                                        )));
-                          },
-                          child: _ConsultTile(
-                              'assets/images/Neurology.jpg', 'Neurology')),
-                      const SizedBox(width: 10),
-                      _ConsultTile(
-                          'assets/images/Bariatrics.jpg', 'Bariatrics'),
-                      const SizedBox(width: 10),
-                      _ConsultTile(
-                          'assets/images/Cardiology.jpg', 'Cardiology'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      _ConsultTile(
-                          'assets/images/Dermatology.jpg', 'Dermatology'),
-                      const SizedBox(width: 10),
-                      _ConsultTile(
-                          'assets/images/Psychiatry_img.jpg', 'Psychiatry'),
-                      const SizedBox(width: 10),
-                      _ConsultTile(
-                          'assets/images/Paediatrics.jpg', 'Paediatrics'),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      _ConsultTile(
-                          'assets/images/Physiotherapy.jpg', 'Physiotherapy'),
-                      const SizedBox(width: 10),
-                      _ConsultTile(
-                          'assets/images/Diabetology.jpg', 'Diabetology'),
-                      const SizedBox(width: 10),
-                      _ConsultTile('assets/images/Urology.jpg', 'Urology'),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    'Personal Wellness',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.orange,
+                    const SizedBox(
+                      height: 8,
                     ),
-                  ),
-                ],
+                    Row(
+                      children: [
+                        _ConsultTile(
+                            'assets/images/Dermatology.jpg', 'Dermatology'),
+                        const SizedBox(width: 8),
+                        _ConsultTile(
+                            'assets/images/Psychiatry_img.jpg', 'Psychiatry'),
+                        const SizedBox(width: 8),
+                        _ConsultTile(
+                            'assets/images/Paediatrics.jpg', 'Paediatrics'),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      children: [
+                        _ConsultTile(
+                            'assets/images/Physiotherapy.jpg', 'Physiotherpy'),
+                        const SizedBox(width: 8),
+                        _ConsultTile(
+                            'assets/images/Diabetology.jpg', 'Diabetology'),
+                        const SizedBox(width: 8),
+                        _ConsultTile('assets/images/Urology.jpg', 'Urology'),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Container(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Personal Wellness',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.orange,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height* 0.11,
+                      width: MediaQuery.of(context).size.width* 0.43,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.lightBlueAccent.shade100,
@@ -313,8 +293,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                         children: [
                           Image.asset(
                             'assets/images/Psychiatry.png',
-                            width: 70,
-                            height: 75,
+                            width: 60,
+                            height: 65,
                           ),
                           const Text(
                             'Psychiatry',
@@ -325,10 +305,9 @@ class _DigitalConsultState extends State<DigitalConsult> {
                         ],
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Container(
+                    Container(
+                      height: MediaQuery.of(context).size.height* 0.11,
+                      width: MediaQuery.of(context).size.width* 0.43,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.lightBlueAccent.shade100,
@@ -337,8 +316,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                         children: [
                           Image.asset(
                             'assets/images/SexualHealth.png',
-                            width: 70,
-                            height: 75,
+                            width: 60,
+                            height: 65,
                           ),
                           const Text(
                             'Sexual Health',
@@ -350,220 +329,40 @@ class _DigitalConsultState extends State<DigitalConsult> {
                         ],
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Container(
-                height: 280,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          decoration: const BoxDecoration(
-                              //borderRadius: BorderRadius.circular(40),
-                              //color: Colors.red
-                              ),
-                          height: 60,
-                          width: 72,
-                          child: Image.asset(
-                            'assets/images/chat 1.png',
-                          ),
-                        ),
-                        const Text(
-                          'Ask Us!',
-                          style: TextStyle(
-                              color: Colors.teal,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        const Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Feeling Unwell? ',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              'Take an assessment in less than 3 min',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                            Text(
-                              'and get suggestion on what to do next',
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Expanded(
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.orange.shade100,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                        'assets/images/medical-report.png',
-                                        width: 45),
-                                    Text(
-                                      'Enter',
-                                      style: TextStyle(
-                                          color: Colors.orange.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'Symptoms',
-                                      style: TextStyle(
-                                          color: Colors.orange.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.blue.shade100,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset('assets/images/symptoms.png',
-                                        width: 45),
-                                    Text(
-                                      'Understand',
-                                      style: TextStyle(
-                                          color: Colors.blue.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'causes',
-                                      style: TextStyle(
-                                          color: Colors.blue.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Colors.greenAccent.shade100,
-                                ),
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                        'assets/images/medical-staff.png',
-                                        width: 45),
-                                    //  Image.asset('assets/images/Clinic.png', width: 28),
-                                    Text(
-                                      'Book',
-                                      style: TextStyle(
-                                          color: Colors.green.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'Consultant',
-                                      style: TextStyle(
-                                          color: Colors.green.shade700,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 15, vertical: 10),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.teal,
-                              borderRadius: BorderRadius.circular(12)),
-                          padding: const EdgeInsets.all(15),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Get Started',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
 // ignore: non_constant_identifier_names
 Widget _ConsultTile(String imagepath, String title) {
-  return Expanded(
-    child: Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.teal, width: 2),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            imagepath,
-            width: 115,
-            height: 75,
-            fit: BoxFit.cover,
-          ),
-          Text(
-            title,
-            style: const TextStyle(
-                color: Colors.black, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+  return Container(
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      border: Border.all(color: Colors.teal, width: 2),
+    ),
+    child: Column(
+      children: [
+        Image.asset(
+          imagepath,
+          width: 110,
+          height: 70,
+          fit: BoxFit.cover,
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold),
+        ),
+      ],
     ),
   );
 }

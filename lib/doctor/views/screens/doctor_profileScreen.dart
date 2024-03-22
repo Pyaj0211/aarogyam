@@ -1,10 +1,10 @@
-// ignore_for_file: camel_case_types, use_build_context_synchronously, non_constant_identifier_names
+// ignore_for_file: camel_case_types, use_build_context_synchronously
 
 import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Doctor_Profile extends StatefulWidget {
   const Doctor_Profile({super.key});
@@ -16,11 +16,11 @@ class Doctor_Profile extends StatefulWidget {
 class _Doctor_ProfileState extends State<Doctor_Profile> {
   String name = '';
   String email = '';
-  String generalfee = '';
+  String generalFee = '';
   String dob = '';
   String address = '';
   String specialist = '';
-  String? imageUrl; // Store user's profile image URL
+  String? imageUrl;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -29,21 +29,19 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
     User? user = _auth.currentUser;
     if (user != null) {
       try {
-        DocumentSnapshot snapshot = await _firestore
-            .collection('request')
-            .doc(user.uid) // Fetch document based on user's UID
-            .get();
+        DocumentSnapshot snapshot =
+            await _firestore.collection('request').doc(user.uid).get();
 
         if (snapshot.exists) {
           Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
           setState(() {
             name = data['name'] ?? '';
-            specialist = data['spicailist'] ?? '';
+            specialist = data['specialist'] ?? '';
             email = data['email'] ?? '';
             address = data['address'] ?? '';
             dob = data['dob'] ?? '';
-            generalfee = data['genralFee'] ?? '';
-            imageUrl = data['image']; // Get user's profile image URL
+            generalFee = data['generalFee'] ?? '';
+            imageUrl = data['image'];
           });
         }
       } catch (e) {
@@ -52,6 +50,126 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
         }
       }
     }
+  }
+
+  Future<void> _updateUserProfileData() async {
+    User? user = _auth.currentUser;
+    if (user != null) {
+      try {
+        await _firestore.collection('request').doc(user.uid).update({
+          'name': name,
+          'specialist': specialist,
+          'email': email,
+          'address': address,
+          'dob': dob,
+          'generalFee': generalFee,
+          'image': imageUrl,
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Profile updated successfully'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      } catch (e) {
+        if (kDebugMode) {
+          print('Error updating profile data: $e');
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Failed to update profile'),
+            duration: Duration(seconds: 2),
+          ),
+        );
+      }
+    }
+  }
+
+  Future<void> _showEditDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Center(child: Text('Edit Doctor Profile')),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                CircleAvatar(
+                  radius: 35,
+                  backgroundImage: imageUrl != null
+                      ? NetworkImage(imageUrl!)
+                      : const AssetImage('assets/img/vector/ic_launcher.jpg')
+                          as ImageProvider,
+                ),
+                const SizedBox(height: 20),
+                _buildTextField('Name', name, (value) {
+                  setState(() {
+                    name = value;
+                  });
+                }),
+                _buildTextField('Email', email, (value) {
+                  setState(() {
+                    email = value;
+                  });
+                }),
+                _buildTextField('Specialist', specialist, (value) {
+                  setState(() {
+                    specialist = value;
+                  });
+                }),
+                _buildTextField('Date of Birth', dob, (value) {
+                  setState(() {
+                    dob = value;
+                  });
+                }),
+                _buildTextField('Address', address, (value) {
+                  setState(() {
+                    address = value;
+                  });
+                }),
+                _buildTextField('General Fee', generalFee, (value) {
+                  setState(() {
+                    generalFee = value;
+                  });
+                }),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                _updateUserProfileData();
+                Navigator.of(context).pop();
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+
+  Widget _buildTextField(
+      String labelText, String value, ValueChanged<String> onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: TextField(
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: const OutlineInputBorder(),
+        ),
+        onChanged: onChanged,
+        controller: TextEditingController(text: value),
+      ),
+    );
   }
 
   @override
@@ -75,9 +193,8 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
               margin: const EdgeInsets.symmetric(horizontal: 5),
               decoration: BoxDecoration(
                 color: Colors.white,
-                //  border: Border.all(width: 2, color: Colors.blue),
                 borderRadius: BorderRadius.circular(12),
-                boxShadow:[
+                boxShadow: [
                   const BoxShadow(
                     color: Colors.white,
                     offset: Offset(4, 4),
@@ -86,7 +203,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                   ),
                   BoxShadow(
                     color: Colors.grey.shade400,
-                    offset: const Offset(1,1),
+                    offset: const Offset(1, 1),
                     blurRadius: 5,
                     spreadRadius: 1,
                   ),
@@ -100,9 +217,9 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                     backgroundImage: imageUrl != null
                         ? NetworkImage(imageUrl!)
                         : const AssetImage('assets/img/vector/ic_launcher.jpg')
-                    as ImageProvider,
+                            as ImageProvider,
                   ),
-                   SizedBox(width: size.width * 0.04),
+                  SizedBox(width: size.width * 0.04),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
@@ -118,8 +235,8 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                           const SizedBox(height: 5),
                           Text(
                             specialist,
-                            style:
-                            const TextStyle(fontSize: 16, color: Colors.grey),
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.grey),
                           ),
                         ],
                       ),
@@ -128,9 +245,9 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 ],
               ),
             ),
-             SizedBox(height: size.height * 0.02),
+            SizedBox(height: size.height * 0.02),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: size.width * 0.03),
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
               child: const Text(
                 'Personal Information',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
@@ -151,8 +268,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
               padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
               child: const Text(
                 'Professional Information',
-                style:
-                TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
             Padding(
@@ -162,30 +278,22 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
             SizedBox(height: size.height * 0.01),
             _DecoratedCard('Specialist', specialist),
             SizedBox(height: size.height * 0.01),
-            _DecoratedCard('General Fee', ' ₹$generalfee'),
+            _DecoratedCard('General Fee', ' ₹$generalFee'),
             SizedBox(height: size.height * 0.02),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton.icon(
                   onPressed: () async {
                     await FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const DocterLoginScreen(),
-                      ),
-                    );
+                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
                   },
                   icon: const Icon(Icons.logout),
                   label: const Text('Log Out'),
                 ),
                 SizedBox(height: size.height * 0.02),
                 ElevatedButton.icon(
-                  onPressed: () {
-                    // Navigate to edit profile screen
-                  },
+                  onPressed: _showEditDialog,
                   icon: const Icon(Icons.edit),
                   label: const Text('Edit'),
                 ),
@@ -205,7 +313,6 @@ Widget _DecoratedCard(String type, String data) {
     margin: const EdgeInsets.symmetric(horizontal: 5),
     decoration: BoxDecoration(
       color: Colors.white,
-      //  border: Border.all(width: 2, color: Colors.blue),
       borderRadius: BorderRadius.circular(12),
       boxShadow: [
         const BoxShadow(
@@ -216,7 +323,7 @@ Widget _DecoratedCard(String type, String data) {
         ),
         BoxShadow(
           color: Colors.grey.shade400,
-          offset: const Offset(1,1),
+          offset: const Offset(1, 1),
           blurRadius: 5,
           spreadRadius: 1,
         ),
