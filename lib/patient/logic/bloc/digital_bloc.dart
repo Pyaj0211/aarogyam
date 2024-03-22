@@ -33,9 +33,9 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       List<DoctorModel> specificData = [];
 
       for (var doctor in doctorData) {
-        log(doctor.spicailist.toString());
+        log(doctor.specialist.toString());
         log(event.specialist);
-        if (doctor.spicailist == event.specialist &&
+        if (
             doctor.status == "accepted") {
           specificData.add(doctor);
         }

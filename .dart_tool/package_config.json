@@ -825,7 +825,7 @@
     },
     {
       "name": "permission_handler_apple",
-      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.4.1",
+      "rootUri": "file:///C:/Users/YASHDIP/AppData/Local/Pub/Cache/hosted/pub.dev/permission_handler_apple-9.4.2",
       "packageUri": "lib/",
       "languageVersion": "2.15"
     },
@@ -1196,7 +1196,7 @@
       "languageVersion": "3.2"
     }
   ],
-  "generated": "2024-03-21T08:03:45.964885Z",
+  "generated": "2024-03-22T10:38:37.857407Z",
   "generator": "pub",
   "generatorVersion": "3.3.1"
 }

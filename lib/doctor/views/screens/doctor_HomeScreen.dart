@@ -22,8 +22,8 @@ class _DoctorHomePageState extends State<DoctorHomePage> {
           backgroundColor: Colors.grey.shade100,
           appBar: AppBar(
             toolbarHeight: 15,
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.grey.shade100,
-          //  title: const Text('Doctor Panel'),
             bottom: const TabBar(
               //isScrollable: true,
                 labelColor: Colors.teal,

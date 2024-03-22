@@ -145,15 +145,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
-
   Future<void> _showEditProfileDialog(BuildContext context) async {
     TextEditingController usernameController =
     TextEditingController(text: _userName);
     TextEditingController mobileController =
     TextEditingController(text: _phoneNumber.substring(3));
-    TextEditingController gmailController = TextEditingController(text: _gmail);
+    TextEditingController gmailController =
+    TextEditingController(text: _gmail);
     TextEditingController addressController =
     TextEditingController(text: _address);
+
+    String? newUserName;
+    String? newMobile;
+    String? newGmail;
+    String? newAddress;
 
     return showDialog(
       context: context,
@@ -188,9 +193,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your username',
                   ),
                   onChanged: (value) {
-                    setState(() {
-                      _userName = value;
-                    });
+                    newUserName = value;
                   },
                 ),
                 TextField(
@@ -200,8 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your mobile number',
                   ),
                   onChanged: (value) {
-                    setState(() {
-                    });
+                    newMobile = value;
                   },
                 ),
                 TextField(
@@ -211,9 +213,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your email address',
                   ),
                   onChanged: (value) {
-                    setState(() {
-                      _gmail = value;
-                    });
+                    newGmail = value;
                   },
                 ),
                 TextField(
@@ -223,9 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     hintText: 'Enter your address',
                   ),
                   onChanged: (value) {
-                    setState(() {
-                      _address = value;
-                    });
+                    newAddress = value;
                   },
                 ),
               ],
@@ -240,6 +238,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             ElevatedButton(
               onPressed: () async {
+                if (newUserName != null) {
+                  setState(() {
+                    _userName = newUserName!;
+                  });
+                }
+                if (newMobile != null) {
+                  setState(() {
+                    _phoneNumber = '+91$newMobile';
+                  });
+                }
+                if (newGmail != null) {
+                  setState(() {
+                    _gmail = newGmail!;
+                  });
+                }
+                if (newAddress != null) {
+                  setState(() {
+                    _address = newAddress!;
+                  });
+                }
+
                 User? user = _auth.currentUser;
                 if (user != null) {
                   try {
@@ -273,4 +292,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
+
 }

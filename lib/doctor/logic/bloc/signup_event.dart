@@ -8,8 +8,8 @@ class SignUpFieldChangeEvent extends SignUpEvent {
         required this.name,
         required this.dob,
         required this.address,
-        required this.spicalist,
-        required this.generalfee,
+        required this.specialist,
+        required this.generalFee,
         required this.email,
         required this.password,
         required this.person,
@@ -18,8 +18,8 @@ class SignUpFieldChangeEvent extends SignUpEvent {
   String name;
   String dob;
   String address;
-  String spicalist;
-  String generalfee;
+  String specialist;
+  String generalFee;
   String email;
   String password;
   File? person;
@@ -32,8 +32,8 @@ class SignUpSubmitEvent extends SignUpEvent {
         required this.name,
         required this.dob,
         required this.address,
-        required this.spicalist,
-        required this.generalfee,
+        required this.specialist,
+        required this.generalFee,
         required this.email,
         required this.password,
         required this.person,
@@ -42,8 +42,8 @@ class SignUpSubmitEvent extends SignUpEvent {
   String name;
   String dob;
   String address;
-  String spicalist;
-  String generalfee;
+  String specialist;
+  String generalFee;
   String email;
   String password;
   File? person;

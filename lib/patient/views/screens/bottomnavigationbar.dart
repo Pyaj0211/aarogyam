@@ -1,11 +1,11 @@
-import 'package:aarogyam/patient/views/screens/healthblog.dart';
 import 'package:aarogyam/patient/views/screens/purchasemedicine.dart';
-import 'package:aarogyam/patient/views/screens/digital_consultant.dart';
-import 'package:aarogyam/patient/views/screens/ecom/ecom.dart';
-import 'package:aarogyam/patient/views/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
+import 'digital_consultant.dart';
+import 'ecom/ecom.dart';
+import 'healthblog.dart';
+import 'homescreen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
@@ -16,15 +16,8 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   var _index = 0;
-  List<Widget> list = <Widget>[
-    const HomeScreen(),
-    const DigitalConsult(),
-    const EcomMedicine(),
-    const PurchaseDetailsScreen(),
-    const HealthBlog(),
-  ];
 
-  void _onItemTapped(int index) {
+  void updateIndex(int index) {
     setState(() {
       _index = index;
     });
@@ -33,8 +26,19 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: list.elementAt(_index), // Display the widget based on the selected index
-      bottomNavigationBar: Container(
+      body: IndexedStack(
+        index: _index,
+        children: [
+          HomeScreen(
+            updateIndex: updateIndex,
+          ),
+          const DigitalConsult(),
+          const EcomMedicine(),
+          const PurchaseDetailsScreen(),
+          const HealthBlog(),
+        ],
+      ),
+      bottomNavigationBar:  Container(
         color: Colors.teal,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -67,8 +71,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
                 text: 'Health Blogs',
               ),
             ],
-            selectedIndex: _index, // Set the selected index
-            onTabChange: _onItemTapped,
+            selectedIndex: _index,
+            onTabChange: updateIndex,
           ),
         ),
       ),

@@ -26,7 +26,7 @@ class PurchaseDetailsScreen extends StatelessWidget {
             iconTheme: const IconThemeData(color: Colors.white),
             title: const Text(
               'Purchase Details',
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.white,),
             ),
             centerTitle: true,
           ),

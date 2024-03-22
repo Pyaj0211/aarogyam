@@ -84,11 +84,6 @@ class _MedicineDetailsState extends State<MedicineDetails> {
         addedToCart = docSnapshot.exists;
       });
     });
-    if (widget.dosageForm == 'Syrup') {
-      dosageFormUnit = 'ml';
-    } else if (widget.dosageForm == 'Tablet') {
-      dosageFormUnit = 'tablets';
-    }
   }
 
 
@@ -254,10 +249,6 @@ class _MedicineDetailsState extends State<MedicineDetails> {
     );
   }
   Widget _buildRow(String label, String data) {
-    if (label == 'Stock Quantity') {
-      // Append the dosage unit to the stock quantity
-      data = '$data ${widget.dosageForm == 'Syrup ' ? 'ml' : 'tablets'}';
-    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
