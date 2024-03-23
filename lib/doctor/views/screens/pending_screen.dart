@@ -1,11 +1,10 @@
 import 'package:aarogyam/doctor/views/screens/doctor_login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PendingScreen extends StatelessWidget {
-  const PendingScreen({super.key});
-
+  const PendingScreen({super.key, required this.title});
+  final String title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +12,8 @@ class PendingScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              "Your request is pending. Please try after some times.",
+            Text(
+              title,
               textAlign: TextAlign.center,
             ),
             const SizedBox(
