@@ -1,4 +1,5 @@
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
+import 'package:aarogyam/patient/views/screens/add_user_date_screen.dart';
 import 'package:aarogyam/patient/views/screens/bottomnavigationbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -118,7 +119,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
                     listener: (context, state) {
                       if(state is AuthLoggedInState){
                         Navigator.popUntil(context,(route) => route.isFirst);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const BottomNavigationScreen(),));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AdduserData(),));
                       }
                       else if(state is AuthErrorState){
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

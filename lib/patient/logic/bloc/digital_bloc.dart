@@ -35,8 +35,7 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       for (var doctor in doctorData) {
         log(doctor.specialist.toString());
         log(event.specialist);
-        if (
-            doctor.status == "accepted") {
+        if (doctor.status == "accepted") {
           specificData.add(doctor);
         }
       }
@@ -62,7 +61,8 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
     }
   }
 
-  _onGetWithoutSlot(GetWithoutLoadingSlot event, Emitter<DigitalState> emit) async {
+  _onGetWithoutSlot(
+      GetWithoutLoadingSlot event, Emitter<DigitalState> emit) async {
     try {
       final doctorModel = DoctorModel();
       final data = await dbDoctorService
@@ -86,6 +86,6 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       add(GetWithoutLoadingSlot(uid: event.docId));
     } catch (ex) {
       emit(state.copyWith(error: ex.toString()));
-    } 
+    }
   }
 }
