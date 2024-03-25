@@ -29,7 +29,8 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                 CircleAvatar(
                   radius: MediaQuery.of(context).size.width * 0.15,
                   backgroundColor: Colors.transparent,
-                  backgroundImage: const AssetImage('assets/images/aarogyam.png'),
+                  backgroundImage:
+                      const AssetImage('assets/images/aarogyam.png'),
                   child: null,
                 ),
                 const Text(
@@ -42,7 +43,8 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.1),
                   child: Column(
                     children: [
                       TextFormField(
@@ -63,16 +65,23 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.04),
                       BlocConsumer<AuthCubit, AuthState>(
                         listener: (context, state) {
                           if (state is AuthCodeSentState) {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const VerifyPhoneNumberScreen(),));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const VerifyPhoneNumberScreen(),
+                                ));
                           }
                         },
                         builder: (context, state) {
                           if (state is AuthLoadingState) {
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           }
                           return Container(
                             height: 50,
@@ -84,16 +93,25 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                             child: Center(
                               child: TextButton(
                                 onPressed: () {
-                                  String phoneNumber = "+91${phoneController.text}";
-                                  BlocProvider.of<AuthCubit>(context).sendOTP(phoneNumber);
+                                  String phoneNumber =
+                                      "+91${phoneController.text}";
+                                  BlocProvider.of<AuthCubit>(context)
+                                      .sendOTP(phoneNumber);
                                 },
-                                child: const Text('NEXT',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 22),),
+                                child: const Text(
+                                  'NEXT',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22),
+                                ),
                               ),
                             ),
                           );
                         },
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.02),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,15 +125,19 @@ class PatientLoginScreenState extends State<PatientLoginScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const DocterLoginScreen(),));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DocterLoginScreen(),
+                                  ));
                             },
                             child: const Text(
                               'Login Here',
                               style: TextStyle(
                                   color: Color(0xfff89520),
                                   fontWeight: FontWeight.bold,
-                                  overflow: TextOverflow.visible
-                              ),
+                                  overflow: TextOverflow.visible),
                             ),
                           )
                         ],

@@ -17,10 +17,9 @@ class _ChatBotState extends State<ChatBot> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     chatBotBloc = ChatBotBloc();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _showMessageBox(context);
     });
   }

@@ -27,7 +27,7 @@ class ChatBotBloc extends Bloc<ChatBotEvent, ChatBotState> {
     emit(ChatSuccessState(messages: messages));
     isGenerating = true;
     String generatedText = await ChatBotRepo.chatTextGenerationRepo(messages);
-    if (generatedText.length > 0) {
+    if (generatedText.isNotEmpty) {
       messages.add(ChatMessageModel(
           role: 'model', parts: [ChatPartModel(text: generatedText)]));
       emit(ChatSuccessState(messages: messages));

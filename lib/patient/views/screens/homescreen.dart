@@ -17,7 +17,7 @@ import 'package:get/get.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.updateIndex});
-  final Function(int)updateIndex;
+  final Function(int) updateIndex;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -34,17 +34,18 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     _getUserPhoneNumber();
     _getUserProfileData();
-
   }
+
   Future<void> _getUserPhoneNumber() async {
     User? user = _auth.currentUser;
     if (user != null) {
-      setState(() {
-      });
+      setState(() {});
     }
   }
+
   String _userName = '';
   String _gmail = '';
+  String image = "";
   Future<void> _getUserProfileData() async {
     User? user = _auth.currentUser;
     if (user != null) {
@@ -56,11 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
             .doc('profileData')
             .get();
         if (snapshot.exists) {
-          Map<String, dynamic> data =
-          snapshot.data() as Map<String, dynamic>;
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
             _gmail = data['gmail'] ?? '';
+            image = data['userImage'];
           });
         }
       } catch (e) {
@@ -70,10 +71,11 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
         toolbarHeight: 105,
@@ -91,7 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top:size.height * 0.01 ,left: size.height * 0.01 ,right: size.height * 0.02),
+                  padding: EdgeInsets.only(
+                      top: size.height * 0.01,
+                      left: size.height * 0.01,
+                      right: size.height * 0.02),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -100,9 +105,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              if(scaffoldKey.currentState!.isDrawerOpen){
+                              if (scaffoldKey.currentState!.isDrawerOpen) {
                                 scaffoldKey.currentState!.closeDrawer();
-                              }else{
+                              } else {
                                 scaffoldKey.currentState!.openDrawer();
                               }
                             },
@@ -122,16 +127,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: CircleAvatar(
                                     backgroundColor: Colors.transparent,
                                     foregroundColor: const Color(0xff117790),
-                                    child: _userName.isNotEmpty
-                                        ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
-                                        : const Icon(Icons.person),
+                                    backgroundImage: image.isNotEmpty
+                                        ? NetworkImage(image)
+                                        : null,
                                   ),
                                 ),
                               ),
                             ),
                           ),
                           SizedBox(
-                            width: size.width* 0.025,
+                            width: size.width * 0.025,
                           ),
                           Text(
                             _userName.isNotEmpty ? _userName : 'Hi Guest !',
@@ -150,25 +155,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Padding(
-                  padding:
-                  EdgeInsets.only(left: size.height * 0.015,top: size.height * 0.0080,right: size.height * 0.015),
+                  padding: EdgeInsets.only(
+                      left: size.height * 0.015,
+                      top: size.height * 0.0080,
+                      right: size.height * 0.015),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                     ),
-                    child:  TextFormField(
+                    child: TextFormField(
                       decoration: const InputDecoration(
-                        border: UnderlineInputBorder(
-                            borderSide: BorderSide.none
-                        ),
+                        border:
+                            UnderlineInputBorder(borderSide: BorderSide.none),
                         prefixIcon: Icon(
                           Icons.search,
                           color: Colors.teal,
                         ),
                         // border: OutlineInputBorder(),
                         hintText: 'Search for Medicine,Doctor,Lab Tests',
-                        hintStyle: TextStyle(color: Colors.teal,fontSize: 15),
+                        hintStyle: TextStyle(color: Colors.teal, fontSize: 15),
                       ),
                     ),
                   ),
@@ -190,16 +196,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
-                    fontWeight: FontWeight.w500
-                ),
+                    fontWeight: FontWeight.w500),
               ),
               accountEmail: Text(
                 _gmail,
                 style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16.0,
-                    fontWeight: FontWeight.w500
-                ),
+                    fontWeight: FontWeight.w500),
               ),
               currentAccountPicture: Container(
                 decoration: BoxDecoration(
@@ -212,53 +216,85 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   foregroundColor: const Color(0xff117790),
-                  child: _userName.isNotEmpty
-                      ? Text(_userName[0].toUpperCase(),style: const TextStyle(color: Colors.white,fontWeight: FontWeight.w500),)
-                      : const Icon(Icons.person),
+                  backgroundImage:
+                      image.isNotEmpty ? NetworkImage(image) : null,
                 ),
               ),
-
               decoration: const BoxDecoration(
                 color: Colors.teal,
               ),
-
             ),
             ListTile(
-              leading: const Icon(Icons.person,color: Colors.teal,),
-              title: const Text('My Profile',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+              leading: const Icon(
+                Icons.person,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'My Profile',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ProfileScreen(),
+                    ));
               },
             ),
             ListTile(
-              leading: const Icon(Icons.calendar_today,color: Colors.teal,),
-              title: const Text('Appointments',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
-              onTap: () {
-              },
+              leading: const Icon(
+                Icons.calendar_today,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Appointments',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
+              onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.chat,color: Colors.teal,),
-              title: const Text('Chat with Doctor',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
-              onTap: () {
-              },
+              leading: const Icon(
+                Icons.chat,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Chat with Doctor',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
+              onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.settings,color: Colors.teal,),
-              title: const Text('Settings',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
-              onTap: () {
-              },
+              leading: const Icon(
+                Icons.settings,
+                color: Colors.teal,
+              ),
+              title: const Text(
+                'Settings',
+                style:
+                    TextStyle(color: Colors.teal, fontWeight: FontWeight.w500),
+              ),
+              onTap: () {},
             ),
             const SizedBox(height: 10),
             ListTile(
               leading: const Icon(Icons.person_pin_rounded, color: Colors.teal),
-              title: const Text('About', style: TextStyle(color: Colors.teal, fontWeight: FontWeight.w500)),
+              title: const Text('About',
+                  style: TextStyle(
+                      color: Colors.teal, fontWeight: FontWeight.w500)),
               onTap: () {
                 showAboutDialog(
                   context: context,
                   applicationName: 'aarogyam',
                   applicationVersion: '1.0.0',
                   applicationLegalese: '© 2024 aarogyam',
-                  applicationIcon: Image.asset('assets/images/aarogyam.png',width: 50,height: 50,), // Set the application icon
+                  applicationIcon: Image.asset(
+                    'assets/images/aarogyam.png',
+                    width: 50,
+                    height: 50,
+                  ), // Set the application icon
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(top: 16.0),
@@ -274,18 +310,25 @@ class _HomeScreenState extends State<HomeScreen> {
             const Divider(), // Add a divider above the logout option
             BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
-                if(state is AuthLoggedOutState) {
-
-                  Navigator.pushReplacement(context, CupertinoPageRoute(
-                      builder: (context) => const PatientLoginScreen()
-                  ));
+                if (state is AuthLoggedOutState) {
+                  Navigator.pushReplacement(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const PatientLoginScreen()));
                   Navigator.popUntil(context, (route) => route.isFirst);
                 }
               },
               builder: (context, state) {
-                return  ListTile(
-                  leading: const Icon(Icons.logout,color: Colors.teal,),
-                  title: const Text('Logout',style: TextStyle(color: Colors.teal,fontWeight: FontWeight.w500),),
+                return ListTile(
+                  leading: const Icon(
+                    Icons.logout,
+                    color: Colors.teal,
+                  ),
+                  title: const Text(
+                    'Logout',
+                    style: TextStyle(
+                        color: Colors.teal, fontWeight: FontWeight.w500),
+                  ),
                   onTap: () {
                     if (kDebugMode) {
                       print('log out not worked');
@@ -302,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 5,left: 9,right: 9),
+              padding: const EdgeInsets.only(top: 5, left: 9, right: 9),
               child: Card(
                 shadowColor: Colors.green,
                 elevation: 0,
@@ -313,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   title: const Text(
                     'Express Delivery',
-                    style: TextStyle(color: Colors.teal,fontSize: 15),
+                    style: TextStyle(color: Colors.teal, fontSize: 15),
                   ),
                   subtitle: Row(
                     children: [
@@ -324,11 +367,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       const Text(
                         'Buy Medicine and Essentials',
                         style: TextStyle(
-                            color: Colors.teal, fontWeight: FontWeight.bold,fontSize: 13),
+                            color: Colors.teal,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13),
                       ),
                     ],
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios,size: 20,),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 20,
+                  ),
                 ),
               ),
             ),
@@ -348,12 +396,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           widget.updateIndex(1);
                         },
                         leading:
-                        Image.asset('assets/images/Doctor.png', width: 35),
+                            Image.asset('assets/images/Doctor.png', width: 35),
                         title: const Text(
                           'Consult Digitaly',
                           style: TextStyle(
                               fontSize: 11,
-                              color: Colors.teal, fontWeight: FontWeight.bold),
+                              color: Colors.teal,
+                              fontWeight: FontWeight.bold),
                         ),
                         trailing: const Icon(
                           Icons.arrow_forward_ios,
@@ -363,25 +412,28 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(
-                    width : MediaQuery.of(context).size.width * 0.47,
+                    width: MediaQuery.of(context).size.width * 0.47,
                     child: InkWell(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
-                          return  const MapScreen();
-                        },));
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const MapScreen();
+                          },
+                        ));
                       },
                       child: Card(
                         shadowColor: Colors.green,
                         elevation: 0,
                         color: Colors.white,
                         child: ListTile(
-                          leading:
-                          Image.asset('assets/images/Clinic.png', width: 35),
+                          leading: Image.asset('assets/images/Clinic.png',
+                              width: 35),
                           title: const Text(
                             'Visit Hospital',
                             style: TextStyle(
                                 fontSize: 11,
-                                color: Colors.teal, fontWeight: FontWeight.bold),
+                                color: Colors.teal,
+                                fontWeight: FontWeight.bold),
                           ),
                           trailing: const Icon(
                             Icons.arrow_forward_ios,
@@ -397,7 +449,6 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: size.height * 0.005,
             ),
-
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Container(
@@ -573,8 +624,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Positioned(
                                   top: 5,
                                   left: 25,
-                                  child: Image.asset(
-                                      'assets/images/Clinic.png',
+                                  child: Image.asset('assets/images/Clinic.png',
                                       width: 45),
                                 ),
                                 Positioned(

@@ -1,9 +1,13 @@
 // ignore_for_file: use_build_context_synchronously, file_names
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -42,8 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .get();
 
         if (snapshot.exists) {
-          Map<String, dynamic> data =
-          snapshot.data() as Map<String, dynamic>;
+          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
             _gmail = data['gmail'] ?? '';
@@ -65,95 +68,103 @@ class _ProfileScreenState extends State<ProfileScreen> {
     _getUserProfileData();
   }
 
+  File? image;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          "Profile",
-          style: TextStyle(fontWeight: FontWeight.bold),
+    return PopScope(
+      onPopInvoked: (didPop) {
+        setState(() {});
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          title: const Text(
+            "Profile",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: GestureDetector(
-                        onTap: () {
-                          _showEditProfileDialog(context);
-                        },
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: Colors.teal,
-                                      width: 2.0,
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            _showEditProfileDialog(context);
+                          },
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        color: Colors.teal,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                    child: CircleAvatar(
+                                      radius: 30,
+                                      backgroundColor: Colors.transparent,
+                                      child: _userName.isNotEmpty
+                                          ? Text(_userName[0].toUpperCase())
+                                          : const Icon(Icons.person),
                                     ),
                                   ),
-                                  child: CircleAvatar(
-                                    radius: 30,
-                                    backgroundColor: Colors.transparent,
-                                    child: _userName.isNotEmpty
-                                        ? Text(_userName[0].toUpperCase())
-                                        : const Icon(Icons.person),
-                                  ),
-                                ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
-                                      Text('UserName :- $_userName'),
-                                      Text(
-                                        _phoneNumber.isNotEmpty
-                                            ? _phoneNumber.substring(3)
-                                            : 'Mobile no :- ',
-                                        style: const TextStyle(color: Colors.black),
-                                      ),
-                                      Text('Gmail :- $_gmail'),
-                                      Text('Address :- $_address'),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('UserName :- $_userName'),
+                                        Text(
+                                          _phoneNumber.isNotEmpty
+                                              ? _phoneNumber.substring(3)
+                                              : 'Mobile no :- ',
+                                          style: const TextStyle(
+                                              color: Colors.black),
+                                        ),
+                                        Text('Gmail :- $_gmail'),
+                                        Text('Address :- $_address'),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
+
   Future<void> _showEditProfileDialog(BuildContext context) async {
     TextEditingController usernameController =
-    TextEditingController(text: _userName);
+        TextEditingController(text: _userName);
     TextEditingController mobileController =
-    TextEditingController(text: _phoneNumber.substring(3));
-    TextEditingController gmailController =
-    TextEditingController(text: _gmail);
+        TextEditingController(text: _phoneNumber.substring(3));
+    TextEditingController gmailController = TextEditingController(text: _gmail);
     TextEditingController addressController =
-    TextEditingController(text: _address);
+        TextEditingController(text: _address);
 
     String? newUserName;
     String? newMobile;
@@ -177,13 +188,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: 2.0,
                     ),
                   ),
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.transparent,
-                    foregroundColor: const Color(0xff117790),
-                    child: _userName.isNotEmpty
-                        ? Text(_userName[0].toUpperCase())
-                        : const Icon(Icons.person),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final file = await ImagePicker()
+                          .pickImage(source: ImageSource.gallery);
+                      if (file != null) {
+                        image = File(file.path);
+                        setState(() {});
+                      }
+                    },
+                    child: CircleAvatar(
+                      radius: 40,
+                      backgroundColor: Colors.transparent,
+                      foregroundColor: const Color(0xff117790),
+                      child: _userName.isNotEmpty
+                          ? Text(_userName[0].toUpperCase())
+                          : const Icon(Icons.person),
+                    ),
                   ),
                 ),
                 TextField(
@@ -260,8 +281,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
 
                 User? user = _auth.currentUser;
-                if (user != null) {
+                if (user != null && image != null) {
                   try {
+                    final storageRef = FirebaseStorage.instance
+                        .ref()
+                        .child("user_image")
+                        .child("${user.uid}.jpg");
+                    await storageRef.putFile(image!);
+                    final url = await storageRef.getDownloadURL();
                     await _firestore
                         .collection('users')
                         .doc(user.uid)
@@ -271,19 +298,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'username': _userName,
                       'mobile': _phoneNumber.substring(3),
                       'gmail': _gmail,
+                      "userImage": url,
                       'address': _address,
                     });
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text('Profile Updated successfully'),
-                    ));
+                    Navigator.pop(context);
                     _getUserProfileData();
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('Failed to update profile: $e'),
                     ));
                   }
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: ((context) {
+                        return AlertDialog(
+                          content: const Text("Please Select image."),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Okay"))
+                          ],
+                        );
+                      }));
                 }
-                Navigator.pop(context);
               },
               child: const Text('Save'),
             ),
@@ -292,5 +332,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
       },
     );
   }
-
 }
