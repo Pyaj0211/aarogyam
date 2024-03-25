@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class PendingScreen extends StatelessWidget {
 
-  const PendingScreen({super.key, required String title});
+  const PendingScreen({super.key, required this.title});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +14,8 @@ class PendingScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              "Your request is pending. Please try after some times.",
+            Text(
+              title,
               textAlign: TextAlign.center,
             ),
             const SizedBox(
