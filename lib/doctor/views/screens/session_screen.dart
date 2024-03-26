@@ -26,7 +26,7 @@ class SessionScreen extends StatelessWidget {
 class _SessionScreen extends StatelessWidget {
   const _SessionScreen();
 
-    Future<void> _setupPushNotifications(
+  Future<void> _setupPushNotifications(
       String? title, String? body, String? uid) async {
     final fcm = FirebaseMessaging.instance;
     final dbService = DatabaseService();
@@ -65,18 +65,24 @@ class _SessionScreen extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<SessionBloc, SessionState>(
         builder: (context, state) {
-          if(state.isLoading){
-            return const Center(child: CircularProgressIndicator(),);
-          }else if(state.error.isNotEmpty){
-            return Center(child: Text(state.error),);
-          }else if(state.sessionData.isEmpty){
-            return const Center(child: Text("You have't session."),);
+          if (state.isLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state.error.isNotEmpty) {
+            return Center(
+              child: Text(state.error),
+            );
+          } else if (state.sessionData.isEmpty) {
+            return const Center(
+              child: Text("You have't session."),
+            );
           }
-         
+
           return ListView.builder(
               itemCount: state.sessionData.length,
               itemBuilder: (context, index) {
-                 final data = state.sessionData[index];
+                final data = state.sessionData[index];
                 return ExpansionTile(
                   // onTap: () {
                   //   Navigator.push(
@@ -89,58 +95,76 @@ class _SessionScreen extends StatelessWidget {
                   //   );
                   // },
                   title: Text(data.option ?? ""),
-                  subtitle: Text("${DateFormat("dd MMM yyyy").format(data.meetingTime!.toDate())} Meetings"),
-                  trailing: Text("\$${data.price ?? "" }"),
+                  subtitle: Text(
+                      "${DateFormat("dd MMM yyyy").format(data.meetingTime!.toDate())} Meetings"),
+                  trailing: Text("\$${data.price ?? ""}"),
                   children: [
-                    ListView.builder(
-          itemCount: data.times!.length,
-          itemBuilder: (context, index) {
-            return SizedBox(
-              height: 600,
-              child: ListTile(
-                subtitle: Text(data.option ?? ""),
-                title: Text(
-                    "Meeting time ${DateFormat("hh:mm").format(data.times![index]["slot${index + 1}"][0].toDate())}"),
-                trailing: LayoutBuilder(builder: (contex, constais) {
-                  if (data.times![index]["slot${index + 1}"][1]) {
-                    return ElevatedButton(
-                      onPressed: () async {
-                        final uid = FirebaseAuth.instance.currentUser?.uid;
-                        final dbService = DatabaseService();
-                        final doctorModel = DoctorModel();
-                        final doc = await dbService
-                            .getDoctorByUid(doctorModel.copyWith(uid: uid));
-                        _setupPushNotifications("Meeting started.",
-                            "Dr.${doc.name} is waiting for you.", data.times![index]["slot${index + 1}"][2]);
-                        // ignore: use_build_context_synchronously
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) => VideoCallScreen(
-                                      uid: data.uid!,
-                                      userId: uid!,
-                                      userName: doc.name ?? "Doctor",
-                                    )));
-                      },
-                      style: const ButtonStyle(
-                          backgroundColor:
-                              MaterialStatePropertyAll(Colors.green)),
-                      child: const Text(
-                        "Start Meeting",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    );
-                  } else {
-                    return TextButton(
-                        onPressed: () {},
-                        child: const Text(
-                          "Not Booked",
-                        ));
-                  }
-                }),
-              ),
-            );
-          }),
+                    SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                          itemCount: data.times!.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              subtitle: Text(data.option ?? ""),
+                              title: Text(
+                                  "Meeting time ${DateFormat("hh:mm").format(data.times![index]["slot${index + 1}"][0].toDate())}"),
+                              trailing:
+                                  LayoutBuilder(builder: (contex, constais) {
+                                if (DateTime.now().isAfter(data.times![index]
+                                        ["slot${index + 1}"][0]
+                                    .toDate()
+                                    .add(const Duration(minutes: 30)))) {
+                                  return TextButton(
+                                      onPressed: () {},
+                                      child: const Text("Meeting is Over"));
+                                } else
+                                 if (data.times![index]
+                                    ["slot${index + 1}"][1]) {
+                                  return ElevatedButton(
+                                    onPressed: () async {
+                                      final uid = FirebaseAuth
+                                          .instance.currentUser?.uid;
+                                      final dbService = DatabaseService();
+                                      final doctorModel = DoctorModel();
+                                      final doc =
+                                          await dbService.getDoctorByUid(
+                                              doctorModel.copyWith(uid: uid));
+                                      _setupPushNotifications(
+                                          "Meeting started.",
+                                          "Dr.${doc.name} is waiting for you.",
+                                          data.times![index]["slot${index + 1}"]
+                                              [2]);
+                                      // ignore: use_build_context_synchronously
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => VideoCallScreen(
+                                                    uid: data.uid!,
+                                                    userId: uid!,
+                                                    userName:
+                                                        doc.name ?? "Doctor",
+                                                  )));
+                                    },
+                                    style: const ButtonStyle(
+                                        backgroundColor:
+                                            MaterialStatePropertyAll(
+                                                Colors.green)),
+                                    child: const Text(
+                                      "Start Meeting",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  );
+                                } else {
+                                  return TextButton(
+                                      onPressed: () {},
+                                      child: const Text(
+                                        "Not Booked",
+                                      ));
+                                }
+                              }),
+                            );
+                          }),
+                    ),
                   ],
                 );
               });
