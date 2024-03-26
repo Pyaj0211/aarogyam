@@ -24,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _userName = '';
   String _gmail = '';
   String _address = '';
+  String imageNetwork = "";
 
   Future<void> _getUserPhoneNumber() async {
     User? user = _auth.currentUser;
@@ -51,6 +52,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             _userName = data['username'] ?? '';
             _gmail = data['gmail'] ?? '';
             _address = data['address'] ?? '';
+            imageNetwork = data["userImage"] ?? "";
           });
         }
       } catch (e) {
@@ -201,9 +203,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       radius: 40,
                       backgroundColor: Colors.transparent,
                       foregroundColor: const Color(0xff117790),
-                      child: _userName.isNotEmpty
-                          ? Text(_userName[0].toUpperCase())
-                          : const Icon(Icons.person),
+                      backgroundImage: image != null
+                          ? FileImage(image!)
+                          : NetworkImage(imageNetwork) as ImageProvider,
                     ),
                   ),
                 ),

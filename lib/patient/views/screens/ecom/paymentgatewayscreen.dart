@@ -63,14 +63,14 @@ class _PaymentScreenState extends State<PaymentScreen> {
     _razorpay.clear();
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+  Future<void> _handlePaymentSuccess(PaymentSuccessResponse response) async {
     if (kDebugMode) {
       print("Payment Success: ${response.paymentId!}");
     }
 
     if (_user != null) {
       // Save payment details to user account
-      FirebaseFirestore.instance.collection('users').doc(_user!.uid)
+      await FirebaseFirestore.instance.collection('users').doc(_user!.uid)
           .collection('Purchase').add({
         'medicineName': widget.medicineName,
         'manufacturer': widget.manufacturer,
@@ -92,7 +92,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
           print('Failed to save payment details: $error');
         }
       });
-      //Navigator.popUntil(context, ModalRoute.withName('/EcomMedicine'));
+      Navigator.popUntil(context, ModalRoute.withName('/EcomMedicine'));
 
     } else {
       if (kDebugMode) {

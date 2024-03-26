@@ -96,9 +96,7 @@ class _AdduserDataState extends State<AdduserData> {
                         final file  = await ImagePicker().pickImage(source: ImageSource.gallery);
                         if(file != null){
                           image = File(file.path);
-                          setState(() {
-                            
-                          });
+                          setState(() {});
                         }
                       },
                       child: CircleAvatar(
