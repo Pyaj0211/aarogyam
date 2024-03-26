@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:aarogyam/doctor/data/models/doctor_model.dart';
 import 'package:aarogyam/doctor/logic/bloc/session_bloc/session_bloc.dart';
-import 'package:aarogyam/doctor/views/screens/session_details_Screen.dart';
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/views/screens/video_call_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';

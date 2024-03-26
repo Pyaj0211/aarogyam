@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 
 part 'login_event.dart';
 
@@ -9,7 +10,9 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitial()) {
     on<LoginFieldChangedEvent>((event, emit) {
-      print('this is login feild changes event');
+      if (kDebugMode) {
+        print('this is login feild changes event');
+      }
       if (event.email!.isEmpty ||
           event.email?.trim() == null ||
           !event.email!.contains('@')) {
@@ -19,7 +22,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             error: 'Password must be 8 character long'));
       } else {
         emit(LoginValidState());
-        print('login is valid nice');
+        if (kDebugMode) {
+          print('login is valid nice');
+        }
       }
     });
 

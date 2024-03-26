@@ -1,5 +1,3 @@
-
-import 'dart:developer';
 import 'package:aarogyam/patient/data/services/database_service.dart';
 import 'package:aarogyam/patient/data/services/notification_servies.dart';
 import 'package:aarogyam/splashscreen.dart';
@@ -21,16 +19,16 @@ import 'doctor/views/screens/doctor_HomeScreen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: 'AIzaSyA5KSYy-dfvGietMHrUz07bc8ZAgzJu-3g',
-          appId: '1:461917017068:android:852a2ce40636e9b2fd26c9',
-          messagingSenderId: '461917017068',
-          projectId: 'aarogyam-80aa2'));
+    options: const FirebaseOptions(
+        apiKey: 'AIzaSyA5KSYy-dfvGietMHrUz07bc8ZAgzJu-3g',
+        appId: '1:461917017068:android:852a2ce40636e9b2fd26c9',
+        messagingSenderId: '461917017068',
+        projectId: 'aarogyam-80aa2'),
+  );
   // Initialize Firebase App Check
   await FirebaseAppCheck.instance.activate();
   FirebaseMessaging.onBackgroundMessage(backGrounHandler);
-  final token = await FirebaseMessaging.instance.getToken();
-  log(token.toString());
+
   runApp(
     BlocProvider(
       create: (BuildContext context) => AuthCubit(),
@@ -51,7 +49,7 @@ Future<void> backGrounHandler(RemoteMessage message) async {
 
 void isTokenRefresh() {
   FirebaseMessaging.instance.onTokenRefresh.listen(
-        (event) async {
+    (event) async {
       DatabaseService databaseService = DatabaseService();
       databaseService.addToken();
     },
@@ -70,7 +68,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FirebaseMessaging.instance.getInitialMessage().then(
-          (message) {
+      (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.instance.getInitialMessage");
         }
@@ -83,7 +81,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     FirebaseMessaging.onMessage.listen(
-          (message) {
+      (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.onMessage.listen");
         }
@@ -106,7 +104,7 @@ class _MyAppState extends State<MyApp> {
     );
 
     FirebaseMessaging.onMessageOpenedApp.listen(
-          (message) {
+      (message) {
         if (kDebugMode) {
           print("FirebaseMessaging.onMessageOpenedApp.listen");
         }
@@ -174,3 +172,4 @@ Future<Widget?> _buildMainWidget(BuildContext context, AuthState state) async {
   }
   return null;
 }
+
