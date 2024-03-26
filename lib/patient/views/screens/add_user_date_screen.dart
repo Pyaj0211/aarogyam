@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:aarogyam/patient/views/screens/bottomnavigationbar.dart';
@@ -6,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AdduserData extends StatefulWidget {
@@ -107,10 +108,13 @@ class _AdduserDataState extends State<AdduserData> {
                         foregroundImage: image != null ? FileImage(image!) as ImageProvider : const AssetImage("assets/icons/maki_doctor.png"),
                       ),
                     ),
-                  ),
+                  ),const SizedBox(height: 10,),
                   TextField(
                     controller: usernameController,
                     decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
                       labelText: 'Username',
                       hintText: 'Enter your username',
                     ),
@@ -118,9 +122,13 @@ class _AdduserDataState extends State<AdduserData> {
                       newUserName = value;
                     },
                   ),
+                  const SizedBox(height: 10,),
                   TextField(
                     controller: mobileController,
                     decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
                       labelText: 'Mobile',
                       hintText: 'Enter your mobile number',
                     ),
@@ -128,9 +136,13 @@ class _AdduserDataState extends State<AdduserData> {
                       newMobile = value;
                     },
                   ),
+                  const SizedBox(height: 10,),
                   TextField(
                     controller: gmailController,
                     decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
                       labelText: 'Gmail',
                       hintText: 'Enter your email address',
                     ),
@@ -138,9 +150,13 @@ class _AdduserDataState extends State<AdduserData> {
                       newGmail = value;
                     },
                   ),
+                  const SizedBox(height: 10,),
                   TextField(
                     controller: addressController,
                     decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
                       labelText: 'Address',
                       hintText: 'Enter your address',
                     ),
@@ -153,9 +169,6 @@ class _AdduserDataState extends State<AdduserData> {
                  onPressed: () async {
                   User? user = _auth.currentUser;
                   isLoading = true;
-                  setState(() {
-                    
-                  });
                   if (user != null && image != null) {
                     try {
                       final storageRef = FirebaseStorage.instance.ref().child("user_image").child("${user.uid}.jpg");
@@ -167,11 +180,11 @@ class _AdduserDataState extends State<AdduserData> {
                           .collection('Profile')
                           .doc('profileData')
                           .set({
-                        'username': _userName,
-                        'mobile': _phoneNumber.substring(3),
-                        'gmail': _gmail,
+                        'username': usernameController.text.toString(),
+                        'mobile': mobileController.text.toString(),
+                        'gmail': gmailController.text.toString(),
                         "userImage":url,
-                        'address': _address,
+                        'address': addressController.text.toString(),
                       });
                       Navigator.pushReplacement(
                           context,
