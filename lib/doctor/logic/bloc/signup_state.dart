@@ -23,6 +23,10 @@ class SignUpSpaicalistInvalidState extends SignUpState {
   SignUpSpaicalistInvalidState({required this.error});
   String error;
 }
+class SignUpExperinceInvalidState extends SignUpState {
+  SignUpExperinceInvalidState( { required this.error } );
+  String error;
+}
 class SignUpGeneralfeeInvalidState extends SignUpState {
   SignUpGeneralfeeInvalidState({required this.error});
   String error;

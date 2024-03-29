@@ -29,6 +29,7 @@ class _VerifyPhoneNumberScreenState extends State<VerifyPhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: ListView(
           children: [

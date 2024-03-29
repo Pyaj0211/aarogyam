@@ -38,7 +38,7 @@ class _EcomMedicineState extends State<EcomMedicine> with SingleTickerProviderSt
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 30,
-        title: const Text('Medicine',style: TextStyle(color: Colors.white,),),
+        title: const Text('Medicine',style: TextStyle(color: Colors.white),),
         iconTheme: const IconThemeData(
           color: Colors.white
         ),

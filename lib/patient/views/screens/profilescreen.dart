@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously, file_names
-
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,6 +23,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String _gmail = '';
   String _address = '';
   String imageNetwork = "";
+  String _age = '';
+  String? _gender;
 
   Future<void> _getUserPhoneNumber() async {
     User? user = _auth.currentUser;
@@ -47,12 +47,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             .get();
 
         if (snapshot.exists) {
-          Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+          Map<String, dynamic> data =
+          snapshot.data() as Map<String, dynamic>;
           setState(() {
             _userName = data['username'] ?? '';
             _gmail = data['gmail'] ?? '';
             _address = data['address'] ?? '';
             imageNetwork = data["userImage"] ?? "";
+            _age = data["age"] ?? "";
+            _gender = data["gender"] ?? "";
           });
         }
       } catch (e) {
@@ -71,6 +74,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   File? image;
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -114,28 +118,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       ),
                                     ),
                                     child: CircleAvatar(
-                                      radius: 30,
+                                      radius: 40,
                                       backgroundColor: Colors.transparent,
-                                      child: _userName.isNotEmpty
-                                          ? Text(_userName[0].toUpperCase())
-                                          : const Icon(Icons.person),
+                                      foregroundColor: const Color(0xff117790),
+                                      backgroundImage: image != null
+                                          ? FileImage(image!)
+                                          : NetworkImage(
+                                          imageNetwork) as ImageProvider,
                                     ),
                                   ),
                                   const SizedBox(width: 10),
                                   Expanded(
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text('UserName :- $_userName'),
+                                        Text('Age :- $_age'),
+                                        Text('Gender :- $_gender'),
                                         Text(
                                           _phoneNumber.isNotEmpty
-                                              ? _phoneNumber.substring(3)
+                                              ? 'Mobile no :- ${_phoneNumber.substring(3)}'
                                               : 'Mobile no :- ',
                                           style: const TextStyle(
-                                              color: Colors.black),
+                                            color: Colors.black,
+                                          ),
                                         ),
                                         Text('Gmail :- $_gmail'),
                                         Text('Address :- $_address'),
@@ -161,17 +170,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _showEditProfileDialog(BuildContext context) async {
     TextEditingController usernameController =
-        TextEditingController(text: _userName);
+    TextEditingController(text: _userName);
     TextEditingController mobileController =
-        TextEditingController(text: _phoneNumber.substring(3));
-    TextEditingController gmailController = TextEditingController(text: _gmail);
+    TextEditingController(text: _phoneNumber.substring(3));
+    TextEditingController gmailController =
+    TextEditingController(text: _gmail);
     TextEditingController addressController =
-        TextEditingController(text: _address);
+    TextEditingController(text: _address);
 
     String? newUserName;
     String? newMobile;
     String? newGmail;
     String? newAddress;
+    String? newAge;
 
     return showDialog(
       context: context,
@@ -205,7 +216,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       foregroundColor: const Color(0xff117790),
                       backgroundImage: image != null
                           ? FileImage(image!)
-                          : NetworkImage(imageNetwork) as ImageProvider,
+                          : NetworkImage(
+                          imageNetwork) as ImageProvider,
                     ),
                   ),
                 ),
@@ -218,6 +230,42 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   onChanged: (value) {
                     newUserName = value;
                   },
+                ),
+                TextField(
+                  controller: TextEditingController(text: _age),
+                  decoration: const InputDecoration(
+                    labelText: 'Age',
+                    hintText: 'Enter your age',
+                  ),
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    newAge = value;
+                  },
+                ),
+                Row(
+                  children: [
+                    Text('Gender: '),
+                    Radio<String>(
+                      value: 'male',
+                      groupValue: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          _gender = value;
+                        });
+                      },
+                    ),
+                    const Text('Male'),
+                    Radio<String>(
+                      value: 'female',
+                      groupValue: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          _gender = value;
+                        });
+                      },
+                    ),
+                    const Text('Female'),
+                  ],
                 ),
                 TextField(
                   controller: mobileController,
@@ -281,6 +329,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     _address = newAddress!;
                   });
                 }
+                if (newAge != null) {
+                  setState(() {
+                    _age = newAge!;
+                  });
+                }
 
                 User? user = _auth.currentUser;
                 if (user != null && image != null) {
@@ -302,6 +355,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       'gmail': _gmail,
                       "userImage": url,
                       'address': _address,
+                      'age': _age,
+                      'gender': _gender,
                     });
                     Navigator.pop(context);
                     _getUserProfileData();
