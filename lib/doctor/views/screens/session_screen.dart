@@ -97,7 +97,7 @@ class _SessionScreen extends StatelessWidget {
                   title: Text(data.option ?? ""),
                   subtitle: Text(
                       "${DateFormat("dd MMM yyyy").format(data.meetingTime!.toDate())} Meetings"),
-                  trailing: Text("\$${data.price ?? ""}"),
+                  trailing: Text("\₹${data.price ?? ""}"),
                   children: [
                     SizedBox(
                       height: 300,

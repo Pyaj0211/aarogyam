@@ -43,6 +43,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
   final _ddob = TextEditingController();
   final _daddress = TextEditingController();
   final _dspecialist = TextEditingController();
+  final _dexperience = TextEditingController();
   final _dgernalfeeamount = TextEditingController();
   final _demail = TextEditingController();
   final _dpassword = TextEditingController();
@@ -122,6 +123,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         certificate: _certificate,
                                         specialist: _dspecialist.text,
                                         generalFee: _dgernalfeeamount.text,
+                                        experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -188,7 +190,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                        experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -224,7 +227,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -263,7 +267,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -299,6 +304,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
+                                        experience: _dexperience.text,
                                         certificate: _certificate
                                     )
                                 );
@@ -310,6 +316,43 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                   labelText: "Enter your Specialities",
                                   labelStyle: const TextStyle(color:  Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
                                   prefixIcon: const Icon(Icons.stars_rounded,color: Color(0xff117790),),
+                                  errorText: error
+                              ),
+                            );
+
+                          },),
+                        SizedBox(height: size.height * 0.01),
+                        BlocBuilder<SignUpBloc,SignUpState>(
+                          builder: (context, state) {
+                            String? error;
+                            if(state is SignUpSpaicalistInvalidState){
+                              error = state.error;
+                            }
+                            return  TextFormField(
+                              controller: _dexperience,
+                              onChanged: (value){
+                                BlocProvider.of<SignUpBloc>(context).add(
+                                    SignUpFieldChangeEvent(
+                                        name: _dname.text,
+                                        dob: _ddob.text,
+                                        address: _daddress.text,
+                                        specialist: _dspecialist.text,
+                                        generalFee: _dgernalfeeamount.text,
+                                        email: _demail.text,
+                                        password: _dpassword.text,
+                                        person: _person,
+                                        experience: _dexperience.text,
+                                        certificate: _certificate
+                                    )
+                                );
+                              },
+                              decoration:  InputDecoration(
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  labelText: "Enter your Experience",
+                                  labelStyle: const TextStyle(color:  Color(0xff117790),fontSize: 17,fontWeight: FontWeight.w500),
+                                  prefixIcon: const Icon(Icons.workspace_premium,color: Color(0xff117790),),
                                   errorText: error
                               ),
                             );
@@ -336,7 +379,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -373,7 +417,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -413,7 +458,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -468,7 +514,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                         email: _demail.text,
                                         password: _dpassword.text,
                                         person: _person,
-                                        certificate: _certificate
+                                        certificate: _certificate,
+                                      experience: _dexperience.text,
                                     )
                                 );
                               },
@@ -559,7 +606,8 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                           email: _demail.text,
                                           password: _dpassword.text,
                                           person: _person,
-                                          certificate: _certificate
+                                          certificate: _certificate,
+                                        experience: _dexperience.text,
                                       )
                                   );
                                   if (state is SignUpValidState) {
@@ -574,6 +622,7 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                           password: _dpassword.text,
                                           person: _person,
                                           certificate: _certificate,
+                                          experience: _dexperience.text,
                                         ));
                                     showDialog(context: context, builder: (context) => AlertDialog(
                                       title: const Text('IMPORTANT'),

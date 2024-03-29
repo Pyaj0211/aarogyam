@@ -1,5 +1,6 @@
 import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
 import 'package:aarogyam/patient/views/screens/doctor_list_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -198,7 +199,10 @@ class _DigitalConsultState extends State<DigitalConsult> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.020,
+                  vertical: MediaQuery.of(context).size.height * 0.010
+                ),
                 child: Column(
                   children: [
                     Row(

@@ -25,6 +25,9 @@ class _AdduserDataState extends State<AdduserData> {
   String _userName = '';
   String _gmail = '';
   String _address = '';
+  int? _age;
+  String? _gender;
+
   Future<void> _getUserProfileData() async {
     User? user = _auth.currentUser;
     if (user != null) {
@@ -122,6 +125,51 @@ class _AdduserDataState extends State<AdduserData> {
                   ),
                   const SizedBox(height: 10,),
                   TextField(
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                      labelText: 'Age',
+                      hintText: 'Enter your age',
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      _age = int.tryParse(value);
+                    },
+                  ),
+                  const SizedBox(height: 10,),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Row(
+                      children: [
+                        const Text('Gender: '),
+                        Radio<String>(
+                          value: 'male',
+                          groupValue: _gender,
+                          onChanged: (value) {
+                            setState(() {
+                              _gender = value;
+                            });
+                          },
+                        ),
+                        const Text('Male'),
+                        Radio<String>(
+                          value: 'female',
+                          groupValue: _gender,
+                          onChanged: (value) {
+                            setState(() {
+                              _gender = value;
+                            });
+                          },
+                        ),
+                        const Text('Female'),
+                      ],
+                    ),
+                  ),
+                  TextField(
                     controller: mobileController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(
@@ -183,6 +231,8 @@ class _AdduserDataState extends State<AdduserData> {
                         'gmail': gmailController.text.toString(),
                         "userImage":url,
                         'address': addressController.text.toString(),
+                        'age': _age.toString(),
+                        'gender': _gender.toString(),
                       });
                       Navigator.pushReplacement(
                           context,

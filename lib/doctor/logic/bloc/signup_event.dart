@@ -13,7 +13,8 @@ class SignUpFieldChangeEvent extends SignUpEvent {
         required this.email,
         required this.password,
         required this.person,
-        required this.certificate
+        required this.certificate,
+        required this.experience,
       });
   String name;
   String dob;
@@ -22,6 +23,7 @@ class SignUpFieldChangeEvent extends SignUpEvent {
   String generalFee;
   String email;
   String password;
+  String experience;
   File? person;
   File? certificate;
 }
@@ -37,7 +39,8 @@ class SignUpSubmitEvent extends SignUpEvent {
         required this.email,
         required this.password,
         required this.person,
-        required this.certificate
+        required this.certificate,
+        required this.experience,
       });
   String name;
   String dob;
@@ -45,6 +48,7 @@ class SignUpSubmitEvent extends SignUpEvent {
   String specialist;
   String generalFee;
   String email;
+  String experience;
   String password;
   File? person;
   File? certificate;

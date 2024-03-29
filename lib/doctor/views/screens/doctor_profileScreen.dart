@@ -18,6 +18,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
   String email = '';
   String generalFee = '';
   String dob = '';
+  String experience = '';
   String address = '';
   String specialist = '';
   String? imageUrl;
@@ -41,6 +42,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
             address = data['address'] ?? '';
             dob = data['dob'] ?? '';
             generalFee = data['generalFee'] ?? '';
+            experience = data['experience'] ?? '';
             imageUrl = data['image'];
           });
         }
@@ -61,6 +63,7 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
           'specialist': specialist,
           'email': email,
           'address': address,
+          'experience': experience,
           'dob': dob,
           'generalFee': generalFee,
           'image': imageUrl,
@@ -116,6 +119,11 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
                 _buildTextField('Specialist', specialist, (value) {
                   setState(() {
                     specialist = value;
+                  });
+                }),
+                _buildTextField('Enter the Experience', experience, (value) {
+                  setState(() {
+                    experience = value;
                   });
                 }),
                 _buildTextField('Date of Birth', dob, (value) {
@@ -277,6 +285,8 @@ class _Doctor_ProfileState extends State<Doctor_Profile> {
             ),
             SizedBox(height: size.height * 0.01),
             _DecoratedCard('Specialist', specialist),
+            SizedBox(height: size.height * 0.01),
+            _DecoratedCard("Experience", experience),
             SizedBox(height: size.height * 0.01),
             _DecoratedCard('General Fee', ' ₹$generalFee'),
             SizedBox(height: size.height * 0.02),
