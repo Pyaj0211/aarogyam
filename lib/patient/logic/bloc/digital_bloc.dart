@@ -35,7 +35,7 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       for (var doctor in doctorData) {
         log(doctor.specialist.toString());
         log(event.specialist);
-        if (doctor.status == "accepted") {
+        if (doctor.status == "accepted" && doctor.specialist == event.specialist) {
           specificData.add(doctor);
         }
       }

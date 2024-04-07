@@ -16,7 +16,10 @@ class _DigitalConsultState extends State<DigitalConsult> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: const Text('Digital Consult',style: TextStyle(color: Colors.white),),
+        title: const Text(
+          'Digital Consult',
+          style: TextStyle(color: Colors.white),
+        ),
         centerTitle: true,
         actions: [
           Padding(
@@ -30,7 +33,10 @@ class _DigitalConsultState extends State<DigitalConsult> {
                     color: Colors.white,
                   ),
                 ),
-                const Text('Surat',style: TextStyle(color: Colors.white),),
+                const Text(
+                  'Surat',
+                  style: TextStyle(color: Colors.white),
+                ),
               ],
             ),
           ),
@@ -69,7 +75,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   elevation: 2,
                   child: Column(
                     children: [
-                       const Padding(
+                      const Padding(
                         padding: EdgeInsets.all(10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +191,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   children: [
                     const Text(
                       'Specialties for Digital Consult',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -218,11 +225,37 @@ class _DigitalConsultState extends State<DigitalConsult> {
                             child: _ConsultTile(
                                 'assets/images/Neurology.jpg', 'Neurology')),
                         const SizedBox(width: 8),
-                        _ConsultTile(
-                            'assets/images/Bariatrics.jpg', 'Bariatrics'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "bariatrics")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Bariatrics.jpg', 'Bariatrics'),
+                        ),
                         const SizedBox(width: 8),
-                        _ConsultTile(
-                            'assets/images/Cardiology.jpg', 'Cardiology'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "cardiology")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Cardiology.jpg', 'Cardiology'),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -230,14 +263,54 @@ class _DigitalConsultState extends State<DigitalConsult> {
                     ),
                     Row(
                       children: [
-                        _ConsultTile(
-                            'assets/images/Dermatology.jpg', 'Dermatology'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "dermatology")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Dermatology.jpg', 'Dermatology'),
+                        ),
                         const SizedBox(width: 8),
-                        _ConsultTile(
-                            'assets/images/Psychiatry_img.jpg', 'Psychiatry'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "psychiatry")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Psychiatry_img.jpg',
+                              'Psychiatry'),
+                        ),
                         const SizedBox(width: 8),
-                        _ConsultTile(
-                            'assets/images/Paediatrics.jpg', 'Paediatrics'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "paediatrics")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Paediatrics.jpg', 'Paediatrics'),
+                        ),
                       ],
                     ),
                     const SizedBox(
@@ -245,13 +318,54 @@ class _DigitalConsultState extends State<DigitalConsult> {
                     ),
                     Row(
                       children: [
-                        _ConsultTile(
-                            'assets/images/Physiotherapy.jpg', 'Physiotherpy'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "physiotherapy")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile('assets/images/Physiotherapy.jpg',
+                              'Physiotherpy'),
+                        ),
                         const SizedBox(width: 8),
-                        _ConsultTile(
-                            'assets/images/Diabetology.jpg', 'Diabetology'),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "diabetology")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                          },
+                          child: _ConsultTile(
+                              'assets/images/Diabetology.jpg', 'Diabetology'),
+                        ),
                         const SizedBox(width: 8),
-                        _ConsultTile('assets/images/Urology.jpg', 'Urology'),
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => BlocProvider(
+                                    create: (context) => DigitalBloc()
+                                      ..add(const GetDoctorData(
+                                          specialist: "urology")),
+                                    child: const DoctorListScreen(),
+                                  ),
+                                ),
+                              );
+                            },
+                            child: _ConsultTile(
+                                'assets/images/Urology.jpg', 'Urology')),
                       ],
                     ),
                   ],
@@ -264,7 +378,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   children: [
                     const Text(
                       'Personal Wellness',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -282,8 +397,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      height: MediaQuery.of(context).size.height* 0.11,
-                      width: MediaQuery.of(context).size.width* 0.43,
+                      height: MediaQuery.of(context).size.height * 0.11,
+                      width: MediaQuery.of(context).size.width * 0.43,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.lightBlueAccent.shade100,
@@ -305,8 +420,8 @@ class _DigitalConsultState extends State<DigitalConsult> {
                       ),
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height* 0.11,
-                      width: MediaQuery.of(context).size.width* 0.43,
+                      height: MediaQuery.of(context).size.height * 0.11,
+                      width: MediaQuery.of(context).size.width * 0.43,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.lightBlueAccent.shade100,
@@ -341,6 +456,7 @@ class _DigitalConsultState extends State<DigitalConsult> {
     );
   }
 }
+
 // ignore: non_constant_identifier_names
 Widget _ConsultTile(String imagepath, String title) {
   return Container(
@@ -358,8 +474,8 @@ Widget _ConsultTile(String imagepath, String title) {
         ),
         Text(
           title,
-          style: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold),
+          style:
+              const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
       ],
     ),
