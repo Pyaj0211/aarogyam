@@ -6,10 +6,12 @@ import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
 import 'package:aarogyam/patient/views/screens/video_call_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class SlotScreen extends StatelessWidget {
   Future<void> _setupPushNotifications(
@@ -49,6 +51,20 @@ class SlotScreen extends StatelessWidget {
   final DoctorModel doctorModel;
   @override
   Widget build(BuildContext context) {
+    Razorpay razorpay = Razorpay();
+
+    Future<void> handlePaymentError(PaymentFailureResponse response) async {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Payment failed!")));
+    }
+
+    void handleExternalWallet(ExternalWalletResponse response) {
+      if (kDebugMode) {
+        print("External Wallet: ${response.walletName!}");
+      }
+      // Handle external wallet payment here
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Slots for meeting"),
@@ -65,7 +81,7 @@ class SlotScreen extends StatelessWidget {
             );
           } else if (state.sessionData.isEmpty) {
             return const Center(
-              child: Text("You have't session."),
+              child: Text("Doctor have't session."),
             );
           }
 
@@ -74,6 +90,14 @@ class SlotScreen extends StatelessWidget {
             itemBuilder: ((context, index) {
               final uid = FirebaseAuth.instance.currentUser?.uid;
               final data = state.sessionData[index];
+              Future<void> handlePaymentSuccess(
+                  PaymentSuccessResponse response) async {
+                BlocProvider.of<DigitalBloc>(context).add(BookSlot(
+                    docId: doctorModel.uid!,
+                    uid: data.uid!,
+                    list: data.times!));
+              }
+
               return ExpansionTile(
                 // onTap: () {
                 //   Navigator.push(
@@ -93,7 +117,7 @@ class SlotScreen extends StatelessWidget {
                 controlAffinity: ListTileControlAffinity.leading,
                 subtitle: Text(
                     "${DateFormat("dd MMM yyyy").format(data.meetingTime!.toDate())} Meetings"),
-                trailing: Text("\$${data.price}"),
+                trailing: Text("₹${data.price}"),
                 children: [
                   SizedBox(
                     height: 300,
@@ -142,7 +166,13 @@ class SlotScreen extends StatelessWidget {
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     );
-                                  } else {
+                                  }else if(DateTime.now().isBefore(data.times![index]
+                                              ["slot${index + 1}"][0]
+                                          .toDate()
+                                          .add(const Duration(minutes: 30)))){
+                                            return TextButton(onPressed: (){}, child: const Text("Booked"));
+                                  } 
+                                  else {
                                     return TextButton(
                                         onPressed: () {},
                                         child: const Text("Meetting is over"));
@@ -159,9 +189,7 @@ class SlotScreen extends StatelessWidget {
                                       onPressed: () {},
                                       child: const Text("Booked"));
                                 }
-                              } else if (DateTime.now().isAfter(data
-                                      .times![index]["slot${index + 1}"][0]
-                                      .toDate()) &&
+                              } else if (
                                   DateTime.now().isBefore(
                                     data.times![index]["slot${index + 1}"][0]
                                         .toDate()
@@ -171,6 +199,30 @@ class SlotScreen extends StatelessWidget {
                                   )) {
                                 return TextButton(
                                     onPressed: () {
+                                      razorpay.on(
+                                          Razorpay.EVENT_PAYMENT_SUCCESS,
+                                          handlePaymentSuccess);
+                                      razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+                                          handlePaymentError);
+                                      razorpay.on(
+                                          Razorpay.EVENT_EXTERNAL_WALLET,
+                                          handleExternalWallet);
+                                      var options = {
+                                        'key': 'rzp_test_yeHfOtOcrkH5bn',
+                                        'amount': int.parse(data.price!) *
+                                                100, // amount in the smallest currency unit (e.g., 100 cents for $1)
+                                        'name': doctorModel.name,
+                                        'prefill': {'email': doctorModel.email},
+                                        'external': {
+                                          'wallets': ['paytm']
+                                        }
+                                      };
+
+                                      try {
+                                        razorpay.open(options);
+                                      } catch (e) {
+                                        print("Error: $e");
+                                      }
                                       data.times![index] = {
                                         "slot${index + 1}": [
                                           data.times![index]["slot${index + 1}"]
@@ -179,11 +231,6 @@ class SlotScreen extends StatelessWidget {
                                           uid
                                         ]
                                       };
-                                      BlocProvider.of<DigitalBloc>(context).add(
-                                          BookSlot(
-                                              docId: doctorModel.uid!,
-                                              uid: data.uid!,
-                                              list: data.times!));
                                     },
                                     child: const Text(
                                       "Book Now",

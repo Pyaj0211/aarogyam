@@ -22,6 +22,7 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
     on<GetSlot>(_onGetSlot);
     on<BookSlot>(_onBookSlot);
     on<GetWithoutLoadingSlot>(_onGetWithoutSlot);
+    on<GetAllDoctorData>(_getAllDoctorData);
   }
   final dbService = DatabaseService();
   final dbDoctorService = DoctorDatabaseService();
@@ -35,8 +36,23 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
       for (var doctor in doctorData) {
         log(doctor.specialist.toString());
         log(event.specialist);
-        if (doctor.status == "accepted" && doctor.specialist == event.specialist) {
+        if (doctor.status == "accepted" &&
+            doctor.specialist == event.specialist) {
           specificData.add(doctor);
+        } else if (event.specialist == "other") {
+          if(doctor.status == 'accepted' &&
+            (doctor.specialist != "neurology" &&
+                doctor.specialist != "bariatrics" &&
+                doctor.specialist != "cardiology" &&
+                doctor.specialist != "dermatology" &&
+                doctor.specialist != "psychiatry" &&
+                doctor.specialist != "paediatrics" &&
+                doctor.specialist != "physiotherapy" &&
+                doctor.specialist != "diabetology" &&
+                doctor.specialist != "urology")){
+                            specificData.add(doctor);
+                }
+
         }
       }
       emit(state.copyWith(doctorData: specificData));
@@ -84,6 +100,15 @@ class DigitalBloc extends Bloc<DigitalEvent, DigitalState> {
           ),
           sessionModel.copyWith(uid: event.uid, times: event.list));
       add(GetWithoutLoadingSlot(uid: event.docId));
+    } catch (ex) {
+      emit(state.copyWith(error: ex.toString()));
+    }
+  }
+
+  _getAllDoctorData(GetAllDoctorData event, Emitter<DigitalState> emit) async {
+    try {
+      final data = await dbService.getAllDoctor();
+      emit(state.copyWith(doctorData: data));
     } catch (ex) {
       emit(state.copyWith(error: ex.toString()));
     }

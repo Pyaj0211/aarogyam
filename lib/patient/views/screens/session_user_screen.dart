@@ -8,10 +8,12 @@ import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
 import 'package:aarogyam/patient/views/screens/video_call_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 // ignore: must_be_immutable
 class SessionUserDetailScreen extends StatelessWidget {
@@ -54,8 +56,11 @@ class SessionUserDetailScreen extends StatelessWidget {
   SessionModel data;
   DoctorModel doctorModel;
   final uid = FirebaseAuth.instance.currentUser?.uid;
+
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Book slots here"),
@@ -125,17 +130,7 @@ class SessionUserDetailScreen extends StatelessWidget {
                 } else {
                   return TextButton(
                       onPressed: () {
-                        data.times![index] = {
-                          "slot${index + 1}": [
-                            data.times![index]["slot${index + 1}"][0],
-                            true,
-                            uid
-                          ]
-                        };
-                        BlocProvider.of<DigitalBloc>(context).add(BookSlot(
-                            docId: doctorModel.uid!,
-                            uid: data.uid!,
-                            list: data.times!));
+                        
                       },
                       child: const Text(
                         "Book Now",

@@ -137,7 +137,11 @@ class _MyAppState extends State<MyApp> {
             if (snapshot.connectionState == ConnectionState.done) {
               return snapshot.data ?? const Scaffold(); // Handle null case
             } else {
-              return const Scaffold(); // Loading or error state
+              return const Scaffold(
+                body: Center(
+                  child: Text("Loading..."),
+                ),
+              ); // Loading or error state
             }
           },
         );

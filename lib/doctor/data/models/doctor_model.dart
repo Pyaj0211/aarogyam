@@ -13,6 +13,7 @@ class DoctorModel {
   final String? password;
   final String? specialist;
   final String? status;
+  final String? experience;
 
   DoctorModel({
     this.uid,
@@ -25,6 +26,7 @@ class DoctorModel {
     this.image,
     this.name,
     this.password,
+    this.experience,
     this.specialist,
     this.status,
   });
@@ -41,6 +43,7 @@ class DoctorModel {
         name = doc.data()?["name"],
         password = doc.data()?["password"],
         specialist = doc.data()?["specialist"],
+        experience = doc.data()?["experience"],
         status = doc.data()?["status"];
 
   DoctorModel copyWith({
@@ -54,6 +57,7 @@ class DoctorModel {
     String? image,
     String? name,
     String? password,
+    String? experience,
     String? specialist,
     String? status,
   }) =>
@@ -67,6 +71,7 @@ class DoctorModel {
         image: image ?? this.image,
         name: name ?? this.name,
         token: token ?? this.token,
+        experience :experience ?? this.experience,
         password: password ?? this.password,
         specialist: specialist ?? this.specialist,
         status: status ?? this.status,

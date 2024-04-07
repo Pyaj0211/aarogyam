@@ -39,3 +39,8 @@ class BookSlot extends DigitalEvent{
   @override
   List<Object> get props => [list,docId,uid];
 }
+
+class GetAllDoctorData extends DigitalEvent{
+  @override
+  List<Object> get props => [];
+}

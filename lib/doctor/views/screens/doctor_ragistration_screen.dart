@@ -462,13 +462,13 @@ class _RagistrationScreenState extends State<RagistrationScreen> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15),
                                   ),
-                                  labelText: "Enter your General fee",
+                                  labelText: "Enter your speciality",
                                   labelStyle: const TextStyle(
                                       color: Color(0xff117790),
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500),
                                   prefixIcon: const Icon(
-                                    Icons.attach_money,
+                                    Icons.person,
                                     color: Color(0xff117790),
                                   ),
                                   errorText: error),

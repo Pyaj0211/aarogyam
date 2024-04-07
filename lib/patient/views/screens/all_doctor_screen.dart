@@ -1,10 +1,11 @@
 import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
+import 'package:aarogyam/patient/views/screens/googlemap/googlemapscreen.dart';
 import 'package:aarogyam/patient/views/screens/slot_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DoctorListScreen extends StatelessWidget {
-  const DoctorListScreen({super.key});
+class AllDoctorScreen extends StatelessWidget {
+  const AllDoctorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +33,7 @@ class DoctorListScreen extends StatelessWidget {
               final data = state.doctorData[index];
               return ListTile(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => BlocProvider(
-                        create: (context) =>
-                            DigitalBloc()..add(GetSlot(uid: data.uid!)),
-                        child: SlotScreen(
-                          doctorModel: data,
-                        ),
-                      ),
-                    ),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>MapScreen(address: data.address ?? "")));
                 },
                 leading: CircleAvatar(
                   backgroundImage: NetworkImage(data.image!),

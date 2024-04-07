@@ -1,4 +1,5 @@
 import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
+import 'package:aarogyam/patient/views/screens/chatbot.dart';
 import 'package:aarogyam/patient/views/screens/doctor_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,137 +70,134 @@ class _DigitalConsultState extends State<DigitalConsult> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Card(
-                  shadowColor: Colors.green,
-                  color: Colors.white,
-                  elevation: 2,
-                  child: Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Browse by symptoms',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 18),
-                            ),
-                            Icon(
-                              Icons.arrow_forward_ios,
-                              size: 15,
-                              color: Colors.orange,
-                              textDirection: TextDirection.ltr,
-                            ),
-                          ],
+                child: GestureDetector(onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>const ChatBot()));
+                },
+                  child: Card(
+                    shadowColor: Colors.green,
+                    color: Colors.white,
+                    elevation: 2,
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Browse by symptoms',
+                                style:
+                                    TextStyle(color: Colors.black, fontSize: 18),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 15,
+                                color: Colors.orange,
+                                textDirection: TextDirection.ltr,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.teal, width: 2),
+                        Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: Colors.teal, width: 2),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/Cough.png',
+                                      width: 45,
+                                    ),
+                                    const Text(
+                                      'Cough',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child: Column(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/Cough.png',
-                                    width: 45,
-                                  ),
-                                  const Text(
-                                    'Cough',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: Colors.teal, width: 2),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Image.asset('assets/images/Nose.png',
+                                        width: 45),
+                                    const Text(
+                                      'Cold',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.teal, width: 2),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: Colors.teal, width: 2),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Image.asset('assets/images/Stress.png',
+                                        width: 45),
+                                    const Text(
+                                      'Stress',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              child: Column(
-                                children: [
-                                  Image.asset('assets/images/Nose.png',
-                                      width: 45),
-                                  const Text(
-                                    'Cold',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border:
+                                      Border.all(color: Colors.teal, width: 2),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Image.asset('assets/images/Throat.png',
+                                        width: 45),
+                                    const Text(
+                                      'Throat',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.teal, width: 2),
-                              ),
-                              child: Column(
-                                children: [
-                                  Image.asset('assets/images/Stress.png',
-                                      width: 45),
-                                  const Text(
-                                    'Stress',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.teal, width: 2),
-                              ),
-                              child: Column(
-                                children: [
-                                  Image.asset('assets/images/Throat.png',
-                                      width: 45),
-                                  const Text(
-                                    'Throat',
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Specialties for Digital Consult',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.orange,
-                      ),
                     ),
                   ],
                 ),
@@ -396,51 +394,77 @@ class _DigitalConsultState extends State<DigitalConsult> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.11,
-                      width: MediaQuery.of(context).size.width * 0.43,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.lightBlueAccent.shade100,
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/Psychiatry.png',
-                            width: 60,
-                            height: 65,
-                          ),
-                          const Text(
-                            'Psychiatry',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "psychiatry")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.11,
+                        width: MediaQuery.of(context).size.width * 0.43,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.lightBlueAccent.shade100,
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'assets/images/Psychiatry.png',
+                              width: 60,
+                              height: 65,
+                            ),
+                            const Text(
+                              'Psychiatry',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * 0.11,
-                      width: MediaQuery.of(context).size.width * 0.43,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.lightBlueAccent.shade100,
-                      ),
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/SexualHealth.png',
-                            width: 60,
-                            height: 65,
-                          ),
-                          const Text(
-                            'Sexual Health',
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                    GestureDetector(
+                      onTap: (){
+                          Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => BlocProvider(
+                                          create: (context) => DigitalBloc()
+                                            ..add(const GetDoctorData(
+                                                specialist: "other")),
+                                          child: const DoctorListScreen(),
+                                        )));
+                      },
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.11,
+                        width: MediaQuery.of(context).size.width * 0.43,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.lightBlueAccent.shade100,
+                        ),
+                        child: Column(
+                          children: [
+                            Image.asset(
+                              'assets/images/SexualHealth.png',
+                              width: 60,
+                              height: 65,
+                            ),
+                            const Text(
+                              'Other Doctor',
+                              maxLines: 1,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

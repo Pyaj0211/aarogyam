@@ -1,6 +1,9 @@
+import 'package:aarogyam/patient/logic/bloc/digital_bloc.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_cubit.dart';
 import 'package:aarogyam/patient/logic/cubit/auth_cubit/auth_state.dart';
+import 'package:aarogyam/patient/views/screens/all_doctor_screen.dart';
 import 'package:aarogyam/patient/views/screens/chatbot.dart';
+import 'package:aarogyam/patient/views/screens/doctor_list_screen.dart';
 import 'package:aarogyam/patient/views/screens/healthblog.dart';
 import 'package:aarogyam/patient/views/screens/orderbyprescription.dart';
 import 'package:aarogyam/patient/views/screens/profilescreen.dart';
@@ -417,7 +420,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
-                            return const MapScreen();
+                            return BlocProvider(
+                              create: (context) => DigitalBloc()..add(GetAllDoctorData()),
+                              child: const AllDoctorScreen(),
+                            );
                           },
                         ));
                       },

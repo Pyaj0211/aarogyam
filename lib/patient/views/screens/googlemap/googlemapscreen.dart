@@ -6,8 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
-
+  const MapScreen({super.key, required this.address});
+  final String address;
   @override
   // ignore: library_private_types_in_public_api
   _MapScreenState createState() => _MapScreenState();
@@ -83,10 +83,7 @@ class _MapScreenState extends State<MapScreen> {
 
 
   void _searchLocation() async {
-    String searchText = _searchController.text;
-    if (searchText.isEmpty) return;
-
-    List<Location> locations = await locationFromAddress(searchText);
+    List<Location> locations = await locationFromAddress(widget.address);
     if (locations.isNotEmpty) {
       Location location = locations.first;
       mapController.animateCamera(
@@ -103,7 +100,7 @@ class _MapScreenState extends State<MapScreen> {
             markerId: const MarkerId('searchedLocation'),
             position: LatLng(location.latitude, location.longitude),
             infoWindow: InfoWindow(
-              title: searchText,
+              title: widget.address,
               snippet: 'Searched Location',
             ),
           ),
